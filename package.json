@@ -1,0 +1,20 @@
+{
+  "name": "cfcwired",
+  "version": "1.0.0",
+  "description": "CFC Wired website for RockRMS",
+  "scripts": {
+    "build:css": "lessc less/styles.less css/styles.css",
+    "watch:css": "lessc less/styles.less css/styles.css --watch",
+    "build": "npm run build:css"
+  },
+  "devDependencies": {
+    "less": "^4.2.0"
+  },
+  "keywords": [
+    "cfcwired",
+    "rockrms",
+    "bootstrap"
+  ],
+  "author": "",
+  "license": "MIT"
+}

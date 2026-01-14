@@ -1,0 +1,201 @@
+/* ==========================================================================
+   CFC Wired - Compiled CSS
+   This file is compiled from LESS. Edit the .less files and recompile.
+   ========================================================================== */
+
+/* ==========================================================================
+   Base Styles
+   ========================================================================== */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: #333333;
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+}
+
+.section-title {
+  position: relative;
+  display: inline-block;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background-color: #0d6efd;
+  border-radius: 50rem;
+}
+
+/* ==========================================================================
+   Hero Section
+   ========================================================================== */
+
+.hero-section {
+  background: linear-gradient(135deg, #0d6efd, #4a90d9);
+  color: #ffffff;
+  min-height: 75vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></svg>');
+  background-size: 100px 100px;
+  opacity: 0.5;
+}
+
+.hero-section > .container {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-section h1 {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.hero-section .lead {
+  font-size: 1.25rem;
+  opacity: 0.9;
+}
+
+.hero-section .btn-outline-light {
+  border-width: 2px;
+}
+
+.hero-section .btn-outline-light:hover {
+  background-color: #ffffff;
+  color: #0d6efd;
+}
+
+.min-vh-75 {
+  min-height: 75vh;
+}
+
+/* ==========================================================================
+   Cards & Features
+   ========================================================================== */
+
+.card {
+  transition: all 0.3s ease-in-out;
+  border-radius: 0.5rem;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+}
+
+.feature-icon i {
+  font-size: 2.5rem;
+}
+
+/* ==========================================================================
+   Contact Section
+   ========================================================================== */
+
+.contact-info {
+  padding: 1.5rem;
+}
+
+.contact-info i {
+  display: block;
+}
+
+.contact-info h5 {
+  margin-bottom: 0.5rem;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+.footer a {
+  transition: all 0.3s ease-in-out;
+  font-size: 1.25rem;
+}
+
+.footer a:hover {
+  opacity: 0.8;
+  transform: scale(1.1);
+  display: inline-block;
+}
+
+/* ==========================================================================
+   Utility Classes
+   ========================================================================== */
+
+.bg-gradient-primary {
+  background: linear-gradient(to right, #0d6efd, #4a90d9);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #0d6efd, #4a90d9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ==========================================================================
+   Responsive Adjustments
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .hero-section {
+    min-height: 60vh;
+    padding: 3rem 0;
+  }
+  
+  .hero-section h1 {
+    font-size: 2.5rem;
+  }
+  
+  .section-title {
+    font-size: 1.75rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-section h1 {
+    font-size: 2rem;
+  }
+  
+  .hero-section .lead {
+    font-size: 1rem;
+  }
+  
+  .hero-section .btn-lg {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+  }
+}

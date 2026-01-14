@@ -1,0 +1,199 @@
+// ==========================================================================
+// CFC Wired - Main Stylesheet
+// ==========================================================================
+
+// Import variables and mixins
+@import "variables.less";
+@import "mixins.less";
+
+// ==========================================================================
+// Base Styles
+// ==========================================================================
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: @font-family-base;
+    color: @text-color;
+    line-height: @line-height-base;
+}
+
+// ==========================================================================
+// Typography
+// ==========================================================================
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: @font-family-heading;
+    font-weight: @font-weight-bold;
+}
+
+.section-title {
+    position: relative;
+    display: inline-block;
+    
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 3px;
+        background-color: @brand-primary;
+        border-radius: @border-radius-pill;
+    }
+}
+
+// ==========================================================================
+// Hero Section
+// ==========================================================================
+
+.hero-section {
+    .gradient-diagonal(@brand-primary, @brand-accent);
+    color: @text-light;
+    min-height: 75vh;
+    .flex-center();
+    position: relative;
+    overflow: hidden;
+    
+    &::before {
+        content: '';
+        .absolute-fill();
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></svg>');
+        background-size: 100px 100px;
+        opacity: 0.5;
+    }
+    
+    > .container {
+        position: relative;
+        z-index: 2;
+    }
+    
+    h1 {
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    
+    .lead {
+        font-size: @font-size-lg;
+        opacity: 0.9;
+    }
+    
+    .btn-outline-light {
+        border-width: 2px;
+        
+        &:hover {
+            background-color: @text-light;
+            color: @brand-primary;
+        }
+    }
+}
+
+.min-vh-75 {
+    min-height: 75vh;
+}
+
+// ==========================================================================
+// Cards & Features
+// ==========================================================================
+
+.card {
+    .transition();
+    border-radius: @border-radius-lg;
+    
+    &:hover {
+        transform: translateY(-5px);
+        .box-shadow(@box-shadow-lg);
+    }
+}
+
+.feature-icon {
+    i {
+        font-size: 2.5rem;
+    }
+}
+
+// ==========================================================================
+// Contact Section
+// ==========================================================================
+
+.contact-info {
+    padding: @spacer-lg;
+    
+    i {
+        display: block;
+    }
+    
+    h5 {
+        margin-bottom: @spacer-sm;
+    }
+}
+
+// ==========================================================================
+// Footer
+// ==========================================================================
+
+.footer {
+    a {
+        .transition();
+        font-size: 1.25rem;
+        
+        &:hover {
+            opacity: 0.8;
+            transform: scale(1.1);
+            display: inline-block;
+        }
+    }
+}
+
+// ==========================================================================
+// Utility Classes
+// ==========================================================================
+
+.bg-gradient-primary {
+    .gradient-horizontal(@brand-primary, @brand-accent);
+}
+
+.text-gradient {
+    background: linear-gradient(135deg, @brand-primary, @brand-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+// ==========================================================================
+// Responsive Adjustments
+// ==========================================================================
+
+@media (max-width: @screen-md) {
+    .hero-section {
+        min-height: 60vh;
+        padding: @spacer-xl 0;
+        
+        h1 {
+            font-size: 2.5rem;
+        }
+    }
+    
+    .section-title {
+        font-size: 1.75rem;
+    }
+}
+
+@media (max-width: @screen-sm) {
+    .hero-section {
+        h1 {
+            font-size: 2rem;
+        }
+        
+        .lead {
+            font-size: 1rem;
+        }
+        
+        .btn-lg {
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+        }
+    }
+}
