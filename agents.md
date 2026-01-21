@@ -52,6 +52,12 @@ cfcwired/
 - Use vanilla JS or Bootstrap's JS components
 - Avoid jQuery unless necessary for RockRMS compatibility
 
+### Terminal Commands
+- **Never use heredoc syntax** (`<< EOF` or `<<-EOF`) - it doesn't work reliably
+- Use `create_file` tool for creating files with content
+- Use `echo "content" > file` or `printf` for simple file writes
+- Chain multiple `echo` commands with `>>` for appending
+
 ## Build Commands
 
 ```bash

@@ -5,10 +5,14 @@
   "scripts": {
     "build:css": "lessc less/styles.less css/styles.css",
     "watch:css": "lessc less/styles.less css/styles.css --watch",
-    "build": "npm run build:css"
+    "build": "npm run build:css",
+    "serve": "serve -p 3000",
+    "dev": "concurrently \"npm run watch:css\" \"npm run serve\""
   },
   "devDependencies": {
-    "less": "^4.2.0"
+    "concurrently": "^8.2.2",
+    "less": "^4.2.0",
+    "serve": "^14.2.1"
   },
   "keywords": [
     "cfcwired",

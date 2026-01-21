@@ -3,103 +3,238 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CFC Wired</title>
-    
+    <meta name="description" content="Christian Fellowship Church - A Spirit-directed church discipling people to know Jesus as Lord in Ashburn, VA">
+    <title>Christian Fellowship Church | Ashburn, VA</title>
+
     <!-- Bootstrap 5.3.3 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" 
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    
-    <!-- Custom Styles (compiled from LESS) -->
+
+    <!-- Google Fonts - Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Custom Styles -->
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">
-                <strong>CFC Wired</strong>
+
+    <!-- Fixed Header Wrapper -->
+    <header id="site-header" class="site-header">
+        <!-- Top Banner - Change data-version when content changes to show banner again -->
+        <div id="announcement-header" class="announcement-banner" data-version="2026-01-21-v1">
+            <a href="https://live.cfcwired.org/" target="_blank" class="announcement-link">
+                <span>Sunday mornings 9:30am &amp; 11am. Watch Online <i class="bi bi-arrow-right"></i></span>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button id="close-announcement" class="announcement-close" aria-label="Close announcement">
+                <i class="bi bi-x"></i>
+            </button>
+        </div>
+
+        <!-- Main Navigation -->
+        <nav id="main-nav" class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img id="nav-logo" src="images/CFC_Logo_White.png" alt="Christian Fellowship Church" class="nav-logo">
+            </a>
+            
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarOffcanvas" aria-controls="navbarOffcanvas" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#about">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#services">Services</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contact</a>
-                    </li>
-                </ul>
+            
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="navbarOffcanvas" aria-labelledby="navbarOffcanvasLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="navbarOffcanvasLabel">Menu</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav ms-auto align-items-lg-center">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="about-us/" role="button" data-bs-toggle="dropdown" aria-expanded="false">About Us</a>
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                                <li><a class="dropdown-item" href="about-us/">About Us</a></li>
+                                <li><a class="dropdown-item" href="about-us/find-community.html">Find Community</a></li>
+                                <li><a class="dropdown-item" href="about-us/contact-us.html">Contact Us</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="come-visit/">Come Visit</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="watch-read/messages.html" role="button" data-bs-toggle="dropdown" aria-expanded="false">Watch/Read</a>
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                                <li><a class="dropdown-item" href="watch-read/messages.html">Messages</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="get-involved/core-classes.html" role="button" data-bs-toggle="dropdown" aria-expanded="false">Get Involved</a>
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                                <li><a class="dropdown-item" href="get-involved/core-classes.html">Core Classes</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">For My Family</a>
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                                <li><a class="dropdown-item" href="for-my-family/children.html">Children</a></li>
+                                <li><a class="dropdown-item" href="for-my-family/middle-school.html">Middle School</a></li>
+                                <li><a class="dropdown-item" href="for-my-family/high-school.html">High School</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
+                            <a class="btn btn-primary" href="https://myrock.cfcwired.org/pyv" target="_blank">Plan Your Visit</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </nav>
-
-    <!-- Hero Section -->
-    <header class="hero-section">
-        <div class="container">
-            <div class="row align-items-center min-vh-75">
-                <div class="col-lg-8 mx-auto text-center">
-                    <h1 class="display-3 fw-bold mb-4">Welcome to CFC Wired</h1>
-                    <p class="lead mb-4">Connecting faith and community through technology</p>
-                    <a href="#about" class="btn btn-primary btn-lg me-2">Learn More</a>
-                    <a href="#contact" class="btn btn-outline-light btn-lg">Contact Us</a>
-                </div>
-            </div>
-        </div>
     </header>
 
-    <!-- About Section -->
-    <section id="about" class="py-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 mx-auto text-center">
-                    <h2 class="section-title mb-4">About Us</h2>
-                    <p class="lead text-muted">
-                        CFC Wired is dedicated to serving our community with excellence and passion.
-                        We believe in the power of connection and the importance of faith in everyday life.
-                    </p>
+    <!-- Hero Section -->
+    <section class="hero-section hero-fullpage position-relative overflow-hidden" style="background: linear-gradient(135deg, #1a1a2e 0%, #2c5aa0 100%);">
+        <div class="container position-relative z-2">
+            <div class="row min-vh-100 align-items-center py-5">
+                <div class="col-lg-8 text-white text-center text-lg-start">
+                    <h1 class="display-3 fw-bold mb-3">Welcome</h1>
+                    <p class="lead fs-4 mb-4">We are a Spirit-directed church discipling people to know Jesus as Lord</p>
+                    <div class="d-flex gap-3 justify-content-center justify-content-lg-start flex-wrap">
+                        <a href="come-visit/" class="btn btn-primary btn-lg px-4">Come Visit</a>
+                        <a href="watch-read/messages.html" class="btn btn-outline-light btn-lg px-4">Watch Messages</a>
+                    </div>
                 </div>
             </div>
-            <div class="row mt-5 g-4">
-                <div class="col-md-4">
-                    <div class="card h-100 border-0 shadow-sm">
-                        <div class="card-body text-center p-4">
-                            <div class="feature-icon mb-3">
-                                <i class="bi bi-heart-fill text-primary"></i>
-                            </div>
-                            <h5 class="card-title">Our Mission</h5>
-                            <p class="card-text text-muted">Serving with love and dedication to make a difference in our community.</p>
+        </div>
+    </section>
+
+    <!-- Welcome / This Sunday Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <p class="text-muted mb-2">Christian Fellowship Church is committed to being a place where people become followers of Christ no matter what their religious or denominational background.</p>
+                </div>
+                <div class="col-lg-6">
+                    <img src="images/1920px_Illuminated_web.jpg" alt="This Sunday at CFC" class="img-fluid rounded shadow">
+                </div>
+            </div>
+            
+            <div class="row mt-5">
+                <div class="col-lg-6">
+                    <h2 class="h1 fw-bold mb-4">This Sunday</h2>
+                    <p class="text-muted mb-4">We are called not only to believe and preach the Gospel but to live it out daily through our actions just like Jesus did.</p>
+                    
+                    <h6 class="text-uppercase fw-bold mb-3">Weekly Resources:</h6>
+                    <div class="d-flex gap-3 flex-wrap">
+                        <a href="watch-read/messages.html" class="btn btn-outline-primary">Watch Messages</a>
+                        <a href="https://cfcwired.org/bulletin" target="_blank" class="btn btn-outline-secondary">Bulletin</a>
+                        <a href="https://cfcwired.org/studyguide" target="_blank" class="btn btn-outline-secondary">Study Guide</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coming Up Section -->
+    <!--
+      RockRMS Lava Notes:
+      - This section should pull from Rock Event Calendar
+      - Use {% for event in Events %} to loop through upcoming events
+      - Filter by audience "All Church" or specific campus
+      - Link to myrock.cfcwired.org/EventDetail?EventOccurrenceId={{ event.Id }}
+    -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center fw-bold mb-5">Coming Up</h2>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 border-0 shadow-sm event-card">
+                        <img src="images/1920px_Illuminated_web.jpg" class="card-img-top" alt="Upcoming Event">
+                        <div class="card-body">
+                            <h5 class="card-title">Discover Sabbath</h5>
+                            <p class="card-text small text-muted">Join us for this special event</p>
+                            <a href="https://myrock.cfcwired.org/events" target="_blank" class="btn btn-sm btn-outline-primary">Learn More</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="card h-100 border-0 shadow-sm">
-                        <div class="card-body text-center p-4">
-                            <div class="feature-icon mb-3">
-                                <i class="bi bi-people-fill text-primary"></i>
-                            </div>
-                            <h5 class="card-title">Our Community</h5>
-                            <p class="card-text text-muted">Building strong connections and fostering meaningful relationships.</p>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 border-0 shadow-sm event-card">
+                        <img src="images/Preschool.jpg" class="card-img-top" alt="Kids and Youth">
+                        <div class="card-body">
+                            <h5 class="card-title">Kids and Youth Back</h5>
+                            <p class="card-text small text-muted">Programs resume this week</p>
+                            <a href="https://myrock.cfcwired.org/events" target="_blank" class="btn btn-sm btn-outline-primary">Learn More</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="card h-100 border-0 shadow-sm">
-                        <div class="card-body text-center p-4">
-                            <div class="feature-icon mb-3">
-                                <i class="bi bi-star-fill text-primary"></i>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 border-0 shadow-sm event-card">
+                        <img src="images/Community.jpg" class="card-img-top" alt="Winter Classes">
+                        <div class="card-body">
+                            <h5 class="card-title">Winter Classes</h5>
+                            <p class="card-text small text-muted">New classes starting soon</p>
+                            <a href="https://myrock.cfcwired.org/events" target="_blank" class="btn btn-sm btn-outline-primary">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 border-0 shadow-sm event-card">
+                        <img src="images/prayer2.jpg" class="card-img-top" alt="G3 Summit">
+                        <div class="card-body">
+                            <h5 class="card-title">G3 Summit</h5>
+                            <p class="card-text small text-muted">Annual conference event</p>
+                            <a href="https://myrock.cfcwired.org/events" target="_blank" class="btn btn-sm btn-outline-primary">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <a href="https://myrock.cfcwired.org/Events?audience=All+Church" target="_blank" class="btn btn-primary">See More Events</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience CFC Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center fw-bold mb-5">Experience CFC</h2>
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="card h-100 border-0 shadow-sm text-center p-4">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <i class="bi bi-sun fs-1 text-primary"></i>
                             </div>
-                            <h5 class="card-title">Our Vision</h5>
-                            <p class="card-text text-muted">Inspiring hope and transforming lives through faith and service.</p>
+                            <h4 class="card-title">Sunday Mornings</h4>
+                            <p class="card-text">In person at 9:30am and 11:00am<br>Servicio en Espanol at 2pm<br>Watch from home at 9:30 and 11:00am</p>
+                            <a href="come-visit/" class="btn btn-outline-primary">Come Visit</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card h-100 border-0 shadow-sm text-center p-4">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <i class="bi bi-moon-stars fs-1 text-primary"></i>
+                            </div>
+                            <h4 class="card-title">Wednesday Nights</h4>
+                            <p class="card-text">Our 10-week classes, offered year-round, help you grow with God, build friendships, and find community.</p>
+                            <a href="https://myrock.cfcwired.org/events" target="_blank" class="btn btn-outline-primary">Events</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card h-100 border-0 shadow-sm text-center p-4">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <i class="bi bi-people fs-1 text-primary"></i>
+                            </div>
+                            <h4 class="card-title">Community Groups</h4>
+                            <p class="card-text">We know that life can get busy. That is why we invite you to explore, connect and find a group that fits your schedule.</p>
+                            <a href="about-us/find-community.html" class="btn btn-outline-primary">Find Community</a>
                         </div>
                     </div>
                 </div>
@@ -107,121 +242,191 @@
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="py-5 bg-light">
+    <!-- Discipleship Pathway Section -->
+    <section class="py-5">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-8 mx-auto text-center">
-                    <h2 class="section-title mb-4">What We Offer</h2>
-                    <p class="lead text-muted mb-5">
-                        Discover the many ways we can serve you and your family.
-                    </p>
-                </div>
-            </div>
-            <div class="row g-4">
+            <div class="row align-items-center g-5">
                 <div class="col-lg-6">
-                    <div class="d-flex align-items-start p-4 bg-white rounded shadow-sm h-100">
-                        <div class="flex-shrink-0 me-3">
-                            <i class="bi bi-calendar-event fs-2 text-primary"></i>
-                        </div>
-                        <div>
-                            <h5>Events & Programs</h5>
-                            <p class="text-muted mb-0">Join us for regular events and programs designed to enrich your life and faith journey.</p>
-                        </div>
-                    </div>
+                    <img src="images/Community.jpg" alt="CFC Discipleship Roadmap" class="img-fluid rounded shadow">
                 </div>
                 <div class="col-lg-6">
-                    <div class="d-flex align-items-start p-4 bg-white rounded shadow-sm h-100">
-                        <div class="flex-shrink-0 me-3">
-                            <i class="bi bi-book fs-2 text-primary"></i>
-                        </div>
-                        <div>
-                            <h5>Resources</h5>
-                            <p class="text-muted mb-0">Access a wealth of resources to support your spiritual growth and development.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="d-flex align-items-start p-4 bg-white rounded shadow-sm h-100">
-                        <div class="flex-shrink-0 me-3">
-                            <i class="bi bi-chat-heart fs-2 text-primary"></i>
-                        </div>
-                        <div>
-                            <h5>Support & Care</h5>
-                            <p class="text-muted mb-0">We're here to support you through life's challenges with compassion and care.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="d-flex align-items-start p-4 bg-white rounded shadow-sm h-100">
-                        <div class="flex-shrink-0 me-3">
-                            <i class="bi bi-globe fs-2 text-primary"></i>
-                        </div>
-                        <div>
-                            <h5>Outreach</h5>
-                            <p class="text-muted mb-0">Get involved in our outreach programs and make a positive impact in the world.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 mx-auto text-center">
-                    <h2 class="section-title mb-4">Get In Touch</h2>
-                    <p class="lead text-muted mb-5">
-                        We'd love to hear from you. Reach out to us with any questions or comments.
-                    </p>
-                </div>
-            </div>
-            <div class="row g-4">
-                <div class="col-md-4 text-center">
-                    <div class="contact-info">
-                        <i class="bi bi-geo-alt-fill fs-2 text-primary mb-3"></i>
-                        <h5>Location</h5>
-                        <p class="text-muted">Your Address Here<br>City, State ZIP</p>
-                    </div>
-                </div>
-                <div class="col-md-4 text-center">
-                    <div class="contact-info">
-                        <i class="bi bi-envelope-fill fs-2 text-primary mb-3"></i>
-                        <h5>Email</h5>
-                        <p class="text-muted">info@cfcwired.org</p>
-                    </div>
-                </div>
-                <div class="col-md-4 text-center">
-                    <div class="contact-info">
-                        <i class="bi bi-telephone-fill fs-2 text-primary mb-3"></i>
-                        <h5>Phone</h5>
-                        <p class="text-muted">(555) 123-4567</p>
-                    </div>
+                    <h2 class="fw-bold mb-4">Discipleship Pathway</h2>
+                    <p class="text-muted mb-4">CFC offers 8 core classes that form our discipleship pathway. These classes are designed to help you grow as a follower of Jesus, deepening your faith, shaping your character, and equipping you to become more like Christ in everyday life.</p>
+                    <a href="get-involved/core-classes.html" class="btn btn-primary btn-lg">Learn More</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer py-4 bg-dark text-white">
+    <footer class="footer text-white pt-5 pb-4" style="background-color: #262626;">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-6 text-center text-md-start">
-                    <p class="mb-0">&copy; 2026 CFC Wired. All rights reserved.</p>
+            <div class="row flex-lg-nowrap">
+                <!-- Logo & Contact - Left Column -->
+                <div class="col-lg-auto mb-4 mb-lg-0 footer-left">
+                    <a href="/" class="d-block mb-4">
+                        <img src="images/CFC_Logo_White.png" alt="Christian Fellowship Church" class="footer-logo">
+                    </a>
+                    <div class="footer-contact-info">
+                        <address class="footer-address mb-3">
+                            <a href="https://www.google.com/maps/place/Christian+Fellowship+Church/@39.0576887,-77.4615329,18z/data=!4m5!3m4!1s0x89b639266a8f57d7:0x42899bfb889071!8m2!3d39.0575124!4d-77.460415" target="_blank" class="footer-link">
+                                44505 Atwater Drive<br>Ashburn, VA 20147
+                            </a>
+                        </address>
+                        <p class="mb-2">
+                            <a href="tel:1.703.729.3900" class="footer-link">1.703.729.3900</a>
+                        </p>
+                        <p class="mb-4">
+                            <a href="mailto:cfc@cfcwired.org" class="footer-link">cfc@cfcwired.org</a>
+                        </p>
+                            <div class="social-icons">
+                            <a href="https://www.facebook.com/cfcwired" target="_blank" class="social-icon" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                            <a href="https://twitter.com/cfcwired" target="_blank" class="social-icon" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+                            <a href="https://youtube.com/cfcwired" target="_blank" class="social-icon" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+                            <a href="https://instagram.com/cfcwired" target="_blank" class="social-icon" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-6 text-center text-md-end">
-                    <a href="#" class="text-white me-3"><i class="bi bi-facebook"></i></a>
-                    <a href="#" class="text-white me-3"><i class="bi bi-twitter-x"></i></a>
-                    <a href="#" class="text-white me-3"><i class="bi bi-instagram"></i></a>
-                    <a href="#" class="text-white"><i class="bi bi-youtube"></i></a>
+                
+                <!-- Center Section -->
+                <div class="col mb-4 mb-lg-0 footer-center">
+                    <!-- Quick Menu - Horizontal across top -->
+                    <div class="footer-quick-menu mb-4">
+                        <span class="footer-menu-label">QUICK MENU:</span>
+                        <a href="about-us/" class="footer-menu-link">About Us</a>
+                        <a href="watch-read/messages.html" class="footer-menu-link">Messages</a>
+                        <a href="request-prayer.html" class="footer-menu-link">Request Prayer</a>
+                        <a href="about-us/contact-us.html" class="footer-menu-link">Contact Us</a>
+                    </div>
+                    
+                    <!-- Two columns below: Office Hours/Service Times | CFCWired Weekly -->
+                    <div class="row">
+                        <!-- Office Hours + Service Times (stacked) -->
+                        <div class="col-md-6 mb-4 mb-md-0">
+                            <h6 class="footer-heading">OFFICE HOURS</h6>
+                            <p class="footer-text">M-T: 9:00a to 5:00p</p>
+                            <p class="footer-text mb-4">F & S: Closed</p>
+                            
+                            <h6 class="footer-heading">SERVICE TIMES</h6>
+                            <p class="footer-text">Sunday: In Person: 9:30a & 11:00a</p>
+                            <p class="footer-text">Watch from Anywhere Online: 9:30 & 11:00a</p>
+                        </div>
+                        
+                        <!-- CFCWired Weekly -->
+                        <div class="col-md-6">
+                            <h6 class="footer-heading">CFCWIRED WEEKLY</h6>
+                            <p class="footer-text mb-3">Subscribe to our email newsletter to stay in the loop with everything happening at CFC</p>
+                            <a href="http://eepurl.com/hIOCKn" target="_blank" class="btn btn-outline-light btn-sm">Subscribe</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Download the App - Right Column -->
+                <div class="col-lg-auto footer-right">
+                    <h6 class="footer-heading">DOWNLOAD THE APP</h6>
+                    <div class="d-flex flex-column gap-2">
+                        <a href="https://apps.apple.com/us/app/christian-fellowship-ashburn/id1200541819" target="_blank">
+                            <img src="images/app-store.png" alt="Available on the Apple Store" class="app-badge">
+                        </a>
+                        <a href="https://play.google.com/store/apps/details?id=com.subsplashconsulting.s_D44NRF&hl=en_US&gl=US" target="_blank">
+                            <img src="images/google-play.png" alt="Get it on Google Play" class="app-badge">
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </footer>
+    
+    <!-- Sub Footer -->
+    <div class="text-white py-2" style="background-color: #3C3C3C; font-size: 13px;">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0"><a href="https://plainjoestudios.com" target="_blank" class="text-white-50 text-decoration-none">Designed By: PlainJoe Studios</a></p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="mb-0 text-uppercase">© 2026 CHRISTIAN FELLOWSHIP CHURCH. ALL RIGHTS RESERVED.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <!-- Bootstrap 5.3.3 JS Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    
+    <!-- Scroll Header & Announcement Script -->
+    <script>
+        (function() {
+            const siteHeader = document.getElementById('site-header');
+            const nav = document.getElementById('main-nav');
+            const announcement = document.getElementById('announcement-header');
+            const closeBtn = document.getElementById('close-announcement');
+            const heroSection = document.querySelector('.hero-fullpage');
+            const storageKey = 'cfc-announcement-dismissed';
+            
+            // Update hero margin to pull it up under nav, but keep it below announcement
+            function updateHeroPosition() {
+                if (!heroSection || !siteHeader) return;
+                
+                const navHeight = nav ? nav.offsetHeight : 0;
+                const announcementHeight = (announcement && !announcement.classList.contains('closed')) ? announcement.offsetHeight : 0;
+                
+                // Hero pulls up under the nav but stays below announcement
+                heroSection.style.marginTop = -navHeight + 'px';
+                heroSection.style.paddingTop = (navHeight + announcementHeight) + 'px';
+            }
+            
+            // Check if banner should be hidden (same version was previously dismissed)
+            function checkBannerState() {
+                if (!announcement) return;
+                
+                const bannerVersion = announcement.getAttribute('data-version');
+                const dismissedVersion = localStorage.getItem(storageKey);
+                
+                if (dismissedVersion === bannerVersion) {
+                    announcement.classList.add('closed');
+                }
+                
+                // Update position after banner state is set
+                setTimeout(updateHeroPosition, 50);
+            }
+            
+            // Handle close button click
+            function closeBanner() {
+                if (!announcement) return;
+                
+                const bannerVersion = announcement.getAttribute('data-version');
+                localStorage.setItem(storageKey, bannerVersion);
+                announcement.classList.add('closed');
+                
+                // Update position after animation
+                setTimeout(updateHeroPosition, 350);
+            }
+            
+            // Handle scroll behavior
+            function handleScroll() {
+                const scrollY = window.scrollY;
+                
+                if (scrollY > 50) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
+                }
+            }
+            
+            // Initialize
+            checkBannerState();
+            updateHeroPosition();
+            
+            if (closeBtn) {
+                closeBtn.addEventListener('click', closeBanner);
+            }
+            
+            window.addEventListener('scroll', handleScroll);
+            window.addEventListener('resize', updateHeroPosition);
+            handleScroll();
+        })();
+    </script>
 </body>
 </html>

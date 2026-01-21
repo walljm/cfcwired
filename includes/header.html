@@ -1,0 +1,104 @@
+<!--
+  CFC Wired - Header Component
+  
+  RockRMS Lava Notes:
+  - Replace static nav links with Rock's Page navigation
+  - Use {% for page in navigationPages %} for dynamic menu
+  - Active state: {% if page.Current %}active{% endif %}
+  - For dropdowns: {% if page.HasChildren %}dropdown{% endif %}
+  - Watch Online link can use Rock's Event Calendar for dynamic livestream status
+-->
+
+<!-- Top Banner -->
+<div class="top-banner bg-dark text-white py-2">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col text-center">
+                <span class="small">Sunday mornings 9:30am & 11am.</span>
+                <a href="https://live.cfcwired.org/" target="_blank" class="text-warning ms-2 small text-decoration-none">
+                    Watch Online <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
+    <div class="container">
+        <!-- Logo -->
+        <a class="navbar-brand" href="/">
+            <img src="/images/cfc-logo.png" alt="Christian Fellowship Church" height="50" onerror="this.outerHTML='<span class=\'fw-bold text-primary\'>CFC</span>'">
+        </a>
+        
+        <!-- Mobile Toggle -->
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarOffcanvas" aria-controls="navbarOffcanvas" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <!-- Offcanvas Navigation -->
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="navbarOffcanvas" aria-labelledby="navbarOffcanvasLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="navbarOffcanvasLabel">Menu</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <!-- About Us Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="/about-us/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            About Us
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/about-us/">About Us</a></li>
+                            <li><a class="dropdown-item" href="/about-us/find-community.html">Find Community</a></li>
+                            <li><a class="dropdown-item" href="/about-us/contact-us.html">Contact Us</a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- Come Visit -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="/come-visit/">Come Visit</a>
+                    </li>
+                    
+                    <!-- Watch/Read Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="/watch-read/messages.html" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Watch/Read
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/watch-read/messages.html">Messages</a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- Get Involved Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="/get-involved/core-classes.html" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Get Involved
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/get-involved/core-classes.html">Core Classes</a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- For My Family Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            For My Family
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/for-my-family/children.html">Children</a></li>
+                            <li><a class="dropdown-item" href="/for-my-family/middle-school.html">Middle School</a></li>
+                            <li><a class="dropdown-item" href="/for-my-family/high-school.html">High School</a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- CTA Button -->
+                    <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
+                        <a class="btn btn-primary" href="https://myrock.cfcwired.org/pyv" target="_blank">Plan Your Visit</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
