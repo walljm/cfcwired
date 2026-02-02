@@ -1,6 +1,13 @@
 # CFC Wired Website
 
-Modern rebuild of www.cfcwired.org for integration with RockRMS.
+Modern rebuild of [www.cfcwired.org](https://www.cfcwired.org) for integration with RockRMS.
+
+## Documentation
+
+| Document | Purpose |
+|----------|---------|
+| [docs/agents.md](docs/agents.md) | AI agent guidelines, coding standards |
+| [docs/DESIGN_SPECIFICATIONS.md](docs/DESIGN_SPECIFICATIONS.md) | Complete design specs and content |
 
 ## Tech Stack
 
@@ -13,15 +20,27 @@ Modern rebuild of www.cfcwired.org for integration with RockRMS.
 
 ```
 cfcwired/
-├── index.html          # Main homepage
-├── css/
-│   └── styles.css      # Compiled CSS (from LESS)
-├── less/
-│   ├── styles.less     # Main LESS file
-│   ├── variables.less  # Color, typography, spacing variables
-│   └── mixins.less     # Reusable LESS mixins
-├── package.json        # NPM configuration
-└── README.md           # This file
+├── src/                    # Website source files
+│   ├── index.html          # Homepage
+│   ├── request-prayer.html
+│   ├── about-us/           # About section pages
+│   ├── come-visit/
+│   ├── watch-read/
+│   ├── get-involved/
+│   ├── for-my-family/
+│   ├── includes/           # Reusable HTML fragments
+│   ├── css/
+│   │   └── styles.css      # Compiled CSS (from LESS)
+│   ├── less/
+│   │   ├── styles.less     # Main LESS file
+│   │   ├── variables.less  # Color, typography, spacing variables
+│   │   └── mixins.less     # Reusable LESS mixins
+│   └── images/
+├── docs/                   # Documentation
+│   ├── agents.md           # AI agent guidelines
+│   └── DESIGN_SPECIFICATIONS.md
+├── package.json
+└── README.md
 ```
 
 ## Getting Started
@@ -53,17 +72,19 @@ npm run watch:css
 
 ### Viewing the Site
 
-Open `index.html` in your browser, or use a local development server:
+Open `src/index.html` in your browser, or use a local development server:
 
 ```bash
-npx serve .
+npm run serve
+# or
+npx serve src
 ```
 
 ## Customization
 
 ### Colors & Variables
 
-Edit `less/variables.less` to customize:
+Edit `src/less/variables.less` to customize:
 - Brand colors
 - Typography settings
 - Spacing values
@@ -72,7 +93,7 @@ Edit `less/variables.less` to customize:
 
 ### Adding New Styles
 
-1. Add styles to `less/styles.less` or create new `.less` files
+1. Add styles to `src/less/styles.less` or create new `.less` files
 2. Import new files in `styles.less`
 3. Run `npm run build:css` to compile
 

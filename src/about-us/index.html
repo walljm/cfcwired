@@ -4,7 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="About Christian Fellowship Church - Our vision, values, and history serving Ashburn, VA since 1977">
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Christian Fellowship Church">
+    <meta property="og:title" content="About Us | Christian Fellowship Church">
+    <meta property="og:description" content="About Christian Fellowship Church - Our vision, values, and history serving Ashburn, VA since 1977">
+    <meta property="og:image" content="https://cfcwired.org/images/cfc-social-share.png">
+    <meta property="og:url" content="https://cfcwired.org/about-us/">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@cfcwired">
     <title>About Us | Christian Fellowship Church</title>
+    <link rel="icon" type="image/png" href="../images/cfc-logo-light.png">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -49,6 +60,8 @@
                             <a class="nav-link dropdown-toggle" href="./" role="button" data-bs-toggle="dropdown" aria-expanded="false">About Us</a>
                             <ul class="dropdown-menu dropdown-menu-dark">
                                 <li><a class="dropdown-item" href="./">About Us</a></li>
+                                <li><a class="dropdown-item" href="statement-of-faith.html">Statement of Faith</a></li>
+                                <li><a class="dropdown-item" href="meet-the-team.html">Meet the Team</a></li>
                                 <li><a class="dropdown-item" href="find-community.html">Find Community</a></li>
                                 <li><a class="dropdown-item" href="contact-us.html">Contact Us</a></li>
                             </ul>
@@ -60,12 +73,14 @@
                             <a class="nav-link dropdown-toggle" href="../watch-read/messages.html" role="button" data-bs-toggle="dropdown" aria-expanded="false">Watch/Read</a>
                             <ul class="dropdown-menu dropdown-menu-dark">
                                 <li><a class="dropdown-item" href="../watch-read/messages.html">Messages</a></li>
+                                <li><a class="dropdown-item" href="../watch-read/stories.html">Stories</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="../get-involved/core-classes.html" role="button" data-bs-toggle="dropdown" aria-expanded="false">Get Involved</a>
                             <ul class="dropdown-menu dropdown-menu-dark">
                                 <li><a class="dropdown-item" href="../get-involved/core-classes.html">Core Classes</a></li>
+                                <li><a class="dropdown-item" href="../get-involved/serve.html">Serve</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -87,7 +102,7 @@
     </header>
 
     <!-- Page Hero -->
-    <section class="page-hero bg-primary text-white py-5">
+    <section class="page-hero text-white py-5" style="background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/prayer2.jpg') center/cover no-repeat;">
         <div class="container py-4">
             <h1 class="display-4 fw-bold">About Us</h1>
         </div>
@@ -217,7 +232,9 @@
         <div class="container">
             <div class="row g-4">
                 <div class="col-lg-3 col-md-6">
-                    <h5 class="fw-bold mb-3">CFC</h5>
+                    <a href="../" class="d-block mb-3">
+                        <img src="../images/CFC_Logo_White.png" alt="Christian Fellowship Church" height="40">
+                    </a>
                     <address class="small mb-3">
                         <a href="https://www.google.com/maps/place/Christian+Fellowship+Church/@39.0576887,-77.4615329,18z" target="_blank" class="text-white-50 text-decoration-none">
                             44505 Atwater Drive<br>Ashburn, VA 20147
@@ -244,10 +261,10 @@
                 <div class="col-lg-2 col-md-6">
                     <h6 class="text-uppercase fw-bold mb-3">Office Hours</h6>
                     <p class="small text-white-50 mb-1">M-T: 9:00a to 5:00p</p>
-                    <p class="small text-white-50">F and S: Closed</p>
-                    <h6 class="text-uppercase fw-bold mb-3 mt-4">Service Times</h6>
-                    <p class="small text-white-50 mb-1">Sunday: 9:30a and 11:00a</p>
-                    <p class="small text-white-50">Online: 9:30 and 11:00a</p>
+                    <p class="small text-white-50 mb-4">F & S: Closed</p>
+                    <h6 class="text-uppercase fw-bold mb-3">Service Times</h6>
+                    <p class="small text-white-50 mb-1">Sunday: In Person: 9:30a & 11:00a</p>
+                    <p class="small text-white-50">Watch from Anywhere Online: 9:30 & 11:00a</p>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h6 class="text-uppercase fw-bold mb-3">CFC Weekly</h6>
@@ -258,10 +275,10 @@
                     <h6 class="text-uppercase fw-bold mb-3">Download the App</h6>
                     <div class="d-flex flex-column gap-2">
                         <a href="https://apps.apple.com/us/app/christian-fellowship-ashburn/id1200541819" target="_blank">
-                            <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="App Store" height="40">
+                            <img src="../images/app-store.png" alt="App Store" height="40">
                         </a>
                         <a href="https://play.google.com/store/apps/details?id=com.subsplashconsulting.s_D44NRF" target="_blank">
-                            <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Google Play" height="60" style="margin-left: -10px;">
+                            <img src="../images/google-play.png" alt="Google Play" height="40">
                         </a>
                     </div>
                 </div>

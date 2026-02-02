@@ -3,8 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Watch sermon messages from Christian Fellowship Church">
-    <title>Messages | Christian Fellowship Church</title>
+    <meta name="description" content="Statement of Faith - Christian Fellowship Church's core beliefs and doctrinal statements">
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Christian Fellowship Church">
+    <meta property="og:title" content="Statement of Faith | Christian Fellowship Church">
+    <meta property="og:description" content="Statement of Faith - Christian Fellowship Church's core beliefs and doctrinal statements">
+    <meta property="og:image" content="https://cfcwired.org/images/cfc-social-share.png">
+    <meta property="og:url" content="https://cfcwired.org/about-us/statement-of-faith">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@cfcwired">
+    <title>Statement of Faith | Christian Fellowship Church</title>
+    <link rel="icon" type="image/png" href="../images/cfc-logo-light.png">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -33,11 +44,11 @@
             <a class="navbar-brand" href="/">
                 <img id="nav-logo" src="../images/CFC_Logo_White.png" alt="Christian Fellowship Church" class="nav-logo">
             </a>
-            
+
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarOffcanvas" aria-controls="navbarOffcanvas" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            
+
             <div class="offcanvas offcanvas-end" tabindex="-1" id="navbarOffcanvas" aria-labelledby="navbarOffcanvasLabel">
                 <div class="offcanvas-header">
                     <h5 class="offcanvas-title" id="navbarOffcanvasLabel">Menu</h5>
@@ -46,26 +57,30 @@
                 <div class="offcanvas-body">
                     <ul class="navbar-nav ms-auto align-items-lg-center">
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="../about-us/" role="button" data-bs-toggle="dropdown" aria-expanded="false">About Us</a>
+                            <a class="nav-link dropdown-toggle" href="./" role="button" data-bs-toggle="dropdown" aria-expanded="false">About Us</a>
                             <ul class="dropdown-menu dropdown-menu-dark">
-                                <li><a class="dropdown-item" href="../about-us/">About Us</a></li>
-                                <li><a class="dropdown-item" href="../about-us/find-community.html">Find Community</a></li>
-                                <li><a class="dropdown-item" href="../about-us/contact-us.html">Contact Us</a></li>
+                                <li><a class="dropdown-item" href="./">About Us</a></li>
+                                <li><a class="dropdown-item" href="statement-of-faith.html">Statement of Faith</a></li>
+                                <li><a class="dropdown-item" href="meet-the-team.html">Meet the Team</a></li>
+                                <li><a class="dropdown-item" href="find-community.html">Find Community</a></li>
+                                <li><a class="dropdown-item" href="contact-us.html">Contact Us</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="../come-visit/">Come Visit</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="messages.html" role="button" data-bs-toggle="dropdown" aria-expanded="false">Watch/Read</a>
+                            <a class="nav-link dropdown-toggle" href="../watch-read/messages.html" role="button" data-bs-toggle="dropdown" aria-expanded="false">Watch/Read</a>
                             <ul class="dropdown-menu dropdown-menu-dark">
-                                <li><a class="dropdown-item" href="messages.html">Messages</a></li>
+                                <li><a class="dropdown-item" href="../watch-read/messages.html">Messages</a></li>
+                                <li><a class="dropdown-item" href="../watch-read/stories.html">Stories</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="../get-involved/core-classes.html" role="button" data-bs-toggle="dropdown" aria-expanded="false">Get Involved</a>
                             <ul class="dropdown-menu dropdown-menu-dark">
                                 <li><a class="dropdown-item" href="../get-involved/core-classes.html">Core Classes</a></li>
+                                <li><a class="dropdown-item" href="../get-involved/serve.html">Serve</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -85,141 +100,85 @@
         </div>
     </nav>
     </header>
-                                <li><a class="dropdown-item" href="../about-us/contact-us.html">Contact Us</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item"><a class="nav-link" href="../come-visit/">Come Visit</a></li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="./" role="button" data-bs-toggle="dropdown">Watch/Read</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="./messages.html">Messages</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="../get-involved/core-classes.html" role="button" data-bs-toggle="dropdown">Get Involved</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="../get-involved/core-classes.html">Core Classes</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">For My Family</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="../for-my-family/children.html">Children</a></li>
-                                <li><a class="dropdown-item" href="../for-my-family/middle-school.html">Middle School</a></li>
-                                <li><a class="dropdown-item" href="../for-my-family/high-school.html">High School</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
-                            <a class="btn btn-primary" href="https://myrock.cfcwired.org/pyv" target="_blank">Plan Your Visit</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </nav>
 
     <!-- Page Hero -->
-    <section class="page-hero bg-primary text-white py-5">
+    <section class="page-hero text-white py-5" style="background: linear-gradient(135deg, #0083e0 0%, #00a3e0 100%);">
         <div class="container py-4">
-            <h1 class="display-4 fw-bold">Messages</h1>
-            <p class="lead mb-0">Watch and listen to recent sermons from CFC</p>
+            <h1 class="display-4 fw-bold">Statement of Faith</h1>
+            <p class="lead mb-0">We are a Spirit directed church discipling people to know Jesus as Lord.</p>
         </div>
     </section>
 
-    <!-- Live Stream CTA -->
-    <section class="py-5 bg-light">
-        <div class="container text-center">
-            <h2 class="fw-bold mb-3">Watch Live</h2>
-            <p class="text-muted mb-4">Join us live on Sunday mornings at 9:30am and 11:00am</p>
-            <a href="https://live.cfcwired.org/" target="_blank" class="btn btn-primary btn-lg">
-                <i class="bi bi-broadcast me-2"></i>Go Live
-            </a>
-        </div>
-    </section>
-
-    <!-- Messages Archive -->
+    <!-- Essential for Salvation -->
     <section class="py-5">
         <div class="container">
-            <h2 class="fw-bold mb-4">Recent Messages</h2>
-            
-            <!-- RockRMS Note: Replace this section with Rock's Content Channel View block -->
-            <!-- Embed code placeholder - this will be replaced with Rock's media player -->
-            <div class="ratio ratio-16x9 mb-5">
-                <!-- VIDEO EMBED PLACEHOLDER: Replace with RockRMS Media Element or Vimeo/YouTube embed -->
-                <div class="bg-secondary d-flex align-items-center justify-content-center text-white">
-                    <div class="text-center">
-                        <i class="bi bi-play-circle display-1 mb-3"></i>
-                        <p class="mb-0">Video Player Embed Area</p>
-                        <p class="small text-white-50">RockRMS: Use Media Element block or embed Vimeo/YouTube</p>
-                    </div>
-                </div>
-            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <h2 class="text-uppercase fw-bold text-center mb-5">Essential for Salvation</h2>
 
-            <!-- Message Cards Grid -->
-            <!-- RockRMS Note: Replace with Content Channel View block pulling from Messages channel -->
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 border-0 shadow-sm">
-                        <div class="card-body">
-                            <span class="badge bg-primary mb-2">Current Series</span>
-                            <h5 class="card-title">Message Title</h5>
-                            <p class="card-text text-muted small">Speaker Name | Date</p>
-                            <p class="card-text">Brief description of the message content goes here.</p>
-                            <a href="#" class="btn btn-outline-primary btn-sm">Watch</a>
+                    <div class="card border-0 shadow-sm mb-4">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-start">
+                                <i class="bi bi-cross text-primary fs-3 me-3 mt-1"></i>
+                                <div>
+                                    <h5 class="fw-bold">Jesus's Identity</h5>
+                                    <p class="mb-0 text-muted">Jesus is the only Son of God, who came to earth as a man, died for the sins of the world, and rose again victorious over sin, death and the grave.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 border-0 shadow-sm">
-                        <div class="card-body">
-                            <span class="badge bg-secondary mb-2">Previous</span>
-                            <h5 class="card-title">Message Title</h5>
-                            <p class="card-text text-muted small">Speaker Name | Date</p>
-                            <p class="card-text">Brief description of the message content goes here.</p>
-                            <a href="#" class="btn btn-outline-primary btn-sm">Watch</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 border-0 shadow-sm">
-                        <div class="card-body">
-                            <span class="badge bg-secondary mb-2">Previous</span>
-                            <h5 class="card-title">Message Title</h5>
-                            <p class="card-text text-muted small">Speaker Name | Date</p>
-                            <p class="card-text">Brief description of the message content goes here.</p>
-                            <a href="#" class="btn btn-outline-primary btn-sm">Watch</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="text-center mt-5">
-                <p class="text-muted">Looking for more messages?</p>
-                <a href="https://www.youtube.com/@CFCwired" target="_blank" class="btn btn-outline-dark">
-                    <i class="bi bi-youtube me-2"></i>Visit Our YouTube Channel
-                </a>
+                    <div class="card border-0 shadow-sm mb-4">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-start">
+                                <i class="bi bi-heart text-primary fs-3 me-3 mt-1"></i>
+                                <div>
+                                    <h5 class="fw-bold">Salvation Through Faith</h5>
+                                    <p class="mb-0 text-muted">Jesus' victory makes it possible that anyone who believes in him can be put back into right relationship with God the Father which guarantees life in eternity to come and facilitates life to the full in the present.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card border-0 shadow-sm mb-4">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-start">
+                                <i class="bi bi-people text-primary fs-3 me-3 mt-1"></i>
+                                <div>
+                                    <h5 class="fw-bold">God's Family</h5>
+                                    <p class="mb-0 text-muted">All who put their faith in Jesus as their Savior become part of God's family.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Podcast Section -->
+    <!-- Welcome Statement -->
     <section class="py-5 bg-light">
         <div class="container">
-            <div class="row align-items-center g-5">
-                <div class="col-lg-6">
-                    <h2 class="fw-bold mb-3">Listen on the Go</h2>
-                    <p class="text-muted mb-4">Subscribe to our podcast and never miss a message. Available on your favorite podcast platforms.</p>
-                    <div class="d-flex gap-3 flex-wrap">
-                        <a href="https://podcasts.apple.com/us/podcast/christian-fellowship-church-ashburn-va/id1457355107" target="_blank" class="btn btn-dark">
-                            <i class="bi bi-apple me-2"></i>Apple Podcasts
-                        </a>
-                        <a href="https://open.spotify.com/show/0GQhXSgxtwpDuKfPCYflvz" target="_blank" class="btn btn-success">
-                            <i class="bi bi-spotify me-2"></i>Spotify
-                        </a>
-                    </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <i class="bi bi-house-heart text-primary display-4 mb-4"></i>
+                    <h2 class="fw-bold mb-4">You Are Welcome Here</h2>
+                    <p class="lead text-muted mb-4">We welcome all who hold this belief as our brothers and sisters in Christ and invite them to call Christian Fellowship Church their church home.</p>
+                    <a href="https://myrock.cfcwired.org/pyv" target="_blank" class="btn btn-primary btn-lg">Plan Your Visit</a>
                 </div>
-                <div class="col-lg-6 text-center">
-                    <i class="bi bi-headphones display-1 text-primary"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Articles of Faith -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h2 class="fw-bold mb-4">Articles of Faith</h2>
+                    <p class="text-muted mb-4">For a more detailed explanation of our doctrinal beliefs, please review our complete Articles of Faith document.</p>
+                    <!-- RockRMS: Link to Articles of Faith document or page -->
+                    <a href="#" class="btn btn-outline-primary">View Articles of Faith</a>
                 </div>
             </div>
         </div>
@@ -230,7 +189,9 @@
         <div class="container">
             <div class="row g-4">
                 <div class="col-lg-3 col-md-6">
-                    <h5 class="fw-bold mb-3">CFC</h5>
+                    <a href="../" class="d-block mb-3">
+                        <img src="../images/CFC_Logo_White.png" alt="Christian Fellowship Church" height="40">
+                    </a>
                     <address class="small mb-3">
                         <a href="https://www.google.com/maps/place/Christian+Fellowship+Church/@39.0576887,-77.4615329,18z" target="_blank" class="text-white-50 text-decoration-none">
                             44505 Atwater Drive<br>Ashburn, VA 20147
@@ -248,19 +209,19 @@
                 <div class="col-lg-2 col-md-6">
                     <h6 class="text-uppercase fw-bold mb-3">Quick Menu</h6>
                     <ul class="list-unstyled small">
-                        <li class="mb-2"><a href="../about-us/" class="text-white-50 text-decoration-none">About Us</a></li>
-                        <li class="mb-2"><a href="./messages.html" class="text-white-50 text-decoration-none">Messages</a></li>
+                        <li class="mb-2"><a href="./" class="text-white-50 text-decoration-none">About Us</a></li>
+                        <li class="mb-2"><a href="../watch-read/messages.html" class="text-white-50 text-decoration-none">Messages</a></li>
                         <li class="mb-2"><a href="../request-prayer.html" class="text-white-50 text-decoration-none">Request Prayer</a></li>
-                        <li class="mb-2"><a href="../about-us/contact-us.html" class="text-white-50 text-decoration-none">Contact Us</a></li>
+                        <li class="mb-2"><a href="contact-us.html" class="text-white-50 text-decoration-none">Contact Us</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-2 col-md-6">
                     <h6 class="text-uppercase fw-bold mb-3">Office Hours</h6>
                     <p class="small text-white-50 mb-1">M-T: 9:00a to 5:00p</p>
-                    <p class="small text-white-50">F and S: Closed</p>
-                    <h6 class="text-uppercase fw-bold mb-3 mt-4">Service Times</h6>
-                    <p class="small text-white-50 mb-1">Sunday: 9:30a and 11:00a</p>
-                    <p class="small text-white-50">Online: 9:30 and 11:00a</p>
+                    <p class="small text-white-50 mb-4">F & S: Closed</p>
+                    <h6 class="text-uppercase fw-bold mb-3">Service Times</h6>
+                    <p class="small text-white-50 mb-1">Sunday: In Person: 9:30a & 11:00a</p>
+                    <p class="small text-white-50">Watch from Anywhere Online: 9:30 & 11:00a</p>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h6 class="text-uppercase fw-bold mb-3">CFC Weekly</h6>
@@ -271,10 +232,10 @@
                     <h6 class="text-uppercase fw-bold mb-3">Download the App</h6>
                     <div class="d-flex flex-column gap-2">
                         <a href="https://apps.apple.com/us/app/christian-fellowship-ashburn/id1200541819" target="_blank">
-                            <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="App Store" height="40">
+                            <img src="../images/app-store.png" alt="App Store" height="40">
                         </a>
                         <a href="https://play.google.com/store/apps/details?id=com.subsplashconsulting.s_D44NRF" target="_blank">
-                            <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Google Play" height="60" style="margin-left: -10px;">
+                            <img src="../images/google-play.png" alt="Google Play" height="40">
                         </a>
                     </div>
                 </div>
@@ -293,7 +254,7 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    
+
     <script src="../js/site.js"></script>
 </body>
 </html>

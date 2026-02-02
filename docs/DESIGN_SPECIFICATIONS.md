@@ -1,8 +1,10 @@
 # CFC Wired Design Specifications
 
-> **Document Purpose:** Comprehensive design specifications for recreating the cfcwired.org website exactly.  
-> **Source:** https://www.cfcwired.org/  
+> **Document Purpose:** Comprehensive design specifications for recreating the cfcwired.org website exactly.
+> **Source:** https://www.cfcwired.org/
 > **Last Updated:** January 21, 2026
+>
+> **Related docs:** [agents.md](agents.md) | [README.md](../README.md)
 
 ---
 

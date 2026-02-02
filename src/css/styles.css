@@ -335,6 +335,11 @@ h6 {
 }
 .page-hero {
   background: linear-gradient(135deg, #00a3e0 0%, #0083e0 100%);
+  margin-top: -199px;
+  padding-top: 249px;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
 }
 .navbar .navbar-brand {
   font-family: 'Poppins', Helvetica, Arial, Lucida, sans-serif;

@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "CFC Wired website for RockRMS",
   "scripts": {
-    "build:css": "lessc less/styles.less css/styles.css",
-    "watch:css": "chokidar \"less/**/*.less\" -c \"npm run build:css\"",
+    "build:css": "lessc src/less/styles.less src/css/styles.css",
+    "watch:css": "chokidar \"src/less/**/*.less\" -c \"npm run build:css\"",
     "build": "npm run build:css",
-    "serve": "serve -p 3000",
+    "serve": "serve src -p 3000",
     "dev": "concurrently \"npm run watch:css\" \"npm run serve\""
   },
   "devDependencies": {

@@ -4,7 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Request prayer from Christian Fellowship Church - We would love to pray for you">
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Christian Fellowship Church">
+    <meta property="og:title" content="Request Prayer | Christian Fellowship Church">
+    <meta property="og:description" content="Request prayer from Christian Fellowship Church - We would love to pray for you">
+    <meta property="og:image" content="https://cfcwired.org/images/cfc-social-share.png">
+    <meta property="og:url" content="https://cfcwired.org/request-prayer">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@cfcwired">
     <title>Request Prayer | Christian Fellowship Church</title>
+    <link rel="icon" type="image/png" href="images/cfc-logo-light.png">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -49,6 +60,8 @@
                             <a class="nav-link dropdown-toggle" href="about-us/" role="button" data-bs-toggle="dropdown" aria-expanded="false">About Us</a>
                             <ul class="dropdown-menu dropdown-menu-dark">
                                 <li><a class="dropdown-item" href="about-us/">About Us</a></li>
+                                <li><a class="dropdown-item" href="about-us/statement-of-faith.html">Statement of Faith</a></li>
+                                <li><a class="dropdown-item" href="about-us/meet-the-team.html">Meet the Team</a></li>
                                 <li><a class="dropdown-item" href="about-us/find-community.html">Find Community</a></li>
                                 <li><a class="dropdown-item" href="about-us/contact-us.html">Contact Us</a></li>
                             </ul>
@@ -60,12 +73,14 @@
                             <a class="nav-link dropdown-toggle" href="watch-read/messages.html" role="button" data-bs-toggle="dropdown" aria-expanded="false">Watch/Read</a>
                             <ul class="dropdown-menu dropdown-menu-dark">
                                 <li><a class="dropdown-item" href="watch-read/messages.html">Messages</a></li>
+                                <li><a class="dropdown-item" href="watch-read/stories.html">Stories</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="get-involved/core-classes.html" role="button" data-bs-toggle="dropdown" aria-expanded="false">Get Involved</a>
                             <ul class="dropdown-menu dropdown-menu-dark">
                                 <li><a class="dropdown-item" href="get-involved/core-classes.html">Core Classes</a></li>
+                                <li><a class="dropdown-item" href="get-involved/serve.html">Serve</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -87,141 +102,88 @@
     </header>
 
     <!-- Page Hero -->
-    <section class="page-hero bg-primary text-white py-5">
+    <section class="page-hero text-white py-5" style="background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/prayer.jpg') center/cover no-repeat;">
         <div class="container py-4">
             <h1 class="display-4 fw-bold">Request Prayer</h1>
             <p class="lead mb-0">We would love to pray for you</p>
         </div>
     </section>
 
-    <!-- Prayer Request Section -->
+    <!-- Prayer Introduction -->
     <section class="py-5">
         <div class="container">
-            <div class="row g-5">
-                <!-- Prayer Form -->
-                <div class="col-lg-7">
-                    <div class="card border-0 shadow-sm">
-                        <div class="card-body p-4 p-md-5">
-                            <h2 class="fw-bold mb-4">Share Your Prayer Request</h2>
-                            <p class="text-muted mb-4">Whatever you're facing, you don't have to face it alone. Share your prayer request with us and our prayer team will lift you up in prayer.</p>
-                            
-                            <!-- RockRMS Note: Replace this form with Rock's Workflow Entry block -->
-                            <!-- Configure a Prayer Request workflow that captures these fields -->
-                            <form>
-                                <div class="mb-3">
-                                    <label for="firstName" class="form-label">First Name <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="firstName" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="lastName" class="form-label">Last Name <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="lastName" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="email" class="form-label">Email Address <span class="text-danger">*</span></label>
-                                    <input type="email" class="form-control" id="email" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="phone" class="form-label">Phone Number</label>
-                                    <input type="tel" class="form-control" id="phone">
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Request Type</label>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="requestType" id="typeGeneral" value="general" checked>
-                                        <label class="form-check-label" for="typeGeneral">General Prayer</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="requestType" id="typeUrgent" value="urgent">
-                                        <label class="form-check-label" for="typeUrgent">Urgent Need</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="requestType" id="typePraise" value="praise">
-                                        <label class="form-check-label" for="typePraise">Praise Report</label>
-                                    </div>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="prayerRequest" class="form-label">Your Prayer Request <span class="text-danger">*</span></label>
-                                    <textarea class="form-control" id="prayerRequest" rows="5" required placeholder="Share what's on your heart..."></textarea>
-                                </div>
-                                <div class="mb-4">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="sharePublic">
-                                        <label class="form-check-label" for="sharePublic">
-                                            <small>Allow this request to be shared with our prayer team (names removed for privacy)</small>
-                                        </label>
-                                    </div>
-                                </div>
-                                
-                                <!-- RockRMS Note: Add reCAPTCHA or Rock's built-in captcha here -->
-                                <div class="mb-4 p-3 bg-light rounded text-center">
-                                    <small class="text-muted">reCAPTCHA placeholder - RockRMS will handle spam protection</small>
-                                </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <p class="lead mb-4">Prayer at Christian Fellowship Church is not something we do; it defines who we are.</p>
+                    <p class="text-muted mb-5">Whatever you're facing, you don't have to face it alone. We would love to pray for you and with you. Choose an option below to connect with our prayer team.</p>
+                </div>
+            </div>
 
-                                <button type="submit" class="btn btn-primary btn-lg w-100">Submit Prayer Request</button>
-                            </form>
+            <!-- Prayer CTAs -->
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 border-0 shadow-sm text-center">
+                        <div class="card-body p-4">
+                            <i class="bi bi-pencil-square text-primary display-4 mb-3"></i>
+                            <h5 class="card-title">Submit a Prayer Request</h5>
+                            <p class="card-text text-muted">Share your prayer request with our prayer team. Your request will be treated with confidentiality and care.</p>
+                            <a href="https://myrock.cfcwired.org/prayerrequest" target="_blank" class="btn btn-primary">Submit Request</a>
                         </div>
                     </div>
                 </div>
-
-                <!-- Sidebar -->
-                <div class="col-lg-5">
-                    <div class="bg-light rounded p-4 mb-4">
-                        <h5 class="fw-bold mb-3"><i class="bi bi-shield-check text-primary me-2"></i>Your Privacy</h5>
-                        <p class="text-muted small mb-0">Your prayer request is confidential and will only be shared with our pastoral team unless you give permission otherwise. We take your privacy seriously.</p>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 border-0 shadow-sm text-center">
+                        <div class="card-body p-4">
+                            <i class="bi bi-chat-heart text-primary display-4 mb-3"></i>
+                            <h5 class="card-title">Prayer Wall</h5>
+                            <p class="card-text text-muted">Post to our prayer wall or pray for others in our community. Join together in intercession.</p>
+                            <a href="https://myrock.cfcwired.org/PrayerWall" target="_blank" class="btn btn-primary">Visit Prayer Wall</a>
+                        </div>
                     </div>
-
-                    <div class="bg-light rounded p-4 mb-4">
-                        <h5 class="fw-bold mb-3"><i class="bi bi-chat-heart text-primary me-2"></i>Need to Talk?</h5>
-                        <p class="text-muted small mb-3">If you're in crisis or need to speak with someone right away, please don't hesitate to reach out.</p>
-                        <p class="mb-2"><a href="tel:1-703-729-3900" class="text-decoration-none"><i class="bi bi-telephone me-2"></i>703.729.3900</a></p>
-                        <p class="mb-0"><a href="mailto:prayer@cfcwired.org" class="text-decoration-none"><i class="bi bi-envelope me-2"></i>prayer@cfcwired.org</a></p>
-                    </div>
-
-                    <div class="bg-primary text-white rounded p-4">
-                        <h5 class="fw-bold mb-3"><i class="bi bi-book me-2"></i>Scripture Encouragement</h5>
-                        <p class="mb-3">"Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God. And the peace of God, which transcends all understanding, will guard your hearts and your minds in Christ Jesus."</p>
-                        <p class="small mb-0 opacity-75">— Philippians 4:6-7</p>
-                    </div>
-
-                    <div class="mt-4">
-                        <img src="images/prayer.jpg" alt="Prayer" class="img-fluid rounded shadow">
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 border-0 shadow-sm text-center">
+                        <div class="card-body p-4">
+                            <i class="bi bi-calendar-check text-primary display-4 mb-3"></i>
+                            <h5 class="card-title">Request an Appointment</h5>
+                            <p class="card-text text-muted">Need more personal support? Request an appointment with one of our care team members.</p>
+                            <a href="https://myrock.cfcwired.org/carerequest" target="_blank" class="btn btn-primary">Request Care</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Other Ways to Pray -->
+    <!-- Prayer Warriors Section -->
     <section class="py-5 bg-light">
         <div class="container">
-            <h2 class="fw-bold text-center mb-5">Other Ways to Connect in Prayer</h2>
-            <div class="row g-4 justify-content-center">
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 border-0 shadow-sm text-center">
-                        <div class="card-body p-4">
-                            <i class="bi bi-calendar-event text-primary display-4 mb-3"></i>
-                            <h5 class="card-title">Prayer Gathering</h5>
-                            <p class="card-text text-muted">Join us for corporate prayer times throughout the week. Check our events calendar for upcoming gatherings.</p>
-                        </div>
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <h2 class="fw-bold mb-4">Become a Prayer Warrior</h2>
+                    <p class="text-muted mb-4">Join our community of prayer warriors who intercede for the needs of others. Visit our prayer wall to see current prayer requests and lift up our church family in prayer.</p>
+                    <div class="bg-primary text-white rounded p-4 mb-4">
+                        <h5 class="fw-bold mb-3"><i class="bi bi-book me-2"></i>Scripture Encouragement</h5>
+                        <p class="mb-3">"Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God. And the peace of God, which transcends all understanding, will guard your hearts and your minds in Christ Jesus."</p>
+                        <p class="small mb-0 opacity-75">— Philippians 4:6-7</p>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 border-0 shadow-sm text-center">
-                        <div class="card-body p-4">
-                            <i class="bi bi-people text-primary display-4 mb-3"></i>
-                            <h5 class="card-title">Prayer Team</h5>
-                            <p class="card-text text-muted">After each service, our prayer team is available at the front of the auditorium to pray with you personally.</p>
-                        </div>
-                    </div>
+                <div class="col-lg-6">
+                    <img src="images/prayer.jpg" alt="Prayer" class="img-fluid rounded shadow">
                 </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 border-0 shadow-sm text-center">
-                        <div class="card-body p-4">
-                            <i class="bi bi-telephone text-primary display-4 mb-3"></i>
-                            <h5 class="card-title">Prayer Line</h5>
-                            <p class="card-text text-muted">Call our church office during business hours to speak with someone and receive prayer over the phone.</p>
-                        </div>
-                    </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Info -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 text-center">
+                    <h3 class="fw-bold mb-4">Need to Talk?</h3>
+                    <p class="text-muted mb-4">If you're in crisis or need to speak with someone right away, please don't hesitate to reach out.</p>
+                    <p class="mb-2"><a href="tel:1-703-729-3900" class="text-decoration-none fs-5"><i class="bi bi-telephone me-2"></i>703.729.3900</a></p>
+                    <p class="mb-0"><a href="mailto:cfc@cfcwired.org" class="text-decoration-none fs-5"><i class="bi bi-envelope me-2"></i>cfc@cfcwired.org</a></p>
                 </div>
             </div>
         </div>
@@ -232,7 +194,9 @@
         <div class="container">
             <div class="row g-4">
                 <div class="col-lg-3 col-md-6">
-                    <h5 class="fw-bold mb-3">CFC</h5>
+                    <a href="/" class="d-block mb-3">
+                        <img src="images/CFC_Logo_White.png" alt="Christian Fellowship Church" height="40">
+                    </a>
                     <address class="small mb-3">
                         <a href="https://www.google.com/maps/place/Christian+Fellowship+Church/@39.0576887,-77.4615329,18z" target="_blank" class="text-white-50 text-decoration-none">
                             44505 Atwater Drive<br>Ashburn, VA 20147
@@ -259,10 +223,10 @@
                 <div class="col-lg-2 col-md-6">
                     <h6 class="text-uppercase fw-bold mb-3">Office Hours</h6>
                     <p class="small text-white-50 mb-1">M-T: 9:00a to 5:00p</p>
-                    <p class="small text-white-50">F and S: Closed</p>
-                    <h6 class="text-uppercase fw-bold mb-3 mt-4">Service Times</h6>
-                    <p class="small text-white-50 mb-1">Sunday: 9:30a and 11:00a</p>
-                    <p class="small text-white-50">Online: 9:30 and 11:00a</p>
+                    <p class="small text-white-50 mb-4">F & S: Closed</p>
+                    <h6 class="text-uppercase fw-bold mb-3">Service Times</h6>
+                    <p class="small text-white-50 mb-1">Sunday: In Person: 9:30a & 11:00a</p>
+                    <p class="small text-white-50">Watch from Anywhere Online: 9:30 & 11:00a</p>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h6 class="text-uppercase fw-bold mb-3">CFC Weekly</h6>
@@ -273,10 +237,10 @@
                     <h6 class="text-uppercase fw-bold mb-3">Download the App</h6>
                     <div class="d-flex flex-column gap-2">
                         <a href="https://apps.apple.com/us/app/christian-fellowship-ashburn/id1200541819" target="_blank">
-                            <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="App Store" height="40">
+                            <img src="images/app-store.png" alt="App Store" height="40">
                         </a>
                         <a href="https://play.google.com/store/apps/details?id=com.subsplashconsulting.s_D44NRF" target="_blank">
-                            <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Google Play" height="60" style="margin-left: -10px;">
+                            <img src="images/google-play.png" alt="Google Play" height="40">
                         </a>
                     </div>
                 </div>
