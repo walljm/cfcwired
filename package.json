@@ -4,13 +4,14 @@
   "description": "CFC Wired website for RockRMS",
   "scripts": {
     "build:css": "lessc less/styles.less css/styles.css",
-    "watch:css": "lessc less/styles.less css/styles.css --watch",
+    "watch:css": "chokidar \"less/**/*.less\" -c \"npm run build:css\"",
     "build": "npm run build:css",
     "serve": "serve -p 3000",
     "dev": "concurrently \"npm run watch:css\" \"npm run serve\""
   },
   "devDependencies": {
     "concurrently": "^8.2.2",
+    "chokidar-cli": "^3.0.0",
     "less": "^4.2.0",
     "serve": "^14.2.1"
   },
