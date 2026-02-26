@@ -39,7 +39,7 @@
         <!-- Top Banner - Change data-version when content changes to show banner again -->
         <div id="announcement-header" class="announcement-banner" data-version="2026-01-21-v1">
             <a href="https://live.cfcwired.org/" target="_blank" class="announcement-link">
-                <span>Sunday mornings 9:30am &amp; 11am. Watch Online <i class="bi bi-arrow-right"></i></span>
+                <span>This Sunday at 9:30am &amp; 11am. Watch Online -&gt;</span>
             </a>
             <button id="close-announcement" class="announcement-close" aria-label="Close announcement">
                 <i class="bi bi-x"></i>
@@ -110,11 +110,18 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero-section hero-fullpage position-relative overflow-hidden" style="background: linear-gradient(135deg, #1a1a2e 0%, #2c5aa0 100%);">
-        <div class="container position-relative z-2">
-            <div class="row min-vh-100 align-items-center py-5">
+    <section class="hero-section hero-fullpage homepage-hero position-relative overflow-hidden" style="background: linear-gradient(135deg, #1a1a2e 0%, #2c5aa0 100%);">
+        <div class="container position-relative z-2 py-4 py-lg-5">
+            <div class="hero-video-shell mb-4 mb-lg-5" aria-label="Video Player">
+                <div class="hero-video-top">Video Player</div>
+                <div class="hero-video-frame">
+                    <img src="images/0338_jason_wall_untitled-shootIMG_8900-1-scaled.jpg" alt="Welcome video" class="hero-video-image">
+                </div>
+            </div>
+
+            <div class="row pb-3 pb-lg-4">
                 <div class="col-lg-8 text-white text-center text-lg-start">
-                    <h1 class="display-3 fw-bold mb-3">Welcome</h1>
+                    <h1 class="display-4 fw-bold mb-3 text-uppercase">WELCOME</h1>
                     <p class="lead fs-4 mb-4">We are a Spirit-directed church discipling people to know Jesus as Lord</p>
                     <div class="d-flex gap-3 justify-content-center justify-content-lg-start flex-wrap">
                         <a href="come-visit/" class="btn btn-primary btn-lg px-4">Come Visit</a>
@@ -139,14 +146,14 @@
             
             <div class="row mt-5">
                 <div class="col-lg-6">
-                    <h2 class="h1 fw-bold mb-4">This Sunday</h2>
+                    <h2 class="h1 fw-bold mb-4 text-uppercase">THIS SUNDAY</h2>
                     <p class="text-muted mb-4">We are called not only to believe and preach the Gospel but to live it out daily through our actions just like Jesus did.</p>
                     
-                    <h6 class="text-uppercase fw-bold mb-3">Weekly Resources:</h6>
-                    <div class="d-flex gap-3 flex-wrap">
-                        <a href="watch-read/messages.html" class="btn btn-outline-primary">Watch Messages</a>
-                        <a href="https://cfcwired.org/bulletin" target="_blank" class="btn btn-outline-secondary">Bulletin</a>
-                        <a href="https://cfcwired.org/studyguide" target="_blank" class="btn btn-outline-secondary">Study Guide</a>
+                    <h5 class="text-uppercase fw-bold mb-3">WEEKLY RESOURCES:</h5>
+                    <div class="d-flex gap-3 flex-wrap weekly-resources-links">
+                        <a href="watch-read/messages.html">Watch Messages</a>
+                        <a href="https://cfcwired.org/bulletin" target="_blank">Bulletin</a>
+                        <a href="https://cfcwired.org/studyguide" target="_blank">Study Guide</a>
                     </div>
                 </div>
             </div>
@@ -163,47 +170,27 @@
     -->
     <section class="py-5">
         <div class="container">
-            <h2 class="text-center fw-bold mb-5">Coming Up</h2>
+            <h1 class="text-center fw-bold mb-5 text-uppercase">COMING UP</h1>
             <div class="row g-4">
                 <div class="col-md-6 col-lg-3">
-                    <div class="card h-100 border-0 shadow-sm event-card">
-                        <img src="images/1920px_Illuminated_web.jpg" class="card-img-top" alt="Upcoming Event">
-                        <div class="card-body">
-                            <h5 class="card-title">Discover Sabbath</h5>
-                            <p class="card-text small text-muted">Join us for this special event</p>
-                            <a href="https://myrock.cfcwired.org/events" target="_blank" class="btn btn-sm btn-outline-primary">Learn More</a>
-                        </div>
-                    </div>
+                    <a href="https://myrock.cfcwired.org/EventDetail?EventOccurrenceId=211" target="_blank" class="event-tile d-block">
+                        <img src="images/1920px_Illuminated_web.jpg" class="img-fluid w-100" alt="Discover Sabbath">
+                    </a>
                 </div>
                 <div class="col-md-6 col-lg-3">
-                    <div class="card h-100 border-0 shadow-sm event-card">
-                        <img src="images/Preschool.jpg" class="card-img-top" alt="Kids and Youth">
-                        <div class="card-body">
-                            <h5 class="card-title">Kids and Youth Back</h5>
-                            <p class="card-text small text-muted">Programs resume this week</p>
-                            <a href="https://myrock.cfcwired.org/events" target="_blank" class="btn btn-sm btn-outline-primary">Learn More</a>
-                        </div>
-                    </div>
+                    <a href="https://myrock.cfcwired.org/EventDetail?EventOccurrenceId=259" target="_blank" class="event-tile d-block">
+                        <img src="images/Preschool.jpg" class="img-fluid w-100" alt="Child Dedication Class">
+                    </a>
                 </div>
                 <div class="col-md-6 col-lg-3">
-                    <div class="card h-100 border-0 shadow-sm event-card">
-                        <img src="images/Community.jpg" class="card-img-top" alt="Winter Classes">
-                        <div class="card-body">
-                            <h5 class="card-title">Winter Classes</h5>
-                            <p class="card-text small text-muted">New classes starting soon</p>
-                            <a href="https://myrock.cfcwired.org/events" target="_blank" class="btn btn-sm btn-outline-primary">Learn More</a>
-                        </div>
-                    </div>
+                    <a href="https://myrock.cfcwired.org/events" target="_blank" class="event-tile d-block">
+                        <img src="images/Community.jpg" class="img-fluid w-100" alt="Easter Event">
+                    </a>
                 </div>
                 <div class="col-md-6 col-lg-3">
-                    <div class="card h-100 border-0 shadow-sm event-card">
-                        <img src="images/prayer2.jpg" class="card-img-top" alt="G3 Summit">
-                        <div class="card-body">
-                            <h5 class="card-title">G3 Summit</h5>
-                            <p class="card-text small text-muted">Annual conference event</p>
-                            <a href="https://myrock.cfcwired.org/events" target="_blank" class="btn btn-sm btn-outline-primary">Learn More</a>
-                        </div>
-                    </div>
+                    <a href="https://my.cfcwired.org/trips" target="_blank" class="event-tile d-block">
+                        <img src="images/prayer2.jpg" class="img-fluid w-100" alt="Missions Trips">
+                    </a>
                 </div>
             </div>
             <div class="text-center mt-4">
@@ -215,7 +202,7 @@
     <!-- Experience CFC Section -->
     <section class="py-5 bg-light">
         <div class="container">
-            <h2 class="text-center fw-bold mb-5">Experience CFC</h2>
+            <h2 class="text-center fw-bold mb-5 text-uppercase">EXPERIENCE CFC</h2>
             <div class="row g-4">
                 <div class="col-lg-4">
                     <div class="card h-100 border-0 shadow-sm text-center p-4">
@@ -223,8 +210,8 @@
                             <div class="mb-3">
                                 <i class="bi bi-sun fs-1 text-primary"></i>
                             </div>
-                            <h4 class="card-title">Sunday Mornings</h4>
-                            <p class="card-text">In person at 9:30am and 11:00am<br>Servicio en Espanol at 2pm<br>Watch from home at 9:30 and 11:00am</p>
+                            <h4 class="card-title text-uppercase">SUNDAY MORNINGS</h4>
+                            <p class="card-text">In person at 9:30am &amp; 11:00am<br>Servicio en Español at 2pm<br>Watch from home at 9:30 &amp; 11:00am</p>
                             <a href="come-visit/" class="btn btn-outline-primary">Come Visit</a>
                         </div>
                     </div>
@@ -235,7 +222,7 @@
                             <div class="mb-3">
                                 <i class="bi bi-moon-stars fs-1 text-primary"></i>
                             </div>
-                            <h4 class="card-title">Wednesday Nights</h4>
+                            <h4 class="card-title text-uppercase">WEDNESDAY NIGHTS</h4>
                             <p class="card-text">Our 10-week classes, offered year-round, help you grow with God, build friendships, and find community.</p>
                             <a href="https://myrock.cfcwired.org/events" target="_blank" class="btn btn-outline-primary">Events</a>
                         </div>
@@ -247,7 +234,7 @@
                             <div class="mb-3">
                                 <i class="bi bi-people fs-1 text-primary"></i>
                             </div>
-                            <h4 class="card-title">Community Groups</h4>
+                            <h4 class="card-title text-uppercase">COMMUNITY GROUPS</h4>
                             <p class="card-text">We know that life can get busy. That is why we invite you to explore, connect and find a group that fits your schedule.</p>
                             <a href="about-us/find-community.html" class="btn btn-outline-primary">Find Community</a>
                         </div>
@@ -260,7 +247,7 @@
     <!-- Discipleship Pathway Section -->
     <section class="py-5 bg-light">
         <div class="container">
-            <h2 class="text-center fw-bold mb-5">DISCIPLESHIP PATHWAY</h2>
+            <h1 class="text-center fw-bold mb-5">DISCIPLESHIP PATHWAY</h1>
             <div class="row justify-content-center">
                 <div class="col-lg-10">
                     <img src="images/CFC-Roadmap_web-1.png" alt="CFC Discipleship Roadmap" class="img-fluid mb-4">
@@ -287,7 +274,7 @@
                             </a>
                         </address>
                         <p class="mb-2">
-                            <a href="tel:1-703-729-3900" class="footer-link">703.729.3900</a>
+                            <a href="tel:1-703-729-3900" class="footer-link">1.703.729.3900</a>
                         </p>
                         <p class="mb-4">
                             <a href="mailto:cfc@cfcwired.org" class="footer-link">cfc@cfcwired.org</a>
@@ -327,7 +314,7 @@
                         
                         <!-- CFC Weekly -->
                         <div class="col-md-6">
-                            <h6 class="footer-heading">CFC WEEKLY</h6>
+                            <h6 class="footer-heading">CFCWIRED WEEKLY</h6>
                             <p class="footer-text mb-3">Subscribe to our email newsletter to stay in the loop with everything happening at CFC</p>
                             <a href="http://eepurl.com/hIOCKn" target="_blank" class="btn btn-outline-light btn-sm">Subscribe</a>
                         </div>
@@ -354,7 +341,10 @@
     <div class="text-white py-2" style="background-color: #3C3C3C; font-size: 13px;">
         <div class="container">
             <div class="row align-items-center">
-                <div class="text-center text-md-start">
+                <div class="col-md-6 text-center text-md-start">
+                    <a href="https://plainjoestudios.com" target="_blank" class="text-white text-decoration-none text-uppercase">Designed By: PlainJoe Studios</a>
+                </div>
+                <div class="col-md-6 text-center text-md-end mt-1 mt-md-0">
                     <p class="mb-0 text-uppercase">© 2026 CHRISTIAN FELLOWSHIP CHURCH. ALL RIGHTS RESERVED.</p>
                 </div>
             </div>
@@ -365,78 +355,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     
-    <!-- Scroll Header & Announcement Script -->
-    <script>
-        (function() {
-            const siteHeader = document.getElementById('site-header');
-            const nav = document.getElementById('main-nav');
-            const announcement = document.getElementById('announcement-header');
-            const closeBtn = document.getElementById('close-announcement');
-            const heroSection = document.querySelector('.hero-fullpage');
-            const storageKey = 'cfc-announcement-dismissed';
-            
-            // Update hero margin to pull it up under nav, but keep it below announcement
-            function updateHeroPosition() {
-                if (!heroSection || !siteHeader) return;
-                
-                const navHeight = nav ? nav.offsetHeight : 0;
-                const announcementHeight = (announcement && !announcement.classList.contains('closed')) ? announcement.offsetHeight : 0;
-                
-                // Hero pulls up under the nav but stays below announcement
-                heroSection.style.marginTop = -navHeight + 'px';
-                heroSection.style.paddingTop = (navHeight + announcementHeight) + 'px';
-            }
-            
-            // Check if banner should be hidden (same version was previously dismissed)
-            function checkBannerState() {
-                if (!announcement) return;
-                
-                const bannerVersion = announcement.getAttribute('data-version');
-                const dismissedVersion = localStorage.getItem(storageKey);
-                
-                if (dismissedVersion === bannerVersion) {
-                    announcement.classList.add('closed');
-                }
-                
-                // Update position after banner state is set
-                setTimeout(updateHeroPosition, 50);
-            }
-            
-            // Handle close button click
-            function closeBanner() {
-                if (!announcement) return;
-                
-                const bannerVersion = announcement.getAttribute('data-version');
-                localStorage.setItem(storageKey, bannerVersion);
-                announcement.classList.add('closed');
-                
-                // Update position after animation
-                setTimeout(updateHeroPosition, 350);
-            }
-            
-            // Handle scroll behavior
-            function handleScroll() {
-                const scrollY = window.scrollY;
-                
-                if (scrollY > 50) {
-                    nav.classList.add('scrolled');
-                } else {
-                    nav.classList.remove('scrolled');
-                }
-            }
-            
-            // Initialize
-            checkBannerState();
-            updateHeroPosition();
-            
-            if (closeBtn) {
-                closeBtn.addEventListener('click', closeBanner);
-            }
-            
-            window.addEventListener('scroll', handleScroll);
-            window.addEventListener('resize', updateHeroPosition);
-            handleScroll();
-        })();
-    </script>
+    <script src="js/site.js"></script>
 </body>
 </html>

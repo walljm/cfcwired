@@ -104,15 +104,14 @@
     <!-- Page Hero -->
     <section class="page-hero text-white py-5" style="background: linear-gradient(135deg, #0083e0 0%, #00a3e0 100%);">
         <div class="container py-4">
-            <h1 class="display-4 fw-bold">Meet the Team</h1>
-            <p class="lead mb-0">The staff serving at Christian Fellowship Church</p>
+            <h1 class="display-4 fw-bold text-uppercase">MEET THE TEAM</h1>
         </div>
     </section>
 
     <!-- Staff Directory -->
     <section class="py-5">
         <div class="container">
-            <!-- RockRMS: Replace with Staff Group Viewer or Person List block -->
+            <h2 class="display-6 fw-bold text-uppercase mb-5">MINISTRY DIRECTORS &amp; SUPPORT STAFF</h2>
             <div class="row g-4">
                 <!-- Lead Pastor -->
                 <div class="col-md-6 col-lg-4">
@@ -442,15 +441,6 @@
         </div>
     </section>
 
-    <!-- Contact CTA -->
-    <section class="py-5 bg-light">
-        <div class="container text-center">
-            <h2 class="fw-bold mb-4">Want to Get in Touch?</h2>
-            <p class="text-muted mb-4">We'd love to hear from you. Reach out to our team with any questions.</p>
-            <a href="contact-us.html" class="btn btn-primary btn-lg">Contact Us</a>
-        </div>
-    </section>
-
     <!-- Footer -->
     <footer class="footer bg-dark text-white pt-5 pb-4">
         <div class="container">
@@ -521,6 +511,66 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const staffPhotos = {
+                'Jon Ackerman': 'https://cfcwired.org/wp-content/uploads/2022/01/Jon2022-scaled.jpg',
+                'Hector Aldaz': 'https://cfcwired.org/wp-content/uploads/2024/06/27-Hector-Aldaz-02.jpg',
+                'Eden Asbeha': 'https://cfcwired.org/wp-content/uploads/2024/07/32-Eden-Ashbeha.jpg',
+                'Brian Bales': 'https://cfcwired.org/wp-content/uploads/2025/02/Brian-Bales-2025-2.jpg',
+                'Eddie Batten': 'https://cfcwired.org/wp-content/uploads/2022/01/Eddie2022-scaled.jpg',
+                'Fred Clark': 'https://cfcwired.org/wp-content/uploads/2022/01/Fred2022-scaled.jpg',
+                'Beth Davidson': 'https://cfcwired.org/wp-content/uploads/2023/09/Beth-Davidson-2023.jpg',
+                'Pouyan Farshad': 'https://cfcwired.org/wp-content/uploads/2024/07/31-Pouyan-Farshad-Help-Desk-Technician-copy.jpg',
+                'Nancy Graham': 'https://cfcwired.org/wp-content/uploads/2025/02/Nancy-Graham-2025.jpg',
+                'Sarah Hansma': 'https://cfcwired.org/wp-content/uploads/2022/01/Sarah2022-scaled.jpg',
+                'Mike Haynes': 'https://cfcwired.org/wp-content/uploads/2022/01/MikeH2022-scaled.jpg',
+                'Deb Hilbig': 'https://cfcwired.org/wp-content/uploads/2024/06/30-Deb-Hilbig.jpg',
+                'Josh Hill': 'https://cfcwired.org/wp-content/uploads/2022/01/Josh2022-scaled.jpg',
+                'Cheryl Howard': 'https://cfcwired.org/wp-content/uploads/2023/09/cheryl-Howared-2023.jpg',
+                'Brooke Jones': 'https://cfcwired.org/wp-content/uploads/2023/09/brooke-Jones.jpg',
+                'Mike Trivett': 'https://cfcwired.org/wp-content/uploads/2022/01/MikeT2022-scaled.jpg',
+                'Kathy Tubach': 'https://cfcwired.org/wp-content/uploads/2025/02/Kathy-Tubach-2025.jpg',
+                'Tina Walderman': 'https://cfcwired.org/wp-content/uploads/2022/01/silhouette-female.gif',
+                'Richele Walker': 'https://cfcwired.org/wp-content/uploads/2025/02/Richele-Walker-2025.jpg',
+                'Jeff Webber': 'https://cfcwired.org/wp-content/uploads/2025/02/Jeff-Webber-2025.jpg',
+                'Rebekah Williams': 'https://cfcwired.org/wp-content/uploads/2024/05/29-Rebekah-Williams-2.jpg',
+                'Wendy Zwart': 'https://cfcwired.org/wp-content/uploads/2025/02/Wendy-Zwart-2025.jpg'
+            };
+
+            const fallbackPhoto = 'https://cfcwired.org/wp-content/uploads/2022/01/silhouette-female.gif';
+
+            document.querySelectorAll('.card .card-body').forEach(function(cardBody) {
+                const nameElement = cardBody.querySelector('h5');
+                const roleElement = cardBody.querySelector('p');
+                const avatarPlaceholder = cardBody.querySelector('.bg-light.rounded-circle');
+
+                if (!nameElement || !roleElement || !avatarPlaceholder) {
+                    return;
+                }
+
+                const name = nameElement.textContent.trim();
+                const photo = staffPhotos[name] ?? fallbackPhoto;
+
+                const photoElement = document.createElement('img');
+                photoElement.src = photo;
+                photoElement.alt = name;
+                photoElement.className = 'rounded-circle mb-3 object-fit-cover';
+                photoElement.style.width = '100px';
+                photoElement.style.height = '100px';
+
+                avatarPlaceholder.replaceWith(photoElement);
+
+                roleElement.textContent = roleElement.textContent.trim().toUpperCase();
+
+                const iconElement = document.createElement('div');
+                iconElement.className = 'small text-muted mt-2';
+                iconElement.innerHTML = '<i class="bi bi-envelope"></i>';
+                cardBody.appendChild(iconElement);
+            });
+        });
+    </script>
 
     <script src="../js/site.js"></script>
 </body>

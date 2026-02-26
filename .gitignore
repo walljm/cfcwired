@@ -32,3 +32,6 @@ npm-debug.log*
 # Build outputs
 dist/
 build/
+
+# Playwright screenshots
+docs/screenshots/
