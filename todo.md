@@ -114,8 +114,8 @@ Local site compared: http://localhost:3000
 - [x] Align image count/placement and spacing.
 
 ### Request Prayer (`/request-prayer/`)
-- [ ] Match primary heading structure (live includes “Prayer Warriors” as major section).
-- [ ] Align CTA grouping/order and section spacing.
+- [x] Match primary heading structure (live includes "Prayer Warriors" as major section).
+- [x] Align CTA grouping/order and section spacing.
 
 ---
 

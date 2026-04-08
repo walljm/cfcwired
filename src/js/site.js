@@ -46,8 +46,6 @@
             '/come-visit/': 'Come Visit - Christian Fellowship Church',
             '/watch-read/messages.html': 'Messages - Christian Fellowship Church',
             '/watch-read/messages': 'Messages - Christian Fellowship Church',
-            '/watch-read/stories.html': 'Stories - Christian Fellowship Church',
-            '/watch-read/stories': 'Stories - Christian Fellowship Church',
             '/get-involved/core-classes.html': 'Core Classes - Christian Fellowship Church',
             '/get-involved/core-classes': 'Core Classes - Christian Fellowship Church',
             '/get-involved/serve.html': 'Serve - Christian Fellowship Church',
@@ -72,9 +70,9 @@
         const footer = document.querySelector('footer');
         if (!footer) return;
 
-        const weeklyHeading = Array.from(footer.querySelectorAll('h6, .footer-heading')).find((node) => /cfc\s*weekly/i.test(node.textContent || ''));
+        const weeklyHeading = Array.from(footer.querySelectorAll('h6, .footer-heading')).find((node) => /cfc\s*(wired\s*)?(weekly|monthly)/i.test(node.textContent || ''));
         if (weeklyHeading) {
-            weeklyHeading.textContent = 'CFCWIRED WEEKLY';
+            weeklyHeading.textContent = 'CFCWIRED MONTHLY';
         }
 
         const footerPhone = Array.from(footer.querySelectorAll('a[href^="tel:"]')).find((link) => /703\.729\.3900/.test(link.textContent || ''));
