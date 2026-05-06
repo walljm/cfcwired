@@ -17,12 +17,11 @@
     <title>Christian Fellowship Church | Ashburn, VA</title>
     <link rel="icon" type="image/png" href="images/cfc-logo-light.png">
 
-    <!-- Bootstrap 5.3.3 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" 
-          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Bootstrap 3.4.1 CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
 
     <!-- Google Fonts - Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -39,74 +38,68 @@
         <!-- Top Banner - Change data-version when content changes to show banner again -->
         <div id="announcement-header" class="announcement-banner" data-version="2026-01-21-v1">
             <a href="https://live.cfcwired.org/" target="_blank" class="announcement-link">
-                <span>This Sunday at 9:30am &amp; 11am. Watch Online -&gt;</span>
+                <span>Sunday mornings 9:30am &amp; 11am. Watch Online <i class="fa fa-arrow-right"></i></span>
             </a>
             <button id="close-announcement" class="announcement-close" aria-label="Close announcement">
-                <i class="bi bi-x"></i>
+                <i class="fa fa-times"></i>
             </button>
         </div>
 
         <!-- Main Navigation -->
-        <nav id="main-nav" class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-            <a class="navbar-brand" href="/">
-                <img id="nav-logo" src="images/CFC_Logo_White.png" alt="Christian Fellowship Church" class="nav-logo">
-            </a>
-            
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarOffcanvas" aria-controls="navbarOffcanvas" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            
-            <div class="offcanvas offcanvas-end" tabindex="-1" id="navbarOffcanvas" aria-labelledby="navbarOffcanvasLabel">
-                <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="navbarOffcanvasLabel">Menu</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        <nav id="main-nav" class="navbar navbar-inverse navbar-static-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">
+                        <img id="nav-logo" src="/images/CFC_Logo_White.png" alt="Christian Fellowship Church" class="nav-logo">
+                    </a>
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
                 </div>
-                <div class="offcanvas-body">
-                    <ul class="navbar-nav ms-auto align-items-lg-center">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="about-us/" role="button" data-bs-toggle="dropdown" aria-expanded="false">About Us</a>
-                            <ul class="dropdown-menu dropdown-menu-dark">
-                                <li><a class="dropdown-item" href="about-us/">About Us</a></li>
-                                <li><a class="dropdown-item" href="about-us/statement-of-faith.html">Statement of Faith</a></li>
-                                <li><a class="dropdown-item" href="about-us/meet-the-team.html">Meet the Team</a></li>
-                                <li><a class="dropdown-item" href="about-us/find-community.html">Find Community</a></li>
-                                <li><a class="dropdown-item" href="about-us/contact-us.html">Contact Us</a></li>
+
+                <div class="collapse navbar-collapse" id="navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="/about-us/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">About Us <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/about-us/">About Us</a></li>
+                                <li><a href="/about-us/statement-of-faith.html">Statement of Faith</a></li>
+                                <li><a href="/about-us/meet-the-team.html">Meet the Team</a></li>
+                                <li><a href="/about-us/find-community.html">Find Community</a></li>
+                                <li><a href="/about-us/contact-us.html">Contact Us</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="come-visit/">Come Visit</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="watch-read/messages.html" role="button" data-bs-toggle="dropdown" aria-expanded="false">Watch/Read</a>
-                            <ul class="dropdown-menu dropdown-menu-dark">
-                                <li><a class="dropdown-item" href="watch-read/messages.html">Messages</a></li>
-                                <li><a class="dropdown-item" href="watch-read/stories.html">Stories</a></li>
+                        <li><a href="/come-visit/">Come Visit</a></li>
+                        <li class="dropdown">
+                            <a href="/watch-read/messages.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Watch/Read <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/watch-read/messages.html">Messages</a></li>
+                                <li><a href="/watch-read/stories.html">Stories</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="get-involved/core-classes.html" role="button" data-bs-toggle="dropdown" aria-expanded="false">Get Involved</a>
-                            <ul class="dropdown-menu dropdown-menu-dark">
-                                <li><a class="dropdown-item" href="get-involved/core-classes.html">Core Classes</a></li>
-                                <li><a class="dropdown-item" href="get-involved/serve.html">Serve</a></li>
+                        <li class="dropdown">
+                            <a href="/get-involved/core-classes.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Get Involved <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/get-involved/core-classes.html">Core Classes</a></li>
+                                <li><a href="/get-involved/serve.html">Serve</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">For My Family</a>
-                            <ul class="dropdown-menu dropdown-menu-dark">
-                                <li><a class="dropdown-item" href="for-my-family/children.html">Children</a></li>
-                                <li><a class="dropdown-item" href="for-my-family/middle-school.html">Middle School</a></li>
-                                <li><a class="dropdown-item" href="for-my-family/high-school.html">High School</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">For My Family <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/for-my-family/children.html">Children</a></li>
+                                <li><a href="/for-my-family/middle-school.html">Middle School</a></li>
+                                <li><a href="/for-my-family/high-school.html">High School</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
-                            <a class="btn btn-primary" href="https://myrock.cfcwired.org/pyv" target="_blank">Plan Your Visit</a>
-                        </li>
+                        <li class="nav-cta"><a class="btn btn-primary" href="https://myrock.cfcwired.org/pyv" target="_blank">Plan Your Visit</a></li>
                     </ul>
                 </div>
             </div>
-        </div>
-    </nav>
+        </nav>
     </header>
 
     <!-- Hero Section -->
@@ -139,7 +132,7 @@
                     <p class="text-muted mb-2">Christian Fellowship Church is committed to being a place where people become followers of Christ no matter what their religious or denominational background.</p>
                 </div>
                 <div class="col-lg-6">
-                    <img src="images/1920px_Illuminated_web.jpg" alt="This Sunday at CFC" class="img-fluid rounded shadow">
+                    <img src="images/1920px_Illuminated_web.jpg" alt="This Sunday at CFC" class="img-responsive rounded shadow">
                 </div>
             </div>
             
@@ -173,22 +166,22 @@
             <div class="row g-4">
                 <div class="col-md-6 col-lg-3">
                     <a href="https://myrock.cfcwired.org/EventDetail?EventOccurrenceId=211" target="_blank" class="event-tile d-block">
-                        <img src="images/1920px_Illuminated_web.jpg" class="img-fluid w-100" alt="Discover Sabbath">
+                        <img src="images/1920px_Illuminated_web.jpg" class="img-responsive embed-responsive-item" alt="Discover Sabbath">
                     </a>
                 </div>
                 <div class="col-md-6 col-lg-3">
                     <a href="https://myrock.cfcwired.org/EventDetail?EventOccurrenceId=259" target="_blank" class="event-tile d-block">
-                        <img src="images/Preschool.jpg" class="img-fluid w-100" alt="Child Dedication Class">
+                        <img src="images/Preschool.jpg" class="img-responsive embed-responsive-item" alt="Child Dedication Class">
                     </a>
                 </div>
                 <div class="col-md-6 col-lg-3">
                     <a href="https://myrock.cfcwired.org/events" target="_blank" class="event-tile d-block">
-                        <img src="images/Community.jpg" class="img-fluid w-100" alt="Easter Event">
+                        <img src="images/Community.jpg" class="img-responsive embed-responsive-item" alt="Easter Event">
                     </a>
                 </div>
                 <div class="col-md-6 col-lg-3">
                     <a href="https://my.cfcwired.org/trips" target="_blank" class="event-tile d-block">
-                        <img src="images/prayer2.jpg" class="img-fluid w-100" alt="Missions Trips">
+                        <img src="images/prayer2.jpg" class="img-responsive embed-responsive-item" alt="Missions Trips">
                     </a>
                 </div>
             </div>
@@ -207,7 +200,7 @@
                     <div class="card h-100 border-0 shadow-sm text-center p-4">
                         <div class="card-body">
                             <div class="mb-3">
-                                <i class="bi bi-sun fs-1 text-primary"></i>
+                                <i class="fa fa-sun-o fs-1 text-primary"></i>
                             </div>
                             <h4 class="card-title text-uppercase">SUNDAY MORNINGS</h4>
                             <p class="card-text">In person at 9:30am &amp; 11:00am<br>Servicio en Español at 2pm<br>Watch from home at 9:30 &amp; 11:00am</p>
@@ -219,7 +212,7 @@
                     <div class="card h-100 border-0 shadow-sm text-center p-4">
                         <div class="card-body">
                             <div class="mb-3">
-                                <i class="bi bi-moon-stars fs-1 text-primary"></i>
+                                <i class="fa fa-moon-o fs-1 text-primary"></i>
                             </div>
                             <a href="https://my.cfcwired.org/default.aspx?page=4213" class="text-decoration-none text-dark"><h4 class="card-title text-uppercase">WEDNESDAY NIGHTS</h4></a>
                             <p class="card-text">Our 10-week classes, offered year-round, help you grow with God, build friendships, and find community. </p>
@@ -231,7 +224,7 @@
                     <div class="card h-100 border-0 shadow-sm text-center p-4">
                         <div class="card-body">
                             <div class="mb-3">
-                                <i class="bi bi-people fs-1 text-primary"></i>
+                                <i class="fa fa-users fs-1 text-primary"></i>
                             </div>
                             <h4 class="card-title text-uppercase">COMMUNITY GROUPS</h4>
                             <p class="card-text">We know that life can get busy. That is why we invite you to explore, connect and find a group that fits your schedule.</p>
@@ -244,12 +237,12 @@
     </section>
 
     <!-- Discipleship Pathway Section -->
-    <section class="py-5 bg-light">
+    <section class="py-5">
         <div class="container">
             <h1 class="text-center fw-bold mb-5">DISCIPLESHIP PATHWAY</h1>
             <div class="row justify-content-center">
                 <div class="col-lg-10">
-                    <img src="images/CFC-Roadmap_web-1.png" alt="CFC Discipleship Roadmap" class="img-fluid mb-4">
+                    <img src="images/CFC-Roadmap_web-1.png" alt="CFC Discipleship Roadmap" class="img-responsive mb-4">
                     <p class="mb-4">CFC offers 8 core classes that form our discipleship pathway. These classes are designed to help you grow as a follower of Jesus, deepening your faith, shaping your character, and equipping you to become more like Christ in everyday life.</p>
                     <a href="get-involved/core-classes.html" class="btn btn-primary">Learn More</a>
                 </div>
@@ -257,102 +250,78 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer text-white pt-5 pb-4" style="background-color: #262626;">
+    <!-- Footer (Rock zone-footer, site-level) -->
+    <footer class="footer bg-dark text-white pt-5 pb-4">
         <div class="container">
-            <div class="row flex-lg-nowrap">
-                <!-- Logo & Contact - Left Column -->
-                <div class="col-lg-auto mb-4 mb-lg-0 footer-left">
-                    <a href="/" class="d-block mb-4">
-                        <img src="images/CFC_Logo_White.png" alt="Christian Fellowship Church" class="footer-logo">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <a href="/" class="d-block mb-3">
+                        <img src="/images/CFC_Logo_White.png" alt="Christian Fellowship Church" height="40">
                     </a>
-                    <div class="footer-contact-info">
-                        <address class="footer-address mb-3">
-                            <a href="https://www.google.com/maps/place/Christian+Fellowship+Church/@39.0576887,-77.4615329,18z/data=!4m5!3m4!1s0x89b639266a8f57d7:0x42899bfb889071!8m2!3d39.0575124!4d-77.460415" target="_blank" class="footer-link">
-                                44505 Atwater Drive<br>Ashburn, VA 20147
-                            </a>
-                        </address>
-                        <p class="mb-2">
-                            <a href="tel:1-703-729-3900" class="footer-link">1.703.729.3900</a>
-                        </p>
-                        <p class="mb-4">
-                            <a href="mailto:cfc@cfcwired.org" class="footer-link">cfc@cfcwired.org</a>
-                        </p>
-                            <div class="social-icons">
-                            <a href="https://www.facebook.com/cfcwired" target="_blank" class="social-icon" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-                            <a href="https://twitter.com/cfcwired" target="_blank" class="social-icon" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
-                            <a href="https://youtube.com/cfcwired" target="_blank" class="social-icon" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
-                            <a href="https://instagram.com/cfcwired" target="_blank" class="social-icon" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-                        </div>
+                    <address class="small mb-3">
+                        <a href="https://www.google.com/maps/place/Christian+Fellowship+Church/@39.0576887,-77.4615329,18z" target="_blank" class="text-white-50 text-decoration-none">
+                            44505 Atwater Drive<br>Ashburn, VA 20147
+                        </a>
+                    </address>
+                    <p class="small mb-1"><a href="tel:1-703-729-3900" class="text-white-50 text-decoration-none"><i class="fa fa-phone me-2"></i>1.703.729.3900</a></p>
+                    <p class="small mb-3"><a href="mailto:cfc@cfcwired.org" class="text-white-50 text-decoration-none"><i class="fa fa-envelope me-2"></i>cfc@cfcwired.org</a></p>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/cfcwired" target="_blank" class="text-white me-3" aria-label="Facebook"><i class="fa fa-facebook fs-5"></i></a>
+                        <a href="https://twitter.com/cfcwired" target="_blank" class="text-white me-3" aria-label="Twitter"><i class="fa fa-twitter fs-5"></i></a>
+                        <a href="https://youtube.com/cfcwired" target="_blank" class="text-white me-3" aria-label="YouTube"><i class="fa fa-youtube fs-5"></i></a>
+                        <a href="https://instagram.com/cfcwired" target="_blank" class="text-white" aria-label="Instagram"><i class="fa fa-instagram fs-5"></i></a>
                     </div>
                 </div>
-                
-                <!-- Center Section -->
-                <div class="col mb-4 mb-lg-0 footer-center">
-                    <!-- Quick Menu - Horizontal across top -->
-                    <div class="footer-quick-menu mb-4">
-                        <span class="footer-menu-label">QUICK MENU</span>
-                        <a href="about-us/" class="footer-menu-link">About Us</a>
-                        <a href="watch-read/messages.html" class="footer-menu-link">Messages</a>
-                        <a href="request-prayer.html" class="footer-menu-link">Request Prayer</a>
-                        <a href="about-us/contact-us.html" class="footer-menu-link">Contact Us</a>
-                    </div>
-                    
-                    <!-- Two columns below: Office Hours/Service Times | CFC Weekly -->
-                    <div class="row">
-                        <!-- Office Hours + Service Times (stacked) -->
-                        <div class="col-md-6 mb-4 mb-md-0">
-                            <h6 class="footer-heading">OFFICE HOURS</h6>
-                            <p class="footer-text">M-T: 9:00a to 5:00p</p>
-                            <p class="footer-text mb-4">F & S: Closed</p>
-                            
-                            <h6 class="footer-heading">SERVICE TIMES</h6>
-                            <p class="footer-text">Sunday: In Person: 9:30a & 11:00a</p>
-                            <p class="footer-text">Watch from Anywhere Online: 9:30 & 11:00a</p>
-                        </div>
-                        
-                        <!-- CFC Weekly -->
-                        <div class="col-md-6">
-                            <h6 class="footer-heading">CFCWIRED WEEKLY</h6>
-                            <p class="footer-text mb-3">Subscribe to our email newsletter to stay in the loop with everything happening at CFC</p>
-                            <a href="http://eepurl.com/hIOCKn" target="_blank" class="btn btn-outline-light btn-sm">Subscribe</a>
-                        </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6 class="text-uppercase fw-bold mb-3">Quick Menu</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="/about-us/" class="text-white-50 text-decoration-none">About Us</a></li>
+                        <li class="mb-2"><a href="/watch-read/messages.html" class="text-white-50 text-decoration-none">Messages</a></li>
+                        <li class="mb-2"><a href="/request-prayer.html" class="text-white-50 text-decoration-none">Request Prayer</a></li>
+                        <li class="mb-2"><a href="/about-us/contact-us.html" class="text-white-50 text-decoration-none">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6 class="text-uppercase fw-bold mb-3">Office Hours</h6>
+                    <p class="small text-white-50 mb-1">M-T: 9:00a to 5:00p</p>
+                    <p class="small text-white-50 mb-4">F &amp; S: Closed</p>
+                    <h6 class="text-uppercase fw-bold mb-3">Service Times</h6>
+                    <p class="small text-white-50 mb-1">Sunday: In Person: 9:30a &amp; 11:00a</p>
+                    <p class="small text-white-50">Watch from Anywhere Online: 9:30 &amp; 11:00a</p>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h6 class="text-uppercase fw-bold mb-3">CFCWIRED MONTHLY</h6>
+                    <p class="small text-white-50 mb-3">Subscribe to our email newsletter to stay in the loop with everything happening at CFC</p>
+                    <a href="http://eepurl.com/hIOCKn" target="_blank" class="btn btn-outline-light btn-sm">Subscribe</a>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6 class="text-uppercase fw-bold mb-3">Download the App</h6>
+                    <div class="app-badges">
+                        <a href="https://apps.apple.com/us/app/christian-fellowship-ashburn/id1200541819" target="_blank" class="d-block mb-2">
+                            <img src="/images/app-store.png" alt="Available on the Apple Store" height="40">
+                        </a>
+                        <a href="https://play.google.com/store/apps/details?id=com.subsplashconsulting.s_D44NRF" target="_blank" class="d-block">
+                            <img src="/images/google-play.png" alt="Get it on Google Play" height="40">
+                        </a>
                     </div>
                 </div>
-                
-                <!-- Download the App - Right Column -->
-                <div class="col-lg-auto footer-right">
-                    <h6 class="footer-heading">DOWNLOAD THE APP</h6>
-                    <div class="d-flex flex-column gap-2">
-                        <a href="https://apps.apple.com/us/app/christian-fellowship-ashburn/id1200541819" target="_blank">
-                            <img src="images/app-store.png" alt="App Store" class="app-badge">
-                        </a>
-                        <a href="https://play.google.com/store/apps/details?id=com.subsplashconsulting.s_D44NRF&hl=en_US&gl=US" target="_blank">
-                            <img src="images/google-play.png" alt="Google Play" class="app-badge">
-                        </a>
+            </div>
+            <div class="footer-bottom mt-4 pt-4">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-left">
+                        <p class="small text-white-50 mb-0">Copyright 2026 Christian Fellowship Church. All Rights Reserved.</p>
+                    </div>
+                    <div class="col-md-6 text-center text-md-right">
+                        <p class="small text-white-50 mb-0"><a href="https://cfcwired.org/" class="text-white-50 text-decoration-none">Designed By: PlainJoe Studios</a></p>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
-    
-    <!-- Sub Footer -->
-    <div class="text-white py-2" style="background-color: #3C3C3C; font-size: 13px;">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-6 text-center text-md-start">
-                    <a href="https://plainjoestudios.com" target="_blank" class="text-white text-decoration-none text-uppercase">Designed By: PlainJoe Studios</a>
-                </div>
-                <div class="col-md-6 text-center text-md-end mt-1 mt-md-0">
-                    <p class="mb-0 text-uppercase">© 2026 CHRISTIAN FELLOWSHIP CHURCH. ALL RIGHTS RESERVED.</p>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
-            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js"></script>
     
     <script src="js/site.js"></script>
 </body>

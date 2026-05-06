@@ -20,14 +20,14 @@
         if (!navList) return;
 
         navList.innerHTML = `
-            <li class="nav-item"><a class="nav-link" href="/about-us/">About Us</a></li>
-            <li class="nav-item"><a class="nav-link" href="/come-visit/">Come Visit</a></li>
-            <li class="nav-item"><a class="nav-link" href="/about-us/find-community.html">Group Life</a></li>
-            <li class="nav-item"><a class="nav-link" href="https://myrock.cfcwired.org/events" target="_blank">Events/Classes</a></li>
-            <li class="nav-item"><a class="nav-link" href="/get-involved/serve.html">Serve</a></li>
-            <li class="nav-item"><a class="nav-link" href="https://myrock.cfcwired.org/give" target="_blank">Give</a></li>
-            <li class="nav-item"><a class="nav-link" href="https://myrock.cfcwired.org/connect" target="_blank">myCFC</a></li>
-            <li class="nav-item ms-lg-2"><a class="nav-link" href="javascript:;" aria-label="Search"><i class="bi bi-search"></i></a></li>
+            <li><a href="/about-us/">About Us</a></li>
+            <li><a href="/come-visit/">Come Visit</a></li>
+            <li><a href="/about-us/find-community.html">Group Life</a></li>
+            <li><a href="https://myrock.cfcwired.org/events" target="_blank">Events/Classes</a></li>
+            <li><a href="/get-involved/serve.html">Serve</a></li>
+            <li><a href="https://myrock.cfcwired.org/give" target="_blank">Give</a></li>
+            <li><a href="https://myrock.cfcwired.org/connect" target="_blank">myCFC</a></li>
+            <li><a href="javascript:;" aria-label="Search"><i class="fa fa-search"></i></a></li>
         `;
     }
 
@@ -91,6 +91,29 @@
         });
         if (footerCopyright) {
             footerCopyright.textContent = '© 2026 CHRISTIAN FELLOWSHIP CHURCH. ALL RIGHTS RESERVED.';
+        }
+
+        // Normalize "Designed By: PlainJoe Studios" link to match live
+        // Search both inside footer and in sub-footer outside footer element
+        var designedByLink = Array.from(footer.querySelectorAll('a')).find((link) => /plainjoe/i.test(link.textContent || '') || /plainjoe/i.test(link.href || ''));
+        if (!designedByLink) {
+            designedByLink = Array.from(document.querySelectorAll('a')).find((link) => /plainjoe/i.test(link.textContent || '') || /plainjoe/i.test(link.href || ''));
+        }
+        if (designedByLink) {
+            designedByLink.href = 'https://cfcwired.org/';
+            designedByLink.removeAttribute('target');
+            designedByLink.textContent = 'Designed By: PlainJoe Studios';
+            designedByLink.classList.remove('text-uppercase');
+        }
+
+        // Normalize app store alt text (search whole document)
+        const appStoreImg = document.querySelector('img[alt*="App Store"], img[alt*="Apple"]');
+        if (appStoreImg) {
+            appStoreImg.alt = 'Available on the Apple Store';
+        }
+        const googlePlayImg = document.querySelector('img[alt*="Google Play"]');
+        if (googlePlayImg) {
+            googlePlayImg.alt = 'Get it on Google Play';
         }
     }
 
