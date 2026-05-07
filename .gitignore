@@ -37,3 +37,4 @@ build/
 docs/screenshots/
 
 **/.playwright-mcp/
+/compare
