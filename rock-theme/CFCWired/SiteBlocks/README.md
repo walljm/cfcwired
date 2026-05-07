@@ -22,7 +22,7 @@ These files describe the global blocks configured once for the external site the
 ## Shared Setup Notes
 
 - These blocks assume `Site.Master` exposes the `Header`, `Login`, `Navigation`, and `Footer` zones.
-- Upload image assets from `src/images/` to the Rock path used by the theme, or keep `/images/...` available in the external site root.
+- Upload page image assets from `src/images/` to `/Content/ExternalSite/Images/`; site-level logo and app badge media should resolve from `/Content/ExternalSite/Media/`.
 - The Page Menu block should output Bootstrap 3 navbar markup: `ul.nav.navbar-nav.navbar-right`, `li.dropdown`, `a.dropdown-toggle`, `ul.dropdown-menu`.
 - If the announcement close button is used, add the close/dismiss behavior to the theme JavaScript or remove the close button from the HTML block.
 

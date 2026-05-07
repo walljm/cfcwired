@@ -123,8 +123,8 @@
         const announcementHeight = (announcement && !announcement.classList.contains('closed')) ? announcement.offsetHeight : 0;
 
         if (heroSection) {
-            heroSection.style.marginTop = -navHeight + 'px';
-            heroSection.style.paddingTop = (navHeight + announcementHeight) + 'px';
+            heroSection.style.marginTop = '0px';
+            heroSection.style.paddingTop = '0px';
             document.body.style.paddingTop = '0px';
             return;
         }

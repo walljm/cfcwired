@@ -8,23 +8,22 @@ Source page: `src/about-us/statement-of-faith.html`
 - Suggested route: `/about-us/statement-of-faith`
 - Layout: `FullWidth.aspx`
 - Browser title: `Statement of Faith - Christian Fellowship Church`
-- Meta description: `Statement of Faith - Christian Fellowship Church's core beliefs and doctrinal statements`
+- Meta description: `Christian Fellowship Church statement of faith.`
 
 ## Blocks
 
 | Zone | Block Type | File | Notes |
 |------|------------|------|-------|
 | `Feature` | HTML Content | `feature.html` | Hero block only. Do not include page header, nav, footer, scripts, or nested `.container`. |
-| `Main` | HTML Content | `main.html` | Primary page content. Uses the layout's existing container and a BS3 centered column. |
+| `MainContent` | HTML Content | `main.html` | Page body content extracted from the converted static page. |
 
 ## Import Steps
 
-1. Create or open the Rock page under About Us.
+1. Create or open the Rock page at `/about-us/statement-of-faith`.
 2. Set the layout to `FullWidth.aspx`.
 3. Paste `feature.html` into an HTML Content block in the `Feature` zone.
-4. Paste `main.html` into an HTML Content block in the `Main` zone.
-5. Confirm the page title and breadcrumbs are acceptable above the hero. If not, move the hero content into `Section A` or use a custom no-title layout.
-6. Verify the `Articles of Faith` link target is still correct after launch.
+4. Paste `main.html` into an HTML Content block in the `MainContent` zone.
+5. Verify image paths, links, page title/breadcrumb placement, mobile layout, and admin edit controls in Rock.
 
 ## Excluded Static Markup
 

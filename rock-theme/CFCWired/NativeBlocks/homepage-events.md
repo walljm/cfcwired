@@ -1,4 +1,4 @@
-# Homepage Events and Promotions
+# Homepage Events
 
 Replaces static homepage `Coming Up` tiles.
 
@@ -8,40 +8,30 @@ Replaces static homepage `Coming Up` tiles.
 - Route: `/`
 - Layout: `Homepage.aspx`
 - Static package: `PageContent/home/`
+- Zone: `MainContent`
+- Generated Lava template: `PageContent/home/coming-up.html`
 
-## Options
+## Recommended Block
 
-### Option A: Event Calendar / Event Item Occurrences
+Use this when the tiles should reflect audience-filtered Rock event occurrences.
 
-Use this if the tiles should reflect real Rock event registrations.
-
-- Block type: Event Calendar, Event Item List, or Content Channel Dynamic over event data
-- Zone: `Sub Feature` or `Section A`
-- Filter: public external events, audience All Church or relevant ministry
-- Count: 4 featured items
-
-### Option B: Website Promotions / Ads
-
-Use this if staff need editorial control over four homepage promo tiles independent of event registration.
-
-Suggested content channel attributes:
-
-| Attribute | Type | Notes |
-|-----------|------|-------|
-| Image | Image | Tile artwork. |
-| Link Url | URL | Destination. |
-| Audience | Defined Value | Optional filter. |
-| Starts On | Date | Optional display start. |
-| Ends On | Date | Optional display end. |
-| DisplayOrder | Integer | Sort order. |
+- Block type: Calendar Item Occurrence List by Audience Lava
+- Zone: `MainContent`
+- Data source: block-provided `EventItemOccurrences`
+- Artwork source: event item image attributes named `Image`, `EventImage`, `Event Image`, or `Photo`, then event item `Photo`/`PhotoId` as fallback
+- Event detail page setting: set `EventDetailPage` so links render as `{{ EventDetailPage }}?EventOccurrenceId={{ eventItemOccurrence.Id }}`
+- Registration page setting: optional fallback when `EventDetailPage` is empty
+- Count: 4 event artwork tiles
 
 ## Recommended First Pass
 
-Keep static tiles for launch parity. Move to Website Promotions if staff want simple editorial control, or Event Calendar if every tile should represent a real Rock event.
+Place a Calendar Item Occurrence List by Audience Lava block in the homepage `MainContent` zone after the This Sunday block. Configure the audience filters and Event Detail Page, then paste `PageContent/home/coming-up.html` as the Lava template.
 
 ## QA
 
-- Four tiles render at desktop size.
+- Four artwork tiles render at desktop size when event images are configured.
 - Tiles stack cleanly on mobile.
+- Missing artwork falls back to the date/title card instead of rendering a broken image.
+- Template renders a neutral empty state if no `EventItemOccurrences` are available.
 - Date windows or event filters do not leave the section empty without fallback content.
-- Links go to Rock event detail or intended external registration pages.
+- Tile links use `{{ EventDetailPage }}?EventOccurrenceId={{ eventItemOccurrence.Id }}` when `EventDetailPage` is configured.

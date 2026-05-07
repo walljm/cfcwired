@@ -35,13 +35,19 @@ h1.pagetitle:empty {
 }
 
 header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+
     .page-menu,
     .login-status {
         float: right;
     }
 
     .navbar {
-        background-color: @header-bg;
+        background-color: transparent;
         border: 0;
     }
 }
@@ -62,7 +68,7 @@ header {
     width: 100%;
     min-height: 95px;
     padding: 20px 60px;
-    background-color: @brand-dark;
+    background-color: transparent;
 
     @media (max-width: 767px) {
         padding: 20px 40px;
@@ -74,7 +80,7 @@ header {
     z-index: 1000;
     padding: 0;
     margin-bottom: 0;
-    background-color: @brand-dark;
+    background-color: transparent;
     border: 0;
     letter-spacing: 0.03em;
     transition: all 0.3s ease;

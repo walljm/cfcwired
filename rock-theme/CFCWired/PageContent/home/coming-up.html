@@ -1,0 +1,61 @@
+<div class="home-coming-up-section">
+    <div class="container">
+      <h1 class="text-center fw-bold mb-5 text-uppercase">COMING UP</h1>
+      {% if EventItemOccurrences != empty %}
+        <div class="row g-4">
+          {% for eventItemOccurrence in EventItemOccurrences limit:4 %}
+            {% assign linkUrl = '' %}
+            {% if EventDetailPage != empty %}
+              {% capture linkUrl %}{{ EventDetailPage }}?EventOccurrenceId={{ eventItemOccurrence.Id }}{% endcapture %}
+            {% endif %}
+            {% if linkUrl == empty and RegistrationPage != empty %}
+              {% capture linkUrl %}{{ RegistrationPage }}?EventOccurrenceId={{ eventItemOccurrence.Id }}{% endcapture %}
+            {% endif %}
+            {% capture eventDate %}
+              {{ eventItemOccurrence.NextStartDateTime | Date:'ddd, MMM d / h:mmtt' }}
+            {% endcapture %}
+            {% capture eventMonth %}{{ eventItemOccurrence.NextStartDateTime | Date:'MMM' }}{% endcapture %}
+            {% capture eventDay %}{{ eventItemOccurrence.NextStartDateTime | Date:'d' }}{% endcapture %}
+            {% assign imageGuid = eventItemOccurrence.EventItem | Attribute:'Image','RawValue' %}
+            {% if imageGuid == empty %}{% assign imageGuid = eventItemOccurrence.EventItem | Attribute:'EventImage','RawValue' %}{% endif %}
+            {% if imageGuid == empty %}{% assign imageGuid = eventItemOccurrence.EventItem | Attribute:'Event Image','RawValue' %}{% endif %}
+            {% if imageGuid == empty %}{% assign imageGuid = eventItemOccurrence.EventItem | Attribute:'Photo','RawValue' %}{% endif %}
+            {% assign imageUrl = '' %}
+            {% if imageGuid != empty %}{% assign imageUrl = imageGuid | ImageUrl %}{% endif %}
+            {% if imageUrl == empty and eventItemOccurrence.EventItem.Photo.Guid != empty %}
+              {% capture imageUrl %}/GetImage.ashx?Guid={{ eventItemOccurrence.EventItem.Photo.Guid }}{% endcapture %}
+            {% endif %}
+            {% if imageUrl == empty and eventItemOccurrence.EventItem.PhotoId != empty %}
+              {% capture imageUrl %}/GetImage.ashx?Id={{ eventItemOccurrence.EventItem.PhotoId }}{% endcapture %}
+            {% endif %}
+            {% if imageUrl == empty and eventItemOccurrence.EventItem.ImageUrl != empty %}
+              {% assign imageUrl = eventItemOccurrence.EventItem.ImageUrl %}
+            {% endif %}
+            <div class="col-xs-6 col-md-3">
+              {% if linkUrl != empty %}<a href="{{ linkUrl }}" class="event-tile event-card-tile d-block">{% else %}<div class="event-tile event-card-tile d-block">{% endif %}
+                {% if imageUrl != empty %}
+                  <img src="{{ imageUrl }}" class="img-responsive event-tile-image" alt="{{ eventItemOccurrence.EventItem.Name | Escape }}">
+                {% else %}
+                  <span class="event-card-date" aria-hidden="true">
+                    <span class="event-card-month">{{ eventMonth | Strip }}</span>
+                    <span class="event-card-day">{{ eventDay | Strip }}</span>
+                  </span>
+                  <span class="event-tile-fallback">
+                    <strong>{{ eventItemOccurrence.EventItem.Name }}</strong>
+                    <small>{{ eventDate | Strip }}</small>
+                    {% if eventItemOccurrence.EventItem.Summary != empty %}<span>{{ eventItemOccurrence.EventItem.Summary }}</span>{% endif %}
+                  </span>
+                {% endif %}
+              {% if linkUrl != empty %}</a>{% else %}</div>{% endif %}
+            </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p class="text-center text-muted mb-0">Coming up items will appear here after the event occurrence block is configured.</p>
+      {% endif %}
+      <div class="text-center mt-4">
+        <a href="https://myrock.cfcwired.org/Events?audience=All+Church" target="_blank" class="btn btn-primary">See More Events</a>
+      </div>
+    </div>
+  </div>
+  

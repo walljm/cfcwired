@@ -30,7 +30,7 @@ If the existing Rock instance keeps the live theme as `CFCv2External`, merge the
 | `CFCWired/PAGE_IMPORT_MANIFEST.md` | Ordered Rock page creation and HTML Content block import worksheet |
 | `CFCWired/REDIRECT_MATRIX.md` | Redirect mapping from legacy `.html` URLs to Rock routes |
 | `CFCWired/QA_PAGE_SCRIPT.md` | Page-by-page pass/fail QA script for imported Rock pages |
-| `CFCWired/Layouts/Homepage.aspx` | Homepage layout using a full-width `Feature` zone and full-width `Sub Feature` body zone |
+| `CFCWired/Layouts/Homepage.aspx` | Homepage layout using a single full-width `MainContent` zone |
 | `CFCWired/Layouts/FullWidth.aspx` | Standard full-width content layout |
 | `CFCWired/Layouts/FullWidthnarrow.aspx` | Narrow main-column variant using `col-md-8 col-md-offset-2` |
 | `CFCWired/Layouts/LeftsSideBar.aspx` | Left sidebar layout with `Sidebar 1` and `Main` zones |
@@ -56,13 +56,12 @@ The layout files intentionally match the existing Rock theme pattern:
 - `MasterPageFile="Site.Master"`
 - `Inherits="Rock.Web.UI.RockPage"`
 - `ctMain` renders into `ContentPlaceHolderID="main"`
-- `Homepage.aspx` also uses `ctFeature` with `ContentPlaceHolderID="feature"`
-- `Homepage.aspx` leaves `Feature` and `Sub Feature` full-width; the homepage payloads include their own inner `.container` wrappers.
-- Standard content-page layouts keep content constrained inside `main.container`; their generated payloads avoid nested `.container` wrappers.
+- `Homepage.aspx` uses one full-width `MainContent` zone; stack homepage section blocks there in order.
+- Standard content-page layouts use a full-width `Feature` zone for heroes and a full-width `MainContent` zone for body content; generated payloads avoid nested `.container` wrappers and rely on theme CSS for section widths and responsive grids.
 
 `Site.Master` exposes these site-level zones: `Header`, `Login`, `Navigation`, and `Footer`.
 
-Use the actual Rock zone names when placing blocks: `Feature`, `Sub Feature`, `Main`, `Sidebar 1`, `Sidebar 2`, `Section A`, `Section B`, `Section C`, and `Section D`.
+Use the actual Rock zone names when placing blocks. The homepage hero uses `WelcomeVideo`; standard full-width page heroes use `Feature`; body blocks use `MainContent`.
 
 ## Install Notes
 
@@ -70,11 +69,13 @@ Use the actual Rock zone names when placing blocks: `Feature`, `Sub Feature`, `M
 2. Copy `Site.Master` to the target theme root if you are replacing the theme shell. If the target theme already has this master page, merge carefully instead of overwriting live customizations.
 3. Copy the layout files into the target theme's `Layouts/` directory.
 4. Compile `CFCWired/Styles/theme.less` to the theme CSS path used by the Rock instance. The theme styles are self-contained under `CFCWired/Styles/` and no longer depend on `src/less/`.
-5. Upload static images from `src/images/` to the Rock content/media location used by the theme, then update image paths if the instance uses `/Content/ExternalSite/Media/` instead of `/images/`.
+5. Upload static images from `src/images/` to `/Content/ExternalSite/Images/`. Generated page payloads reference images there by filename.
 6. Configure site-level blocks:
    - Header/logo: `Assets/Html/header-logo.html`
    - Navigation: Page Menu block using `Assets/Lava/page-menu.lava`
    - Footer: `Assets/Html/footer-zone.html`
+
+Rock's theme LESS compiler may not support the CSS background shorthand form that combines position and size with `/`, such as `center center / cover`. In theme LESS files, use separate `background-position`, `background-size`, and `background-repeat` declarations instead.
 
 ## Next Step
 
@@ -82,8 +83,8 @@ Use `CFCWired/IMPORT_CHECKLIST.md` as the operational checklist for loading the 
 
 Import pages into Rock using `CFCWired/PageContent/`. Each page directory contains:
 
-- `feature.html` -> HTML Content block in `Feature`
-- `main.html` -> HTML Content block in the body zone listed in `notes.md`
+- `feature.html` -> HTML Content block in `Feature` (`WelcomeVideo` on the homepage)
+- `main.html` -> HTML Content block in `MainContent`
 - `notes.md` -> route, layout, block mapping, and follow-up notes
 
 Regenerate these packages after static page edits with:

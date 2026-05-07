@@ -8,7 +8,7 @@ These specs describe the second pass after static parity is imported: replacing 
 2. Contact Us: create a Contact Us workflow and Workflow Entry block.
 3. Meet the Team: create Staff Members content channel and dynamic Lava grid.
 4. Find Community: evaluate Group Finder configuration.
-5. Homepage Events: replace static event tiles with Rock events/promotions.
+5. Homepage Events: configure Calendar Item Occurrence List by Audience Lava in homepage `MainContent`.
 6. Messages: decide whether to keep Subsplash embed or move to Rock media.
 7. Core Classes and Serve: wire static CTAs to Rock registrations or content channels.
 

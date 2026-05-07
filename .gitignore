@@ -35,3 +35,5 @@ build/
 
 # Playwright screenshots
 docs/screenshots/
+
+**/.playwright-mcp/

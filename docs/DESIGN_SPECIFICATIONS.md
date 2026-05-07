@@ -262,21 +262,25 @@ Designed By: PlainJoe Studios
 #### Hero Section
 
 **Heading:** `WELCOME`
-**Tagline:** `We are a Spirit-directed church discipling people to know Jesus as Lord`
+**Layout:** Full-viewport media hero with the site header overlaying the top of the hero.
 **Buttons:**
 
 - `Come Visit` → /come-visit/
 - `Watch Messages` → /watch-read/messages/
 
-**Subtext:** `Christian Fellowship Church is committed to being a place where people become followers of Christ no matter what their religious or denominational background.`
+#### Welcome Statement Section
+
+**Layout:** Standalone black band immediately below the hero.
+**Text:** `Christian Fellowship Church is committed to being a place where people become followers of Christ no matter what their religious or denominational background.`
 
 #### This Sunday Section
 
 **Heading:** `THIS SUNDAY`
+**Image:** Current sermon graphic, left column. The image scales fluidly with viewport width on desktop and tablet, then stacks above the text on mobile.
 **Body:** `We are called not only to believe and preach the Gospel but to live it out daily through our actions just like Jesus did.`
 
 **Weekly Resources Label:** `WEEKLY RESOURCES:`
-**Links:**
+**Links:** Blue filled resource buttons.
 
 - Watch Messages → /watch-read/messages/
 - Bulletin → /bulletin
@@ -285,6 +289,7 @@ Designed By: PlainJoe Studios
 #### Coming Up Section
 
 **Heading:** `COMING UP`
+**Layout:** Light gray section with event promotion tiles in a fluid 80%-width content row. Tiles use four columns on desktop, shrink proportionally with the viewport, and switch to two columns on tablet/mobile widths.
 
 - Event cards from Rock calendar
 - Button: `See More Events` → https://myrock.cfcwired.org/Events?audience=All+Church
@@ -293,22 +298,27 @@ Designed By: PlainJoe Studios
 
 **Heading:** `EXPERIENCE CFC`
 
-**Card 1 - Sunday Mornings:**
+**Layout:** White section with three unframed columns in a fluid 80%-width content row and large vertical spacing between heading and column content. Images scale proportionally with the viewport, then stack into a single column on mobile.
 
+**Column 1 - Sunday Mornings:**
+
+- **Image:** Sunday worship image
 - **Title:** `SUNDAY MORNINGS`
 - **Text:** `In person at 9:30am & 11:00am`
   `Servicio en Español at 2pm`
   `Watch from home at 9:30 & 11:00am`
 - **Button:** `Come Visit`
 
-**Card 2 - Wednesday Nights:**
+**Column 2 - Wednesday Nights:**
 
+- **Image:** Wednesday Nights image
 - **Title:** `WEDNESDAY NIGHTS`
 - **Text:** `Our 10-week classes, offered year-round, help you grow with God, build friendships, and find community.`
 - **Button:** `Events` → https://myrock.cfcwired.org/events
 
-**Card 3 - Community Groups:**
+**Column 3 - Community Groups:**
 
+- **Image:** Community Groups image
 - **Title:** `COMMUNITY GROUPS`
 - **Text:** `We know that life can get busy. That is why we invite you to explore, connect and find a group that fits your schedule.`
 - **Button:** `Find Community`
@@ -316,9 +326,10 @@ Designed By: PlainJoe Studios
 #### Discipleship Pathway Section
 
 **Heading:** `DISCIPLESHIP PATHWAY`
+**Layout:** Light gray section with the roadmap image above the body copy in a fluid 80%-width content row capped at the public-site desktop image width.
 **Body:** `CFC offers 8 core classes that form our discipleship pathway. These classes are designed to help you grow as a follower of Jesus, deepening your faith, shaping your character, and equipping you to become more like Christ in everyday life.`
 **Button:** `Learn More` → /get-involved/core-class/
-**Image:** CFC-Roadmap_web.png (discipleship pathway graphic)
+**Image:** Visible CFC-Roadmap_web-1.png roadmap graphic.
 
 ---
 

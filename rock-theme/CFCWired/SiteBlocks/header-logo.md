@@ -14,7 +14,7 @@ Renders the CFC logo in the navbar header and links it to the external site home
 
 ## Checks After Import
 
-- Logo image loads from `/images/CFC_Logo_White.png` or the instance-specific media path.
+- Logo image loads from `/Content/ExternalSite/Media/cfc-logo-light.png`.
 - Logo is visible on dark navbar background.
 - Link routes to `/`.
 - Mobile navbar toggle remains aligned beside the logo.

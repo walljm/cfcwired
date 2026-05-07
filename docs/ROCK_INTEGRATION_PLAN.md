@@ -22,8 +22,8 @@ The actual layout files provided for this migration are:
 
 | Layout File | Use |
 |-------------|-----|
-| `Homepage.aspx` | Homepage with a separate `feature` content placeholder |
-| `FullWidth.aspx` | Standard full-width content pages |
+| `Homepage.aspx` | Homepage with a `WelcomeVideo` feature zone and full-width `MainContent` zone |
+| `FullWidth.aspx` | Standard full-width content pages with `Feature` and `MainContent` zones |
 | `FullWidthnarrow.aspx` | Narrow text-heavy pages |
 | `LeftsSideBar.aspx` | Pages needing left navigation or filters |
 | `RightSidebar.aspx` | Pages needing right sidebar content |
@@ -32,7 +32,6 @@ The actual layout files provided for this migration are:
 The common zone names are:
 
 - `Feature`
-- `Sub Feature` (homepage)
 - `Main`
 - `Sidebar 1`
 - `Sidebar 2`
@@ -41,29 +40,25 @@ The common zone names are:
 - `Section C`
 - `Section D`
 
-The standard full-width layout gives you this content skeleton:
+The homepage uses one full-width zone:
+
+- `MainContent`
+
+The standard full-width layout used for this import gives you this content skeleton:
 
 ```
-<main class="container">
+<main>
   <Rock:PageIcon /> <h1 class="pagetitle"><Rock:PageTitle /></h1>
   <Rock:PageBreadCrumbs />
-  <div class="row"><div class="col-md-12">[Feature]</div></div>
-  <div class="row"><div class="col-md-12">[Main]</div></div>
-  <div class="row"><div class="col-md-12">[Section A]</div></div>
-  <div class="row">
-    <div class="col-md-4">[Section B]</div>
-    <div class="col-md-4">[Section C]</div>
-    <div class="col-md-4">[Section D]</div>
-  </div>
+  <Rock:Zone Name="MainContent" />
 </main>
 ```
 
 **Key implications:**
 - Header, navigation, and footer belong in `Site.Master` and site-level blocks, not in page HTML Content blocks.
-- `Feature` is the preferred zone for hero content.
-- `Main` and `Section A` are the primary body-content zones.
-- `Section B`, `Section C`, and `Section D` are a 3-column grid for optional secondary content.
-- `Homepage.aspx` places `Feature` in the master page's `feature` placeholder, then uses `Sub Feature`, `Section A`, `Section B`, `Section C`, and `Section D` inside `main`.
+- `Feature` HTML payloads are represented by each package's `feature.html` and belong in the layout's full-width `Feature` zone.
+- Body payloads go in `MainContent` and intentionally omit their original `.container`; theme CSS scopes fluid widths and responsive grids to `.block-content > .py-5`.
+- `Homepage.aspx` places all homepage section blocks in the full-width `MainContent` zone inside `main`.
 
 ---
 
@@ -281,7 +276,7 @@ Each page becomes a Rock page with blocks in zones. The pattern is:
 4. **Header** → Logo (HTML Content block, site-level)
 5. **Navigation** → Page Menu block (site-level)
 
-For pages with lots of sections, stack multiple HTML Content blocks in `Section A`, or use `Sub Feature` on the homepage for a second section.
+For pages with lots of sections, stack multiple HTML Content blocks in `Section A`. On the homepage, use the named section zones so each homepage band is independently editable.
 
 ### Content That Should Use Content Channels
 
@@ -307,14 +302,17 @@ Everything else — hero sections, about text, faith statements, ministry descri
 |------|-----------|---------|
 | Header | HTML Content (site) | CFC logo linked to homepage |
 | Navigation | Page Menu (site) | Main nav: myCFC, About Us, Come Visit, etc. |
-| Feature | HTML Content | Hero section: video player shell, "This Sunday" info, CTA buttons |
-| Sub Feature | HTML Content | "Coming Up" events section (4-tile grid) — or Content Channel Dynamic if events come from Rock calendar |
-| Section A | HTML Content | Additional content sections as needed |
+| WelcomeVideo | HTML Content | Full-width background video hero with overlaid welcome heading and CTA buttons |
+| MainContent | HTML Content | Opening vision statement |
+| MainContent | HTML Content | "This Sunday" copy and weekly resource links |
+| MainContent | Calendar Item Occurrence List by Audience Lava | Coming Up Lava template rendering four event artwork tiles |
+| MainContent | HTML Content | Sunday, Wednesday, and Community Groups unframed columns |
+| MainContent | HTML Content | Large reserved visual area, copy, and Core Classes CTA |
 | Footer | HTML Content (site) | Full footer: logo, address, social, quick menu, office hours, newsletter, app badges |
 
 **Key conversion notes:**
-- The homepage hero is complex (video embed shell). Keep as a single HTML Content block in `Feature`.
-- Events could use a **Content Channel Dynamic** block pulling from an "Events" channel, with a Lava template rendering the 4-tile grid.
+- The homepage hero is a background video with overlaid content. Keep it in the `WelcomeVideo` feature zone.
+- The Coming Up section should use **Calendar Item Occurrence List by Audience Lava**. The template reads `EventItemOccurrences`, renders event item artwork when available, and links through the configured `EventDetailPage`.
 - The announcement banner is NOT in a dedicated zone in the supplied `Site.Master` — it would need to go in `Site.Master` directly or in the `Header`/`Navigation` block HTML.
 
 ---
@@ -561,7 +559,7 @@ Recommended: **Option 1** — add it to the layout file. It's structural.
 
 ## 7. Custom Layout Considerations
 
-The homepage layout intentionally leaves `Feature` full-width. The homepage hero payload owns its inner `.container`, matching the original static structure:
+The homepage layout includes a feature placeholder for the `WelcomeVideo` zone and a full-width `MainContent` zone. The homepage hero payload owns its inner `.container`, matching the original static structure:
 
 ```html
 <div class="hero-section ...">
@@ -571,9 +569,9 @@ The homepage layout intentionally leaves `Feature` full-width. The homepage hero
 </div>
 ```
 
-The homepage `Sub Feature` zone is also full-width so body section backgrounds can span the viewport. Optional `Section A-D` zones remain constrained inside a `.container` for standard Rock block placement.
+The homepage uses one full-width `MainContent` zone. Each generated homepage section payload owns its inner `.container`, so section backgrounds can span the viewport while content remains aligned.
 
-Standard content-page layouts still constrain their zones inside `main.container`, so their page packages continue to avoid nested `.container` wrappers.
+Standard content-page payloads continue to avoid nested `.container` wrappers. The theme applies the content width, grid, media/text row, and card image behavior to imported body sections through `.block-content > .py-5`, so Rock's Bootstrap 3 fixed container and floated-column behavior does not reappear on smaller desktop and tablet widths.
 
 ---
 
@@ -600,8 +598,8 @@ The operational checklist for the full import is `rock-theme/CFCWired/IMPORT_CHE
 ### Phase 4: Pages (one at a time)
 11. Create pages in the order listed in `rock-theme/CFCWired/PAGE_IMPORT_MANIFEST.md`.
 12. Import page payloads from `rock-theme/CFCWired/PageContent/`. Each package contains `feature.html`, `main.html`, and `notes.md`.
-13. Paste hero markup into the `Feature` HTML Content block.
-14. Paste body content into the body zone listed in the manifest and each package's `notes.md`.
+13. Paste hero markup into the `Feature` HTML Content block, except homepage hero markup which goes in `WelcomeVideo`.
+14. Paste body content into the `MainContent` block listed in the manifest and each package's `notes.md`.
 15. Repeat for each page in order of complexity:
     - Statement of Faith (simplest — just text)
     - About Us
@@ -621,7 +619,7 @@ The operational checklist for the full import is `rock-theme/CFCWired/IMPORT_CHE
 17. Wire up Prayer Request Entry block on Request Prayer page.
 18. Create Contact Us workflow and Workflow Entry block.
 19. Replace Meet the Team with Staff Members content channel and `staff-grid.lava`.
-20. Connect Event Calendar blocks or Content Channel for homepage events.
+20. Configure the homepage Coming Up Calendar Item Occurrence List by Audience Lava block.
 21. Set up Group Finder on Find Community page, if desired.
 
 ### Phase 6: QA & Launch
