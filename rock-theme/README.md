@@ -69,6 +69,8 @@ Use the actual Rock zone names when placing blocks. The homepage hero uses `Welc
 2. Copy `Site.Master` to the target theme root if you are replacing the theme shell. If the target theme already has this master page, merge carefully instead of overwriting live customizations.
 3. Copy the layout files into the target theme's `Layouts/` directory.
 4. Compile `CFCWired/Styles/theme.less` to the theme CSS path used by the Rock instance. The theme styles are self-contained under `CFCWired/Styles/` and no longer depend on `src/less/`.
+   - If Rock remains on `/Themes/CFCv2External/`, merge or append the compiled `CFCWired/Styles/cfc-site-overrides.css` into `/Themes/CFCv2External/Styles/theme.css`, or load it after `theme.css`.
+   - Generate that standalone override artifact with `npm run build:rock-css`.
 5. Upload static images from `src/images/` to `/Content/ExternalSite/Images/`. Generated page payloads reference images there by filename.
 6. Configure site-level blocks:
    - Header/logo: `Assets/Html/header-logo.html`

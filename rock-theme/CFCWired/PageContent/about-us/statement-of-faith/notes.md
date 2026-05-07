@@ -6,7 +6,7 @@ Source page: `src/about-us/statement-of-faith.html`
 
 - Page name: Statement of Faith
 - Suggested route: `/about-us/statement-of-faith`
-- Layout: `FullWidth.aspx`
+- Layout: `Homepage.aspx`
 - Browser title: `Statement of Faith - Christian Fellowship Church`
 - Meta description: `Christian Fellowship Church statement of faith.`
 
@@ -14,14 +14,14 @@ Source page: `src/about-us/statement-of-faith.html`
 
 | Zone | Block Type | File | Notes |
 |------|------------|------|-------|
-| `Feature` | HTML Content | `feature.html` | Hero block only. Do not include page header, nav, footer, scripts, or nested `.container`. |
-| `MainContent` | HTML Content | `main.html` | Page body content extracted from the converted static page. |
+| `WelcomeVideo` | HTML Content | `feature.html` | Hero block only. The homepage payload includes its own inner `.container` because the homepage layout leaves this zone full-width. |
+| `MainContent` | HTML Content | `main.html` | Homepage body sections include their own `.container` wrappers so section backgrounds can span the viewport. |
 
 ## Import Steps
 
 1. Create or open the Rock page at `/about-us/statement-of-faith`.
-2. Set the layout to `FullWidth.aspx`.
-3. Paste `feature.html` into an HTML Content block in the `Feature` zone.
+2. Set the layout to `Homepage.aspx`.
+3. Paste `feature.html` into an HTML Content block in the `WelcomeVideo` zone.
 4. Paste `main.html` into an HTML Content block in the `MainContent` zone.
 5. Verify image paths, links, page title/breadcrumb placement, mobile layout, and admin edit controls in Rock.
 

@@ -1270,6 +1270,7 @@ main .zone-instance > .py-5:nth-child(5) {
     background: linear-gradient(135deg, @brand-primary 0%, @brand-accent 100%);
     min-height: 420px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 150px 24px 90px;
@@ -1452,6 +1453,173 @@ main .zone-instance .block-content > div > .py-5,
     }
 }
 
+main .zone-instance .block-content > .py-5 > .row.justify-content-center,
+main .zone-instance .block-content > div > .py-5 > .row.justify-content-center,
+.page-hero ~ section.py-5 > .row.justify-content-center {
+    width: 80%;
+    max-width: 1200px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    justify-items: center;
+}
+
+main .zone-instance .block-content > .py-5 > .row.justify-content-center > [class*="col-"],
+main .zone-instance .block-content > div > .py-5 > .row.justify-content-center > [class*="col-"],
+.page-hero ~ section.py-5 > .row.justify-content-center > [class*="col-"] {
+    width: 100%;
+    max-width: 1000px;
+}
+
+main .zone-instance .block-content > .py-5 > .row.justify-content-center > [class*="col-"] > .row.g-3,
+main .zone-instance .block-content > div > .py-5 > .row.justify-content-center > [class*="col-"] > .row.g-3,
+.page-hero ~ section.py-5 > .row.justify-content-center > [class*="col-"] > .row.g-3 {
+    width: 100%;
+    max-width: none;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 30px;
+}
+
+.meet-team-section.py-5,
+main .zone-instance .block-content > .meet-team-section.py-5,
+main .zone-instance .block-content > div > .meet-team-section.py-5 {
+    padding-top: 68px;
+    padding-bottom: 64px;
+    background: #fff;
+
+    > h1,
+    > .staff-grid {
+        width: 80%;
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    > h1 {
+        margin-top: 0;
+        margin-bottom: 56px;
+        font-size: 32px;
+        line-height: 1.35;
+    }
+
+    .staff-grid,
+    .row.g-4.staff-grid {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 92px 34px;
+        align-items: start;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .staff-grid::before,
+    .staff-grid::after {
+        content: none;
+        display: none;
+    }
+
+    .staff-grid > .staff-grid-item {
+        float: none;
+        width: auto;
+        max-width: none;
+        min-width: 0;
+        margin: 0;
+        padding: 0;
+    }
+
+    .staff-card,
+    .staff-card:hover {
+        height: auto;
+        overflow: visible;
+        background: transparent;
+        border: 0;
+        box-shadow: none;
+        transform: none;
+    }
+
+    .staff-card .card-body {
+        padding: 0 !important;
+        text-align: center;
+    }
+
+    .staff-photo {
+        display: block;
+        width: 100%;
+        max-width: 201px;
+        aspect-ratio: 1 / 1;
+        height: auto;
+        margin: 0 auto 15px;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+
+    .staff-card h5 {
+        margin: 0 0 6px;
+        color: #333;
+        font-size: 18px;
+        line-height: 1.5;
+    }
+
+    .staff-card p {
+        max-width: 201px;
+        margin: 0 auto;
+        color: #777 !important;
+        font-size: 12px;
+        line-height: 1.45;
+        text-transform: uppercase;
+    }
+
+    .staff-card .card-body::after {
+        content: "\f0e0";
+        display: block;
+        margin-top: 12px;
+        color: #777;
+        font-family: FontAwesome;
+        font-size: 16px;
+        line-height: 1;
+    }
+}
+
+@media (max-width: @screen-md) {
+    .meet-team-section.py-5,
+    main .zone-instance .block-content > .meet-team-section.py-5,
+    main .zone-instance .block-content > div > .meet-team-section.py-5 {
+        .staff-grid,
+        .row.g-4.staff-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+    }
+}
+
+@media (max-width: @screen-sm) {
+    .meet-team-section.py-5,
+    main .zone-instance .block-content > .meet-team-section.py-5,
+    main .zone-instance .block-content > div > .meet-team-section.py-5 {
+        padding-top: 56px;
+
+        > h1 {
+            margin-bottom: 52px;
+            font-size: 26px;
+        }
+
+        .staff-grid,
+        .row.g-4.staff-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 88px 20px;
+        }
+
+        .staff-photo {
+            max-width: 183px;
+        }
+
+        .staff-card h5,
+        .staff-card p {
+            max-width: 183px;
+        }
+    }
+}
+
 @media (max-width: @screen-md) {
     main .zone-instance .block-content > .py-5,
     main .zone-instance .block-content > div > .py-5,
@@ -1467,6 +1635,492 @@ main .zone-instance .block-content > div > .py-5,
     .page-hero {
         min-height: 340px;
         padding: 130px 20px 70px;
+    }
+}
+
+.page-hero.statement-faith-hero {
+    min-height: 482px;
+    display: block;
+    padding: 243px 0 0 !important;
+
+    > .container {
+        width: 80%;
+        max-width: 1080px;
+        padding: 0;
+    }
+
+    h1 {
+        margin: 0;
+        padding-bottom: 10px;
+        font-size: 60px;
+        line-height: 60px;
+        text-transform: none;
+    }
+
+    .lead {
+        margin: 0;
+        color: #ffffff;
+        font-size: 16px;
+        line-height: 27.2px;
+        font-weight: 300;
+        opacity: 1;
+    }
+}
+
+.statement-faith-section.py-5,
+.page-hero ~ section.statement-faith-section.py-5,
+main .zone-instance .block-content > .statement-faith-section.py-5,
+main .zone-instance .block-content > div > .statement-faith-section.py-5 {
+    padding-top: 57px;
+    padding-bottom: 57px;
+    background-color: #ffffff;
+
+    > .container {
+        width: 80%;
+        max-width: 1080px;
+        padding: 0;
+    }
+
+    .row {
+        display: block;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .row::before,
+    .row::after {
+        content: none;
+        display: none;
+    }
+
+    .col-lg-8,
+    .row > .col-lg-8 {
+        float: none;
+        width: 800px;
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 28px 0 28px;
+    }
+
+    h2 {
+        margin: 0 0 28px;
+        padding-bottom: 10px;
+        color: #0a0a0a;
+        font-size: 40px;
+        line-height: 60px;
+        text-align: center;
+        text-transform: none;
+    }
+
+    p {
+        margin: 0;
+        color: #000000 !important;
+        font-size: 16px;
+        line-height: 27.2px;
+        font-weight: 300;
+        padding-bottom: 16px;
+    }
+
+    .btn,
+    .btn-outline-primary {
+        display: table;
+        margin: 25px auto 0;
+        padding: 10px 34px;
+        border: 2px solid #00a3e0;
+        border-radius: 0;
+        background-color: #00a3e0;
+        color: #ffffff !important;
+        font-size: 16px;
+        line-height: 27.2px;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    .btn:hover,
+    .btn:focus,
+    .btn-outline-primary:hover,
+    .btn-outline-primary:focus {
+        background-color: #007ead;
+        color: #ffffff !important;
+        text-decoration: none;
+    }
+}
+
+@media (max-width: @screen-md) {
+    .page-hero.statement-faith-hero {
+        min-height: 420px;
+        padding: 170px 0 0 !important;
+
+        > .container {
+            width: 80%;
+        }
+    }
+}
+
+@media (max-width: @screen-sm) {
+    .page-hero.statement-faith-hero {
+        min-height: 360px;
+        padding: 145px 0 0 !important;
+
+        h1 {
+            font-size: 42px;
+            line-height: 48px;
+        }
+    }
+
+    .statement-faith-section.py-5 .container {
+        width: 80%;
+    }
+
+    .statement-faith-section.py-5 h2,
+    .page-hero ~ section.statement-faith-section.py-5 h2,
+    main .zone-instance .block-content > .statement-faith-section.py-5 h2,
+    main .zone-instance .block-content > div > .statement-faith-section.py-5 h2 {
+        font-size: 32px;
+        line-height: 42px;
+    }
+}
+
+.page-hero.about-hero {
+    min-height: 534px;
+    display: block;
+    padding: 243px 0 0 !important;
+
+    > .container {
+        width: 100%;
+        max-width: none;
+        padding: 0;
+    }
+
+    > h1,
+    > .lead {
+        width: 100%;
+    }
+
+    h1 {
+        font-size: 60px;
+        line-height: 60px;
+        margin: 0;
+        padding-bottom: 10px;
+        text-transform: none;
+    }
+
+    .lead {
+        max-width: 800px;
+        margin: 21px auto 0;
+        color: #ffffff;
+        font-size: 18px;
+        line-height: 1.6;
+        font-weight: 300;
+    }
+}
+
+.about-mission-callout.py-5,
+.about-values-section.py-5,
+.about-history-section.py-5 {
+    background-color: #efefef;
+}
+
+.about-mission-callout.py-5 {
+    min-height: 219px;
+    display: flex;
+    align-items: center;
+    padding-top: 57px;
+    padding-bottom: 57px;
+
+    p {
+        margin: 0;
+        color: #000000;
+        font-family: 'PT Serif', Georgia, 'Times New Roman', serif;
+        font-size: 32px;
+        line-height: 1.5;
+        font-weight: 300;
+    }
+}
+
+.about-mission-callout.py-5 .row,
+.about-history-section.py-5 .row,
+.about-vision-section.py-5 .row {
+    display: flex;
+    justify-content: center;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.about-mission-callout.py-5 .col-lg-8,
+.about-mission-callout.py-5 .row > .col-lg-8,
+.page-hero ~ section.about-mission-callout.py-5 .row > .col-lg-8,
+main .zone-instance .block-content > .about-mission-callout.py-5 .row > .col-lg-8,
+main .zone-instance .block-content > div > .about-mission-callout.py-5 .row > .col-lg-8,
+main .zone-instance .block-content > div > .about-mission-callout.py-5 .row > .col-lg-8 {
+    float: none;
+    width: 66.66666667%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.about-vision-section.py-5 {
+    padding-top: 0;
+    padding-bottom: 0;
+    background-color: #ffffff;
+}
+
+.about-vision-section.py-5 > .row,
+.page-hero ~ section.about-vision-section.py-5 > .row,
+main .zone-instance .block-content > .about-vision-section.py-5 > .row,
+main .zone-instance .block-content > div > .about-vision-section.py-5 > .row {
+    width: 100%;
+    max-width: none;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0;
+    align-items: stretch;
+    margin: 0;
+}
+
+.about-vision-section.py-5 .about-vision-copy,
+.page-hero ~ section.about-vision-section.py-5 .row > .about-vision-copy,
+main .zone-instance .block-content > .about-vision-section.py-5 .row > .about-vision-copy,
+main .zone-instance .block-content > div > .about-vision-section.py-5 .row > .about-vision-copy {
+    display: block;
+    float: none;
+    width: auto;
+    padding: 116px 0 0;
+}
+
+.about-vision-section.py-5 .about-vision-copy h3,
+.about-vision-section.py-5 .about-vision-copy p {
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.about-vision-section.py-5 .about-vision-copy h3 {
+    margin: 0 auto;
+    padding-bottom: 10px;
+    color: #0a0a0a;
+    font-size: 36px;
+    line-height: 54px;
+}
+
+.about-vision-section.py-5 .about-vision-copy p {
+    margin: 0 auto;
+    color: #000000;
+    font-size: 18px;
+    line-height: 32.4px;
+    font-weight: 300;
+}
+
+.about-vision-section.py-5 .about-vision-image img {
+    width: 100%;
+    height: 458px;
+    object-fit: cover;
+}
+
+.about-values-section.py-5,
+.about-history-section.py-5 {
+    padding-top: 57px;
+    padding-bottom: 57px;
+}
+
+.about-values-section h3 {
+    margin: 0;
+    padding-bottom: 10px;
+    color: #0a0a0a;
+    font-size: 36px;
+    line-height: 36px;
+    text-align: center;
+}
+
+.about-values-section h4 {
+    margin: 0;
+    padding-bottom: 10px;
+    color: #0a0a0a;
+    font-size: 24px;
+    line-height: 24px;
+}
+
+.about-values-section h3 + p + h4 {
+    text-align: center;
+}
+
+.about-values-section p {
+    margin: 0;
+    color: #000000;
+    font-size: 16px;
+    line-height: 27.2px;
+    font-weight: 300;
+    padding-bottom: 16px;
+}
+
+.about-values-section p:last-child {
+    padding-bottom: 0;
+}
+
+.about-history-section h1 {
+    margin: 0;
+    padding-bottom: 10px;
+    color: #0a0a0a;
+    font-size: 32px;
+    line-height: 32px;
+    text-align: center;
+}
+
+.about-history-section p {
+    margin: 0;
+    color: #000000;
+    font-size: 16px;
+    line-height: 27.2px;
+    font-weight: 300;
+    padding-bottom: 16px;
+}
+
+.about-history-section p:last-child {
+    padding-bottom: 0;
+    font-size: small;
+    font-style: italic;
+}
+
+.about-values-section.py-5 > .container,
+.about-history-section.py-5 .row {
+    padding-top: 28px;
+    padding-bottom: 28px;
+}
+
+.about-history-section.py-5 .row > .col-lg-8,
+.page-hero ~ section.about-history-section.py-5 .row > .col-lg-8,
+main .zone-instance .block-content > .about-history-section.py-5 .row > .col-lg-8,
+main .zone-instance .block-content > div > .about-history-section.py-5 .row > .col-lg-8 {
+    float: none;
+    width: 100%;
+    max-width: none;
+    padding-bottom: 18px;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.about-history-strip {
+    overflow: hidden;
+    background-color: #ffffff;
+}
+
+.about-history-strip .about-history-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    width: 100%;
+    margin: 0;
+}
+
+.about-history-strip .about-history-grid::before,
+.about-history-strip .about-history-grid::after {
+    content: none;
+    display: none;
+}
+
+.about-history-strip .about-history-grid > [class*="col-"] {
+    float: none;
+    width: auto;
+    padding: 0;
+}
+
+.about-history-strip img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+@media (max-width: @screen-sm) {
+    .page-hero.about-hero {
+        min-height: 448px;
+        padding: 137px 0 0 !important;
+
+        h1 {
+            font-size: 60px;
+        }
+
+        .lead {
+            max-width: 300px;
+            margin-top: 30px;
+        }
+    }
+
+    .about-mission-callout.py-5 p {
+        font-size: 28px;
+        line-height: 42px;
+    }
+}
+
+@media (max-width: @screen-md) {
+    .page-hero.about-hero {
+        min-height: 448px;
+        padding: 137px 0 0 !important;
+    }
+
+    .about-vision-section.py-5 > .row,
+    .page-hero ~ section.about-vision-section.py-5 > .row,
+    main .zone-instance .block-content > .about-vision-section.py-5 > .row,
+    main .zone-instance .block-content > div > .about-vision-section.py-5 > .row {
+        grid-template-columns: 1fr;
+    }
+
+    .about-vision-section.py-5 .about-vision-copy,
+    .page-hero ~ section.about-vision-section.py-5 .row > .about-vision-copy,
+    main .zone-instance .block-content > .about-vision-section.py-5 .row > .about-vision-copy,
+    main .zone-instance .block-content > div > .about-vision-section.py-5 .row > .about-vision-copy {
+        padding: 100px 10vw 0;
+    }
+
+    .about-vision-section.py-5 .about-vision-copy h3,
+    .about-vision-section.py-5 .about-vision-copy p {
+        width: 100%;
+    }
+
+    .about-vision-section.py-5 .about-vision-image {
+        width: 100%;
+        margin-top: 100px;
+    }
+
+    .about-vision-section.py-5 .about-vision-image img {
+        height: auto;
+    }
+
+    .about-mission-callout.py-5 .row,
+    .about-history-section.py-5 .row,
+    .about-vision-section.py-5 .row {
+        display: block;
+    }
+
+    .about-mission-callout.py-5 .col-lg-8,
+    .about-mission-callout.py-5 .row > .col-lg-8,
+    .page-hero ~ section.about-mission-callout.py-5 .row > .col-lg-8,
+    main .zone-instance .block-content > .about-mission-callout.py-5 .row > .col-lg-8,
+    main .zone-instance .block-content > div > .about-mission-callout.py-5 .row > .col-lg-8 {
+        width: 100%;
+    }
+
+    .about-history-strip .about-history-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: @screen-sm) {
+    .page-hero.about-hero {
+        min-height: 448px;
+        padding: 137px 0 0 !important;
+
+        h1 {
+            font-size: 60px;
+        }
+
+        .lead {
+            max-width: 300px;
+            margin-top: 30px;
+        }
+    }
+
+    .about-history-strip .about-history-grid {
+        grid-template-columns: 1fr;
     }
 }
 

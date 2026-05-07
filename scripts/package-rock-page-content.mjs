@@ -57,7 +57,9 @@ const pages = [
     browserTitle: 'About Us - Christian Fellowship Church',
     description: 'Learn about Christian Fellowship Church, our mission, vision, values, and story.',
     featureZone: contentPageFeatureZone,
-    bodyZone: contentPageBodyZone
+    bodyZone: contentPageBodyZone,
+    unwrapContainers: false,
+    unwrapBodyContainers: false
   },
   {
     source: 'src/about-us/statement-of-faith.html',
@@ -68,7 +70,9 @@ const pages = [
     browserTitle: 'Statement of Faith - Christian Fellowship Church',
     description: 'Christian Fellowship Church statement of faith.',
     featureZone: contentPageFeatureZone,
-    bodyZone: contentPageBodyZone
+    bodyZone: contentPageBodyZone,
+    unwrapContainers: false,
+    unwrapBodyContainers: false
   },
   {
     source: 'src/come-visit/index.html',
@@ -116,6 +120,39 @@ const pages = [
     featureZone: contentPageFeatureZone,
     bodyZone: contentPageBodyZone,
     rockNative: 'Serve opportunities could later move to a Content Channel if they change often.'
+  },
+  {
+    source: 'src/get-involved/global-outreach.html',
+    output: 'get-involved/global-outreach',
+    pageName: 'Global Outreach',
+    route: '/get-involved/global-outreach',
+    layout: contentPageLayout,
+    browserTitle: 'Global Outreach - Christian Fellowship Church',
+    description: 'Global outreach and missions at Christian Fellowship Church.',
+    featureZone: contentPageFeatureZone,
+    bodyZone: contentPageBodyZone
+  },
+  {
+    source: 'src/get-involved/local-outreach.html',
+    output: 'get-involved/local-outreach',
+    pageName: 'Local Outreach',
+    route: '/get-involved/local-outreach',
+    layout: contentPageLayout,
+    browserTitle: 'Local Outreach - Christian Fellowship Church',
+    description: 'Local outreach opportunities at Christian Fellowship Church.',
+    featureZone: contentPageFeatureZone,
+    bodyZone: contentPageBodyZone
+  },
+  {
+    source: 'src/get-involved/living-on-mission.html',
+    output: 'get-involved/living-on-mission',
+    pageName: 'Living on Mission',
+    route: '/get-involved/living-on-mission',
+    layout: contentPageLayout,
+    browserTitle: 'Living on Mission - Christian Fellowship Church',
+    description: 'Living on Mission at Christian Fellowship Church.',
+    featureZone: contentPageFeatureZone,
+    bodyZone: contentPageBodyZone
   },
   {
     source: 'src/request-prayer.html',
@@ -202,6 +239,41 @@ const pages = [
 
 const rockImageRoot = '/Content/ExternalSite/Images';
 const imageFilePattern = /\.(?:avif|gif|jpe?g|png|svg|webp)$/i;
+const localImageFiles = new Set(fs.readdirSync(path.join(root, 'src/images')));
+
+const meetTeamPhotos = new Map([
+  ['Jon Ackerman', 'jon-ackerman.jpg'],
+  ['Hector Aldaz', 'hector-aldez.jpg'],
+  ['Eden Asbeha', '32-Eden-Ashbeha.jpg'],
+  ['Brian Bales', 'brian-bales.jpg'],
+  ['Eddie Batten', 'eddie-batton.jpg'],
+  ['Fred Clark', 'fred-clark.jpg'],
+  ['Beth Davidson', 'beth-davidson.jpg'],
+  ['Pouyan Farshad', '31-Pouyan-Farshad-Help-Desk-Technician-copy.jpg'],
+  ['Nancy Graham', 'nancy-graham.jpg'],
+  ['Sarah Hansma', 'Sarah2022-scaled.jpg'],
+  ['Mike Haynes', 'mike-haynes.jpg'],
+  ['Deb Hilbig', '30-Deb-Hilbig.jpg'],
+  ['Josh Hill', 'josh-hill.jpg'],
+  ['Cheryl Howard', 'cheryl-Howared-2023.jpg'],
+  ['Brooke Jones', 'brooke-jones.jpg'],
+  ['Alysia Metallo', 'alysia-metallo.jpg'],
+  ['Michele Miller', 'michele-miller.jpg'],
+  ['Jason Tom', 'Jason-Tom.jpg'],
+  ['Lee Towns', 'lee-towns.jpg'],
+  ['Mike Trivett', 'mike-trivett.jpg'],
+  ['Tina Walderman', 'silhouette-female.gif'],
+  ['Richele Walker', 'richelle-walker.jpg'],
+  ['Jeff Webber', 'jeff-webber.jpg'],
+  ['Rebekah Williams', '29-Rebekah-Williams-2.jpg'],
+  ['Ruth Romano', 'silhouette-female.gif'],
+  ['Kathy Tubach', 'silhouette-female.gif'],
+  ['Wendy Zwart', 'wendy-zwart.jpg']
+]);
+
+const meetTeamOrder = [
+  ...meetTeamPhotos.keys()
+];
 
 function findMatchingSectionEnd(content, startIndex) {
   const tokenPattern = /<\/?section\b[^>]*>/gi;
@@ -325,6 +397,98 @@ function normalizeBody(html, options = {}) {
   output += normalizeInterSectionPrefix(html.slice(cursor));
 
   return normalizeRockPaths(output).trim() + '\n';
+}
+
+function normalizeMeetTeamBody(html, options = {}) {
+  return addMeetTeamPhotos(normalizeBody(html, options));
+}
+
+function addMeetTeamPhotos(html) {
+  const withPhotos = html
+    .replace('<div class="py-5">', '<div class="py-5 meet-team-section">')
+    .replace('<div class="row g-4">', '<div class="row g-4 staff-grid">')
+    .replace(/<div class="col-md-6 col-lg-4">/g, '<div class="col-md-6 col-lg-4 staff-grid-item">')
+    .replace(/<div class="card h-100 border-0 shadow-sm text-center">/g, '<div class="card h-100 border-0 shadow-sm text-center staff-card">')
+    .replace(/<div class="card-body p-4">\s*<div class="bg-light rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 100px; height: 100px;">\s*<i class="fa fa-user text-primary" style="font-size: 3rem;"><\/i>\s*<\/div>\s*<h5 class="fw-bold mb-1">([^<]+)<\/h5>/g, (_match, staffName) => {
+      const fileName = meetTeamPhotos.get(staffName.trim()) ?? 'silhouette-female.gif';
+      return `<div class="card-body p-4">\n                    <img src="${rockImageUrl(fileName)}" alt="${staffName.trim()}" class="staff-photo rounded-circle mb-3">\n                    <h5 class="fw-bold mb-1">${staffName}</h5>`;
+    });
+
+  return reorderMeetTeamCards(withPhotos);
+}
+
+function reorderMeetTeamCards(html) {
+  const gridOpen = '<div class="row g-4 staff-grid">';
+  const gridStart = html.indexOf(gridOpen);
+  if (gridStart < 0) {
+    return html;
+  }
+
+  const gridEnd = findMatchingDivEnd(html, gridStart);
+  const innerStart = gridStart + gridOpen.length;
+  const innerEnd = gridEnd - '</div>'.length;
+  const inner = html.slice(innerStart, innerEnd);
+  const cards = [];
+  let cursor = 0;
+
+  while (cursor < inner.length) {
+    const cardStart = inner.indexOf('<div class="col-md-6 col-lg-4 staff-grid-item">', cursor);
+    if (cardStart < 0) {
+      break;
+    }
+
+    const cardEnd = findMatchingDivEnd(inner, cardStart);
+    cards.push(inner.slice(cardStart, cardEnd));
+    cursor = cardEnd;
+  }
+
+  if (cards.length === 0) {
+    return html;
+  }
+
+  const byName = new Map(cards.map(card => {
+    const name = card.match(/<h5 class="fw-bold mb-1">([^<]+)<\/h5>/)?.[1]?.trim();
+    return [name, card];
+  }).filter(([name]) => name != null));
+  const used = new Set();
+  const orderedCards = meetTeamOrder
+    .map(name => {
+      const card = byName.get(name);
+      if (card == null) {
+        return null;
+      }
+
+      used.add(name);
+      return card;
+    })
+    .filter(Boolean);
+  const unorderedCards = cards.filter(card => {
+    const name = card.match(/<h5 class="fw-bold mb-1">([^<]+)<\/h5>/)?.[1]?.trim();
+    return name == null || !used.has(name);
+  });
+  const nextInner = `\n        ${[...orderedCards, ...unorderedCards].join('\n\n        ')}\n    `;
+
+  return `${html.slice(0, innerStart)}${nextInner}${html.slice(innerEnd)}`;
+}
+
+function findMatchingDivEnd(content, startIndex) {
+  const tokenPattern = /<\/??div\b[^>]*>/gi;
+  tokenPattern.lastIndex = startIndex;
+  let depth = 0;
+  let match;
+
+  while ((match = tokenPattern.exec(content)) != null) {
+    if (match[0].startsWith('</')) {
+      depth -= 1;
+      if (depth === 0) {
+        return tokenPattern.lastIndex;
+      }
+    } else {
+      depth += 1;
+    }
+  }
+
+  throw new Error(`Could not find matching </div> after index ${startIndex}`);
 }
 
 function normalizeBodyBlocks(html, options = {}) {
@@ -457,13 +621,13 @@ function normalizeImagePaths(html) {
       return `${prefix}${rockImageUrl(fileName)}${suffix}`;
     })
     .replace(/((?:src|poster)=")https:\/\/cfcwired\.org\/wp-content\/uploads\/\d{4}\/\d{2}\/([^"?#]+)(?:[?#][^"]*)?(")/g, (match, prefix, fileName, suffix) => {
-      return imageFilePattern.test(fileName) ? `${prefix}${rockImageUrl(fileName)}${suffix}` : match;
+      return imageFilePattern.test(fileName) && localImageFiles.has(fileName) ? `${prefix}${rockImageUrl(fileName)}${suffix}` : match;
     })
     .replace(/(url\(['"]?)https:\/\/cfcwired\.org\/wp-content\/uploads\/\d{4}\/\d{2}\/([^'")?#]+)(?:[?#][^'")]*)?(['"]?\))/g, (match, prefix, fileName, suffix) => {
-      return imageFilePattern.test(fileName) ? `${prefix}${rockImageUrl(fileName)}${suffix}` : match;
+      return imageFilePattern.test(fileName) && localImageFiles.has(fileName) ? `${prefix}${rockImageUrl(fileName)}${suffix}` : match;
     })
     .replace(/https:\/\/cfcwired\.org\/wp-content\/uploads\/\d{4}\/\d{2}\/([^\s"'<>)]*)/g, (match, fileName) => {
-      return imageFilePattern.test(fileName) ? rockImageUrl(fileName) : match;
+      return imageFilePattern.test(fileName) && localImageFiles.has(fileName) ? rockImageUrl(fileName) : match;
     });
 }
 
@@ -552,16 +716,17 @@ for (const page of pages) {
   const sourcePath = path.join(root, page.source);
   const content = fs.readFileSync(sourcePath, 'utf8');
   const hero = firstSection(content);
-  const blockOptions = { unwrapContainer: page.unwrapContainers !== false };
-  const featureHtml = normalizeFeature(hero.html, blockOptions);
+  const featureBlockOptions = { unwrapContainer: page.unwrapContainers !== false };
+  const bodyBlockOptions = { unwrapContainer: page.unwrapBodyContainers ?? page.unwrapContainers !== false };
+  const featureHtml = normalizeFeature(hero.html, featureBlockOptions);
   const outDir = path.join(outputRoot, page.output);
 
   cleanGeneratedFiles(outDir, page);
   fs.writeFileSync(path.join(outDir, 'feature.html'), featureHtml);
   if (page.bodyBlocks != null) {
     const bodyBlockHtml = page.output === 'home'
-      ? splitHomepageBodyBlocks(bodySections(content, hero.end), blockOptions)
-      : normalizeBodyBlocks(bodySections(content, hero.end), blockOptions);
+      ? splitHomepageBodyBlocks(bodySections(content, hero.end), bodyBlockOptions)
+      : normalizeBodyBlocks(bodySections(content, hero.end), bodyBlockOptions);
 
     if (bodyBlockHtml.length !== page.bodyBlocks.length) {
       throw new Error(`${page.source} produced ${bodyBlockHtml.length} body blocks, expected ${page.bodyBlocks.length}`);
@@ -571,7 +736,9 @@ for (const page of pages) {
       fs.writeFileSync(path.join(outDir, block.file), bodyBlockHtml[index]);
     });
   } else {
-    const mainHtml = normalizeBody(bodySections(content, hero.end), blockOptions);
+    const mainHtml = page.output === 'about-us/meet-the-team'
+      ? normalizeMeetTeamBody(bodySections(content, hero.end), bodyBlockOptions)
+      : normalizeBody(bodySections(content, hero.end), bodyBlockOptions);
     fs.writeFileSync(path.join(outDir, 'main.html'), mainHtml);
   }
   fs.writeFileSync(path.join(outDir, 'notes.md'), notesFor(page));

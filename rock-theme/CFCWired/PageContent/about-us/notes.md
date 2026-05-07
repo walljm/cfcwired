@@ -6,7 +6,7 @@ Source page: `src/about-us/index.html`
 
 - Page name: About Us
 - Suggested route: `/about-us`
-- Layout: `FullWidth.aspx`
+- Layout: `Homepage.aspx`
 - Browser title: `About Us - Christian Fellowship Church`
 - Meta description: `Learn about Christian Fellowship Church, our mission, vision, values, and story.`
 
@@ -14,14 +14,14 @@ Source page: `src/about-us/index.html`
 
 | Zone | Block Type | File | Notes |
 |------|------------|------|-------|
-| `Feature` | HTML Content | `feature.html` | Hero block only. Do not include page header, nav, footer, scripts, or nested `.container`. |
-| `MainContent` | HTML Content | `main.html` | Page body content extracted from the converted static page. |
+| `WelcomeVideo` | HTML Content | `feature.html` | Hero block only. The homepage payload includes its own inner `.container` because the homepage layout leaves this zone full-width. |
+| `MainContent` | HTML Content | `main.html` | Homepage body sections include their own `.container` wrappers so section backgrounds can span the viewport. |
 
 ## Import Steps
 
 1. Create or open the Rock page at `/about-us`.
-2. Set the layout to `FullWidth.aspx`.
-3. Paste `feature.html` into an HTML Content block in the `Feature` zone.
+2. Set the layout to `Homepage.aspx`.
+3. Paste `feature.html` into an HTML Content block in the `WelcomeVideo` zone.
 4. Paste `main.html` into an HTML Content block in the `MainContent` zone.
 5. Verify image paths, links, page title/breadcrumb placement, mobile layout, and admin edit controls in Rock.
 

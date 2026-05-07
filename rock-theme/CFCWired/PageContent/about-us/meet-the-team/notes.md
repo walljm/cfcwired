@@ -6,7 +6,7 @@ Source page: `src/about-us/meet-the-team.html`
 
 - Page name: Meet the Team
 - Suggested route: `/about-us/meet-the-team`
-- Layout: `FullWidth.aspx`
+- Layout: `Homepage.aspx`
 - Browser title: `Meet the Team - Christian Fellowship Church`
 - Meta description: `Meet the staff team at Christian Fellowship Church.`
 
@@ -14,14 +14,14 @@ Source page: `src/about-us/meet-the-team.html`
 
 | Zone | Block Type | File | Notes |
 |------|------------|------|-------|
-| `Feature` | HTML Content | `feature.html` | Hero block only. Do not include page header, nav, footer, scripts, or nested `.container`. |
+| `WelcomeVideo` | HTML Content | `feature.html` | Hero block only. Do not include page header, nav, footer, scripts, or nested `.container`. |
 | `MainContent` | HTML Content | `main.html` | Page body content extracted from the converted static page. |
 
 ## Import Steps
 
 1. Create or open the Rock page at `/about-us/meet-the-team`.
-2. Set the layout to `FullWidth.aspx`.
-3. Paste `feature.html` into an HTML Content block in the `Feature` zone.
+2. Set the layout to `Homepage.aspx`.
+3. Paste `feature.html` into an HTML Content block in the `WelcomeVideo` zone.
 4. Paste `main.html` into an HTML Content block in the `MainContent` zone.
 5. Verify image paths, links, page title/breadcrumb placement, mobile layout, and admin edit controls in Rock.
 
