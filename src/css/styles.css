@@ -1569,6 +1569,38 @@ main .zone-instance .block-content > div > .py-5 .card .card-img-top,
   height: auto;
   object-fit: cover;
 }
+main .zone-instance .block-content > .py-5 .row.class-cards-grid,
+main .zone-instance .block-content > div > .py-5 .row.class-cards-grid,
+.page-hero ~ section.py-5 .row.class-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-left: 0;
+  margin-right: 0;
+}
+main .zone-instance .block-content > .py-5 .row.class-cards-grid > [class*="col-"],
+main .zone-instance .block-content > div > .py-5 .row.class-cards-grid > [class*="col-"],
+.page-hero ~ section.py-5 .row.class-cards-grid > [class*="col-"] {
+  width: 100%;
+  max-width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+  margin-bottom: 0;
+}
+@media (max-width: 767px) {
+  main .zone-instance .block-content > .py-5 .row.class-cards-grid,
+  main .zone-instance .block-content > div > .py-5 .row.class-cards-grid,
+  .page-hero ~ section.py-5 .row.class-cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  main .zone-instance .block-content > .py-5 .row.class-cards-grid,
+  main .zone-instance .block-content > div > .py-5 .row.class-cards-grid,
+  .page-hero ~ section.py-5 .row.class-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 main .zone-instance .block-content > .py-5 .embed-responsive,
 main .zone-instance .block-content > div > .py-5 .embed-responsive,
 .page-hero ~ section.py-5 .embed-responsive {
@@ -1659,15 +1691,17 @@ main .zone-instance .block-content > div > .meet-team-section.py-5 .staff-grid >
 }
 .meet-team-section.py-5 .staff-card,
 main .zone-instance .block-content > .meet-team-section.py-5 .staff-card,
-main .zone-instance .block-content > div > .meet-team-section.py-5 .staff-card,
-.meet-team-section.py-5 .staff-card:hover,
-main .zone-instance .block-content > .meet-team-section.py-5 .staff-card:hover,
-main .zone-instance .block-content > div > .meet-team-section.py-5 .staff-card:hover {
+main .zone-instance .block-content > div > .meet-team-section.py-5 .staff-card {
   height: auto;
   overflow: visible;
   background: transparent;
   border: 0;
-  box-shadow: none;
+  border-radius: 12px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 80px 0px;
+}
+.meet-team-section.py-5 .staff-card:hover,
+main .zone-instance .block-content > .meet-team-section.py-5 .staff-card:hover,
+main .zone-instance .block-content > div > .meet-team-section.py-5 .staff-card:hover {
   transform: none;
 }
 .meet-team-section.py-5 .staff-card .card-body,
@@ -1686,7 +1720,7 @@ main .zone-instance .block-content > div > .meet-team-section.py-5 .staff-photo 
   height: auto;
   margin: 0 auto 15px;
   object-fit: cover;
-  border-radius: 50%;
+  border-radius: 12px 12px 0 0;
 }
 .meet-team-section.py-5 .staff-card h5,
 main .zone-instance .block-content > .meet-team-section.py-5 .staff-card h5,

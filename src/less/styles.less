@@ -1448,6 +1448,35 @@ main .zone-instance .block-content > div > .py-5,
         object-fit: cover;
     }
 
+    // 3-column card grid used on take-a-class and similar pages
+    .row.class-cards-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .row.class-cards-grid > [class*="col-"] {
+        width: 100%;
+        max-width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+        margin-bottom: 0;
+    }
+
+    @media (max-width: 767px) {
+        .row.class-cards-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (min-width: 768px) and (max-width: 1023px) {
+        .row.class-cards-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
     .embed-responsive {
         max-width: 1000px;
     }
@@ -1528,13 +1557,15 @@ main .zone-instance .block-content > div > .meet-team-section.py-5 {
         padding: 0;
     }
 
-    .staff-card,
-    .staff-card:hover {
+    .staff-card {
         height: auto;
         overflow: visible;
         background: transparent;
         border: 0;
-        box-shadow: none;
+        border-radius: 12px;
+        box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 80px 0px;
+    }
+    .staff-card:hover {
         transform: none;
     }
 
@@ -1551,7 +1582,7 @@ main .zone-instance .block-content > div > .meet-team-section.py-5 {
         height: auto;
         margin: 0 auto 15px;
         object-fit: cover;
-        border-radius: 50%;
+        border-radius: 12px 12px 0 0;
     }
 
     .staff-card h5 {

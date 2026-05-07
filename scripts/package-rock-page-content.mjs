@@ -144,6 +144,17 @@ const pages = [
     bodyZone: contentPageBodyZone
   },
   {
+    source: 'src/get-involved/care.html',
+    output: 'get-involved/care',
+    pageName: 'Care',
+    route: '/get-involved/care',
+    layout: contentPageLayout,
+    browserTitle: 'Care - Christian Fellowship Church',
+    description: 'Care ministry at Christian Fellowship Church.',
+    featureZone: contentPageFeatureZone,
+    bodyZone: contentPageBodyZone
+  },
+  {
     source: 'src/get-involved/living-on-mission.html',
     output: 'get-involved/living-on-mission',
     pageName: 'Living on Mission',
@@ -262,12 +273,12 @@ const meetTeamPhotos = new Map([
   ['Jason Tom', 'Jason-Tom.jpg'],
   ['Lee Towns', 'lee-towns.jpg'],
   ['Mike Trivett', 'mike-trivett.jpg'],
-  ['Tina Walderman', 'silhouette-female.gif'],
+  ['Tina Walderman', null],
   ['Richele Walker', 'richelle-walker.jpg'],
   ['Jeff Webber', 'jeff-webber.jpg'],
   ['Rebekah Williams', '29-Rebekah-Williams-2.jpg'],
-  ['Ruth Romano', 'silhouette-female.gif'],
-  ['Kathy Tubach', 'silhouette-female.gif'],
+  ['Ruth Romano', null],
+  ['Kathy Tubach', null],
   ['Wendy Zwart', 'wendy-zwart.jpg']
 ]);
 
@@ -410,8 +421,11 @@ function addMeetTeamPhotos(html) {
     .replace(/<div class="col-md-6 col-lg-4">/g, '<div class="col-md-6 col-lg-4 staff-grid-item">')
     .replace(/<div class="card h-100 border-0 shadow-sm text-center">/g, '<div class="card h-100 border-0 shadow-sm text-center staff-card">')
     .replace(/<div class="card-body p-4">\s*<div class="bg-light rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 100px; height: 100px;">\s*<i class="fa fa-user text-primary" style="font-size: 3rem;"><\/i>\s*<\/div>\s*<h5 class="fw-bold mb-1">([^<]+)<\/h5>/g, (_match, staffName) => {
-      const fileName = meetTeamPhotos.get(staffName.trim()) ?? 'silhouette-female.gif';
-      return `<div class="card-body p-4">\n                    <img src="${rockImageUrl(fileName)}" alt="${staffName.trim()}" class="staff-photo rounded-circle mb-3">\n                    <h5 class="fw-bold mb-1">${staffName}</h5>`;
+      const fileName = meetTeamPhotos.get(staffName.trim());
+      const photoHtml = (fileName == null || fileName.endsWith('.gif'))
+        ? `<div class="staff-photo mb-3" style="background:#e9ecef; display:flex; align-items:center; justify-content:center; border-radius:12px 12px 0 0;"><i class="fa fa-user" style="font-size:4rem; color:#adb5bd;"></i></div>`
+        : `<img src="${rockImageUrl(fileName)}" alt="${staffName.trim()}" class="staff-photo mb-3">`;
+      return `<div class="card-body p-4">\n                    ${photoHtml}\n                    <h5 class="fw-bold mb-1">${staffName}</h5>`;
     });
 
   return reorderMeetTeamCards(withPhotos);
