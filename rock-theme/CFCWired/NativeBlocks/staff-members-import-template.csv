@@ -1,0 +1,4 @@
+Title,Role,Department,DisplayOrder,Email,PhotoFileName,Content
+John Doe,Lead Pastor,Pastoral,10,john.doe@example.org,john-doe.jpg,Short bio text for website card.
+Jane Smith,Children Director,Family,20,jane.smith@example.org,jane-smith.jpg,Leads children's ministry and family discipleship.
+Chris Lee,Worship Director,Worship,30,chris.lee@example.org,chris-lee.jpg,Oversees worship teams and Sunday music planning.

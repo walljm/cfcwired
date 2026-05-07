@@ -1,0 +1,126 @@
+// CFC Wired Rock Theme Entry
+// -------------------------
+// This file is the drop-in public subsite theme entry for Rock. It keeps Rock's
+// core styles in the normal order, then layers the converted CFC public-site
+// styles from local files in this `Styles/` directory.
+
+@import "../../../Styles/Bootstrap/variables.less";
+@import "../../../Styles/_rock-core.less";
+@import "../../../Styles/_store.less";
+@import "../../../Styles/_rock-variables.less";
+@import "_variables.less";
+@import "_variable-overrides.less";
+@import "_print.less";
+@import "_cfc-site.less";
+
+html {
+    -webkit-font-smoothing: antialiased;
+}
+
+select {
+    text-rendering: auto;
+    -webkit-font-smoothing: none;
+}
+
+main {
+    display: block;
+}
+
+h1.pagetitle:empty {
+    display: none;
+}
+
+.page-icon {
+    display: none;
+}
+
+header {
+    .page-menu,
+    .login-status {
+        float: right;
+    }
+
+    .navbar {
+        background-color: @header-bg;
+        border: 0;
+    }
+}
+
+.navbar {
+    position: static;
+
+    .navbar-toggle {
+        padding: 6px 10px;
+
+        i.fa-bars {
+            color: @navbar-inverse-toggle-icon-bar-bg;
+        }
+    }
+}
+
+.navbar-container {
+    width: 100%;
+    min-height: 95px;
+    padding: 20px 60px;
+    background-color: @brand-dark;
+
+    @media (max-width: 767px) {
+        padding: 20px 40px;
+    }
+}
+
+.navbar.navbar-inverse.navbar-static-top {
+    width: 100%;
+    z-index: 1000;
+    padding: 0;
+    margin-bottom: 0;
+    background-color: @brand-dark;
+    border: 0;
+    letter-spacing: 0.03em;
+    transition: all 0.3s ease;
+
+    .nav-logo {
+        display: block;
+        max-width: 200px;
+        height: auto;
+        transition: all 0.3s ease;
+    }
+
+    .navbar-nav > li > a {
+        color: #fff;
+        transition: all 0.3s ease;
+
+        &:hover,
+        &:focus {
+            color: @brand-primary;
+        }
+    }
+}
+
+a:hover i.fs {
+    text-decoration: none;
+}
+
+.panel.panel-block {
+    border: 0;
+    box-shadow: none;
+
+    & > .panel-heading,
+    & > .rock-panel-drawer {
+        display: none;
+    }
+
+    & > .panel-body {
+        padding: 0;
+
+        .grid.grid-panel {
+            margin: 0;
+        }
+    }
+}
+
+footer .footer {
+    margin-top: 0;
+}
+
+@import "_css-overrides.less";

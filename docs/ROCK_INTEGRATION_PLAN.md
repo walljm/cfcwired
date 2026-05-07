@@ -8,55 +8,62 @@
 
 ## 1. What Your Rock Theme Already Provides
 
-The CFCv2External theme layout gives you this skeleton automatically on every page:
+The CFCv2External theme uses `Site.Master` plus layout `.aspx` files. `Site.Master` owns the global shell, and each layout supplies only the page content zones.
+
+`Site.Master` provides:
+
+- Rock's jQuery bundle and theme CSS includes
+- Header/nav shell using `.navbar.navbar-inverse.navbar-static-top`
+- Site-level zones: `Header`, `Login`, `Navigation`, `Footer`
+- Content placeholders: `feature` and `main`
+- Rock `ScriptManager` and `UpdateProgress`
+
+The actual layout files provided for this migration are:
+
+| Layout File | Use |
+|-------------|-----|
+| `Homepage.aspx` | Homepage with a separate `feature` content placeholder |
+| `FullWidth.aspx` | Standard full-width content pages |
+| `FullWidthnarrow.aspx` | Narrow text-heavy pages |
+| `LeftsSideBar.aspx` | Pages needing left navigation or filters |
+| `RightSidebar.aspx` | Pages needing right sidebar content |
+| `ThreeColumn.aspx` | Three-column content pages |
+
+The common zone names are:
+
+- `Feature`
+- `Sub Feature` (homepage)
+- `Main`
+- `Sidebar 1`
+- `Sidebar 2`
+- `Section A`
+- `Section B`
+- `Section C`
+- `Section D`
+
+The standard full-width layout gives you this content skeleton:
 
 ```
-<header>
-  <nav class="navbar navbar-inverse navbar-static-top">
-    <div class="navbar-container">
-      <div class="navbar-header">
-        [zone-header] ← Logo (HTML Content block, site-level)
-        <button class="navbar-toggle" ...> (mobile hamburger)
-      </div>
-      <div class="navbar-collapse collapse">
-        [zone-login]      ← Login button (site-level)
-        [zone-navigation] ← Page Menu block (site-level, renders ul.nav.navbar-nav)
-      </div>
-    </div>
-  </nav>
-</header>
-
-<section class="main-feature">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        [zone-feature] ← Hero/feature content (page-level)
-      </div>
-    </div>
-  </div>
-</section>
-
 <main class="container">
-  <div class="row"><div class="col-md-12">[zone-subfeature]</div></div>
-  <div class="row"><div class="col-md-12">[zone-sectiona]</div></div>
+  <Rock:PageIcon /> <h1 class="pagetitle"><Rock:PageTitle /></h1>
+  <Rock:PageBreadCrumbs />
+  <div class="row"><div class="col-md-12">[Feature]</div></div>
+  <div class="row"><div class="col-md-12">[Main]</div></div>
+  <div class="row"><div class="col-md-12">[Section A]</div></div>
   <div class="row">
-    <div class="col-md-4">[zone-sectionb]</div>
-    <div class="col-md-4">[zone-sectionc]</div>
-    <div class="col-md-4">[zone-sectiond]</div>
+    <div class="col-md-4">[Section B]</div>
+    <div class="col-md-4">[Section C]</div>
+    <div class="col-md-4">[Section D]</div>
   </div>
 </main>
-
-<footer>
-  [zone-footer] ← Footer content (site-level)
-</footer>
 ```
 
 **Key implications:**
-- The navbar, logo, login, and footer are **site-level blocks** — configured once, shown on every page.
-- `zone-feature` is full-width (inside `section.main-feature`), ideal for heroes.
-- `zone-subfeature` and `zone-sectiona` are full-width inside `main.container`.
-- `zone-sectionb/c/d` are a 3-column grid — useful for some pages, ignored on others.
-- You do NOT write `<header>`, `<nav>`, `<main>`, or `<footer>` tags. The layout provides them.
+- Header, navigation, and footer belong in `Site.Master` and site-level blocks, not in page HTML Content blocks.
+- `Feature` is the preferred zone for hero content.
+- `Main` and `Section A` are the primary body-content zones.
+- `Section B`, `Section C`, and `Section D` are a 3-column grid for optional secondary content.
+- `Homepage.aspx` places `Feature` in the master page's `feature` placeholder, then uses `Sub Feature`, `Section A`, `Section B`, `Section C`, and `Section D` inside `main`.
 
 ---
 
@@ -268,13 +275,13 @@ Since BS3 lacks many BS5 utilities, add these to the theme's `theme.less`:
 
 Each page becomes a Rock page with blocks in zones. The pattern is:
 
-1. **zone-feature** → Hero section (HTML Content block with custom HTML)
-2. **zone-sectiona** → Main page content (one or more HTML Content blocks)
-3. **zone-footer** → Shared footer (HTML Content block, site-level)
-4. **zone-header** → Logo (HTML Content block, site-level)
-5. **zone-navigation** → Page Menu block (site-level)
+1. **Feature** → Hero section (HTML Content block with custom HTML)
+2. **Main** or **Section A** → Main page content (one or more HTML Content blocks)
+3. **Footer** → Shared footer (HTML Content block, site-level)
+4. **Header** → Logo (HTML Content block, site-level)
+5. **Navigation** → Page Menu block (site-level)
 
-For pages with lots of sections, stack multiple HTML Content blocks in `zone-sectiona`, or use `zone-subfeature` for a second section.
+For pages with lots of sections, stack multiple HTML Content blocks in `Section A`, or use `Sub Feature` on the homepage for a second section.
 
 ### Content That Should Use Content Channels
 
@@ -298,17 +305,17 @@ Everything else — hero sections, about text, faith statements, ministry descri
 
 | Zone | Block Type | Content |
 |------|-----------|---------|
-| zone-header | HTML Content (site) | CFC logo linked to homepage |
-| zone-navigation | Page Menu (site) | Main nav: myCFC, About Us, Come Visit, etc. |
-| zone-feature | HTML Content | Hero section: video player shell, "This Sunday" info, CTA buttons |
-| zone-subfeature | HTML Content | "Coming Up" events section (4-tile grid) — or Content Channel Dynamic if events come from Rock calendar |
-| zone-sectiona | HTML Content | Additional content sections as needed |
-| zone-footer | HTML Content (site) | Full footer: logo, address, social, quick menu, office hours, newsletter, app badges |
+| Header | HTML Content (site) | CFC logo linked to homepage |
+| Navigation | Page Menu (site) | Main nav: myCFC, About Us, Come Visit, etc. |
+| Feature | HTML Content | Hero section: video player shell, "This Sunday" info, CTA buttons |
+| Sub Feature | HTML Content | "Coming Up" events section (4-tile grid) — or Content Channel Dynamic if events come from Rock calendar |
+| Section A | HTML Content | Additional content sections as needed |
+| Footer | HTML Content (site) | Full footer: logo, address, social, quick menu, office hours, newsletter, app badges |
 
 **Key conversion notes:**
-- The homepage hero is complex (video embed shell). Keep as a single HTML Content block in zone-feature.
+- The homepage hero is complex (video embed shell). Keep as a single HTML Content block in `Feature`.
 - Events could use a **Content Channel Dynamic** block pulling from an "Events" channel, with a Lava template rendering the 4-tile grid.
-- The announcement banner is NOT in a zone — it would need to go in the layout file or in the zone-header block's HTML.
+- The announcement banner is NOT in a dedicated zone in the supplied `Site.Master` — it would need to go in `Site.Master` directly or in the `Header`/`Navigation` block HTML.
 
 ---
 
@@ -319,8 +326,8 @@ Everything else — hero sections, about text, faith statements, ministry descri
 
 | Zone | Block Type | Content |
 |------|-----------|---------|
-| zone-feature | HTML Content | Hero banner: "ABOUT US" title |
-| zone-sectiona | HTML Content | Mission statement, Vision section (2-col text+image), Values (5 cards) |
+| Feature | HTML Content | Hero banner: "ABOUT US" title |
+| Section A | HTML Content | Mission statement, Vision section (2-col text+image), Values (5 cards) |
 
 ---
 
@@ -331,8 +338,8 @@ Everything else — hero sections, about text, faith statements, ministry descri
 
 | Zone | Block Type | Content |
 |------|-----------|---------|
-| zone-feature | HTML Content | Hero banner: "MEET THE TEAM" |
-| zone-sectiona | **Content Channel Dynamic** | Pulls from "Staff Members" content channel. Lava template renders the card grid. |
+| Feature | HTML Content | Hero banner: "MEET THE TEAM" |
+| Section A | **Content Channel Dynamic** | Pulls from "Staff Members" content channel. Lava template renders the card grid. |
 
 **Content Channel: "Staff Members"**
 - Channel Type: Custom "Staff Directory"
@@ -350,9 +357,9 @@ This means staff changes are managed in Rock's content management UI, not by edi
 
 | Zone | Block Type | Content |
 |------|-----------|---------|
-| zone-feature | HTML Content | Hero banner: "CONTACT US" |
-| zone-sectiona | HTML Content | Contact info, embedded map, etc. |
-| zone-sectiona | **Workflow Entry** block | Contact form powered by a Rock Workflow — submissions go to staff inbox, tracked in Rock |
+| Feature | HTML Content | Hero banner: "CONTACT US" |
+| Section A | HTML Content | Contact info, embedded map, etc. |
+| Section A | **Workflow Entry** block | Contact form powered by a Rock Workflow — submissions go to staff inbox, tracked in Rock |
 
 **Note:** Don't use a static HTML form. Use a Rock Workflow form so submissions are tracked, routable, and integrated with Rock's communication tools.
 
@@ -365,9 +372,9 @@ This means staff changes are managed in Rock's content management UI, not by edi
 
 | Zone | Block Type | Content |
 |------|-----------|---------|
-| zone-feature | HTML Content | Hero banner: "FIND COMMUNITY" |
-| zone-sectiona | HTML Content | Importance of community section, Types of community (4 cards) |
-| zone-sectiona | HTML Content or **Group Finder** block | "Find a Group" CTA — potentially use Rock's Group Finder block for live group search |
+| Feature | HTML Content | Hero banner: "FIND COMMUNITY" |
+| Section A | HTML Content | Importance of community section, Types of community (4 cards) |
+| Section A | HTML Content or **Group Finder** block | "Find a Group" CTA — potentially use Rock's Group Finder block for live group search |
 
 ---
 
@@ -378,8 +385,8 @@ This means staff changes are managed in Rock's content management UI, not by edi
 
 | Zone | Block Type | Content |
 |------|-----------|---------|
-| zone-feature | HTML Content | Hero banner with tagline |
-| zone-sectiona | HTML Content | Full statement text, "Essential for Salvation" section |
+| Feature | HTML Content | Hero banner with tagline |
+| Section A | HTML Content | Full statement text, "Essential for Salvation" section |
 
 This is purely static content — HTML Content block is ideal.
 
@@ -392,9 +399,9 @@ This is purely static content — HTML Content block is ideal.
 
 | Zone | Block Type | Content |
 |------|-----------|---------|
-| zone-feature | HTML Content | Hero banner with "Plan Your Visit" CTA |
-| zone-sectiona | HTML Content | Welcome video embed, plan your visit explainer |
-| zone-sectiona | HTML Content | Service times cards (Sun/Wed/Online/Hispana) |
+| Feature | HTML Content | Hero banner with "Plan Your Visit" CTA |
+| Section A | HTML Content | Welcome video embed, plan your visit explainer |
+| Section A | HTML Content | Service times cards (Sun/Wed/Online/Hispana) |
 
 Service times could alternatively be **Global Attributes** so they're editable from one place and reused in the footer, homepage, etc. The Lava in the HTML Content block would reference `{{ 'Global' | Attribute:'ServiceTimes' }}`.
 
@@ -407,8 +414,8 @@ Service times could alternatively be **Global Attributes** so they're editable f
 
 | Zone | Block Type | Content |
 |------|-----------|---------|
-| zone-feature | HTML Content | Hero banner: "MESSAGES" |
-| zone-sectiona | HTML Content | Subsplash embed iframe (using Rock's `embed-responsive` BS3 classes) |
+| Feature | HTML Content | Hero banner: "MESSAGES" |
+| Section A | HTML Content | Subsplash embed iframe (using Rock's `embed-responsive` BS3 classes) |
 
 If you eventually move sermon hosting to Rock's content channels, replace the embed with a **Content Channel Dynamic** block.
 
@@ -421,8 +428,8 @@ If you eventually move sermon hosting to Rock's content channels, replace the em
 
 | Zone | Block Type | Content |
 |------|-----------|---------|
-| zone-feature | HTML Content | Hero banner: "CORE CLASSES" |
-| zone-sectiona | HTML Content | All class descriptions (Square One, Rooted, Bible studies, etc.) |
+| Feature | HTML Content | Hero banner: "CORE CLASSES" |
+| Section A | HTML Content | All class descriptions (Square One, Rooted, Bible studies, etc.) |
 
 This is detailed descriptive content — keep as HTML Content. If classes are managed through Rock's Event Registration, link buttons to those registration pages.
 
@@ -435,9 +442,9 @@ This is detailed descriptive content — keep as HTML Content. If classes are ma
 
 | Zone | Block Type | Content |
 |------|-----------|---------|
-| zone-feature | HTML Content | Hero banner: "SERVE" |
-| zone-sectiona | HTML Content | "Why Serve" section |
-| zone-sectiona | HTML Content or **Content Channel Dynamic** | "Where to Serve" cards (On Campus, Local, Global) |
+| Feature | HTML Content | Hero banner: "SERVE" |
+| Section A | HTML Content | "Why Serve" section |
+| Section A | HTML Content or **Content Channel Dynamic** | "Where to Serve" cards (On Campus, Local, Global) |
 
 If serve opportunities change frequently, use a Content Channel. If they're stable categories, HTML Content is simpler.
 
@@ -450,9 +457,9 @@ If serve opportunities change frequently, use a Content Channel. If they're stab
 
 | Zone | Block Type | Content |
 |------|-----------|---------|
-| zone-feature | HTML Content | Hero banner with prayer image |
-| zone-sectiona | HTML Content | Intro text, prayer info |
-| zone-sectiona | **Prayer Request Entry** block | Rock's built-in prayer request block (replaces the CTA link) |
+| Feature | HTML Content | Hero banner with prayer image |
+| Section A | HTML Content | Intro text, prayer info |
+| Section A | **Prayer Request Entry** block | Rock's built-in prayer request block (replaces the CTA link) |
 
 Use Rock's native Prayer Request system — this is one of Rock's strongest features.
 
@@ -465,8 +472,8 @@ Use Rock's native Prayer Request system — this is one of Rock's strongest feat
 
 | Zone | Block Type | Content |
 |------|-----------|---------|
-| zone-feature | HTML Content | Hero banner with ministry-specific image |
-| zone-sectiona | HTML Content | All ministry description sections (programs, schedules, etc.) |
+| Feature | HTML Content | Hero banner with ministry-specific image |
+| Section A | HTML Content | All ministry description sections (programs, schedules, etc.) |
 
 These are descriptive ministry pages — HTML Content blocks. Link registration buttons to Rock Event Registration or Group Registration pages.
 
@@ -526,9 +533,9 @@ Use Rock's built-in Website Ads or a custom promotion channel. The Lava template
 
 ## 6. Site-Level Blocks (Configure Once)
 
-These blocks are added at the **layout** level (not page level), so they appear on every page:
+These blocks are added at the **master/site** level (not page level), so they appear on every page:
 
-### zone-header (Layout level)
+### Header (Site.Master zone)
 ```html
 <a href="/">
   <img style="width: 120px;" src="/Content/ExternalSite/Media/cfc-logo-light.png" 
@@ -536,16 +543,16 @@ These blocks are added at the **layout** level (not page level), so they appear 
 </a>
 ```
 
-### zone-navigation (Layout level)
+### Navigation (Site.Master zone)
 Use the **Page Menu** block. Configure its Lava template to render a `<ul class="nav navbar-nav">` with your pages.
 
-### zone-footer (Layout level)
+### Footer (Site.Master zone)
 One large HTML Content block with the full footer markup (converted to BS3), or split into multiple blocks for maintainability. Using a **Context Name** like "website-footer" allows editing from any page.
 
 ### Announcement Banner
 This doesn't fit in a standard zone. Options:
-1. Add it to the layout `.aspx` file directly (requires theme file edit)
-2. Include it as part of the zone-header or zone-navigation block's HTML
+1. Add it to `Site.Master` directly (requires theme file edit)
+2. Include it as part of the `Header` or `Navigation` block's HTML
 3. Use a Lava Shortcode that can be placed in the Page Header Content field
 
 Recommended: **Option 1** — add it to the layout file. It's structural.
@@ -554,12 +561,19 @@ Recommended: **Option 1** — add it to the layout file. It's structural.
 
 ## 7. Custom Layout Considerations
 
-The default homepage layout has `zone-feature` inside `section.main-feature > .container`. This wraps your hero in a `.container` (max-width ~1170px). If you want truly full-bleed heroes (edge-to-edge), you'd need to either:
+The homepage layout intentionally leaves `Feature` full-width. The homepage hero payload owns its inner `.container`, matching the original static structure:
 
-1. Override `.main-feature .container` in CSS to be full-width
-2. Create a custom layout `.aspx` that puts `zone-feature` outside a container
+```html
+<div class="hero-section ...">
+  <div class="container ...">
+    ...hero content...
+  </div>
+</div>
+```
 
-For most CFC pages this probably doesn't matter — the heroes use background gradients/images that can bleed via CSS on the zone-feature div itself.
+The homepage `Sub Feature` zone is also full-width so body section backgrounds can span the viewport. Optional `Section A-D` zones remain constrained inside a `.container` for standard Rock block placement.
+
+Standard content-page layouts still constrain their zones inside `main.container`, so their page packages continue to avoid nested `.container` wrappers.
 
 ---
 
@@ -571,20 +585,24 @@ For most CFC pages this probably doesn't matter — the heroes use background gr
 3. Compile and test on a staging page
 
 ### Phase 2: Site-Level Blocks  
-4. Update the logo HTML Content block in zone-header
-5. Configure the Page Menu block with correct nav items and Lava template
-6. Create the footer HTML Content block (BS3 markup) and set Context Name "website-footer"
+4. Import site-level block payloads from `rock-theme/CFCWired/SiteBlocks/`.
+5. Update the logo HTML Content block in `Header`.
+6. Configure the Page Menu block in `Navigation` with the Lava template from `rock-theme/CFCWired/Assets/Lava/page-menu.lava`.
+7. Create the footer HTML Content block in `Footer` and set Context Name `external-site-footer`.
+
+The operational checklist for the full import is `rock-theme/CFCWired/IMPORT_CHECKLIST.md`. Use `rock-theme/CFCWired/PAGE_IMPORT_MANIFEST.md` as the page creation and block payload worksheet.
 
 ### Phase 3: Content Channels
-7. Create "Staff Directory" Content Channel Type and Channel
-8. Enter all 27 staff members
-9. Create the Lava template for the staff grid
+8. Create "Staff Directory" Content Channel Type and Channel
+9. Enter all 27 staff members
+10. Create the Lava template for the staff grid
 
 ### Phase 4: Pages (one at a time)
-10. Start with a simple page (Statement of Faith) to validate the pattern
-11. Convert hero markup to BS3, paste into zone-feature HTML Content block
-12. Convert body content to BS3, paste into zone-sectiona HTML Content block(s)
-13. Repeat for each page in order of complexity:
+11. Create pages in the order listed in `rock-theme/CFCWired/PAGE_IMPORT_MANIFEST.md`.
+12. Import page payloads from `rock-theme/CFCWired/PageContent/`. Each package contains `feature.html`, `main.html`, and `notes.md`.
+13. Paste hero markup into the `Feature` HTML Content block.
+14. Paste body content into the body zone listed in the manifest and each package's `notes.md`.
+15. Repeat for each page in order of complexity:
     - Statement of Faith (simplest — just text)
     - About Us
     - Come Visit
@@ -599,16 +617,19 @@ For most CFC pages this probably doesn't matter — the heroes use background gr
     - Homepage (most complex — hero video, event tiles)
 
 ### Phase 5: Rock-Native Features
-14. Wire up Prayer Request Entry block on Request Prayer page
-15. Create Contact Us workflow and Workflow Entry block
-16. Connect Event Calendar blocks or Content Channel for homepage events
-17. Set up Group Finder on Find Community page (if desired)
+16. Use `rock-theme/CFCWired/NativeBlocks/` as the implementation spec source for native replacements.
+17. Wire up Prayer Request Entry block on Request Prayer page.
+18. Create Contact Us workflow and Workflow Entry block.
+19. Replace Meet the Team with Staff Members content channel and `staff-grid.lava`.
+20. Connect Event Calendar blocks or Content Channel for homepage events.
+21. Set up Group Finder on Find Community page, if desired.
 
 ### Phase 6: QA & Launch
-18. Test every page in both desktop and mobile
-19. Verify admin toolbar and block editing work
-20. Test page caching settings
-21. Update DNS / site configuration to point to Rock-hosted pages
+22. Run `rock-theme/CFCWired/QA_PAGE_SCRIPT.md` and capture pass/fail per page.
+23. Verify admin toolbar and block editing work
+24. Test page caching settings
+25. Apply `rock-theme/CFCWired/REDIRECT_MATRIX.md` and verify 301 behavior.
+26. Update DNS / site configuration to point to Rock-hosted pages
 
 ---
 
@@ -641,20 +662,20 @@ These parts of the static site are unnecessary in Rock:
 
 | Static Site Component | Rock Replacement |
 |----------------------|------------------|
-| `includes/header.html` | Layout provides header + zone-header + zone-navigation |
-| `includes/footer.html` | zone-footer HTML Content block (site-level) |
+| `includes/header.html` | `Site.Master` provides header shell; `Header` and `Navigation` provide content |
+| `includes/footer.html` | `Footer` HTML Content block (site-level) |
 | `includes/head.html` | Layout provides `<head>` with Rock's CSS/JS |
 | `js/site.js` (nav normalization, title mapping, announcement dismiss) | Rock handles nav via Page Menu block, titles via page properties |
 | Bootstrap 5 CDN link | Rock includes BS3 via theme |
 | Bootstrap Icons CDN | Font Awesome is included by Rock |
 | Google Fonts link | Add to theme's layout `<head>` or Page Header Content |
-| `css/styles.css` | Custom styles go into theme's `theme.less` / `_variables.less` |
+| `css/styles.css` | Converted styles are localized as `rock-theme/CFCWired/Styles/_cfc-site.less` and imported by `theme.less` |
 
 ### What to Keep / Port
 | Keep | Where It Goes |
 |------|---------------|
 | Brand colors from `variables.less` | Theme `_variables.less` |
-| Custom component styles from `styles.less` | Theme `theme.less` |
-| Page hero styling | Theme `theme.less` |
+| Custom component styles from `styles.less` | Theme `_cfc-site.less` imported by `theme.less` |
+| Page hero styling | Theme `_cfc-site.less` imported by `theme.less` |
 | Google Fonts (Poppins) | Theme layout `<head>` or `theme.less` `@import` |
 | Images | Upload to Rock's `/Content/ExternalSite/Media/` |

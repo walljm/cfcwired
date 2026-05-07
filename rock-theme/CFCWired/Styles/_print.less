@@ -1,0 +1,24 @@
+@media print {
+  @page {
+    margin: .5in;
+  }
+
+  .nav-sub,
+  .top-banner,
+  .announcement-banner,
+  .navbar,
+  .footer,
+  #cms-admin-footer {
+    display: none !important;
+  }
+
+  a[href]:after {
+    content: "" !important;
+  }
+
+  .page-hero {
+    background: @brand-primary !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}

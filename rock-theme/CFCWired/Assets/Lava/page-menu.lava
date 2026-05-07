@@ -1,0 +1,28 @@
+{% comment %}
+Starter template for a Rock Page Menu block.
+
+Configure the Page Menu block to render the external site navigation pages and
+use this Lava as the block template. Rock Page Menu variable names can vary by
+block version/configuration, so verify the item collection name in staging.
+{% endcomment %}
+
+<ul class="nav navbar-nav navbar-right">
+{% for item in Pages %}
+    {% assign child_count = item.Pages | Size %}
+    {% if child_count > 0 %}
+        <li class="dropdown{% if item.IsCurrent or item.IsAncestor %} active{% endif %}">
+            <a href="{{ item.Url }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                {{ item.Title }} <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+            {% for child in item.Pages %}
+                <li{% if child.IsCurrent %} class="active"{% endif %}><a href="{{ child.Url }}">{{ child.Title }}</a></li>
+            {% endfor %}
+            </ul>
+        </li>
+    {% else %}
+        <li{% if item.IsCurrent %} class="active"{% endif %}><a href="{{ item.Url }}">{{ item.Title }}</a></li>
+    {% endif %}
+{% endfor %}
+    <li class="nav-cta"><a class="btn btn-primary" href="https://myrock.cfcwired.org/pyv" target="_blank">Plan Your Visit</a></li>
+</ul>
