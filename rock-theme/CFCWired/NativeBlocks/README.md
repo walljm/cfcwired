@@ -27,6 +27,10 @@ These specs describe the second pass after static parity is imported: replacing 
 | Homepage events/promotions | `homepage-events.md` |
 | Messages/media | `messages-media.md` |
 | Core Classes and Serve | `classes-and-serve.md` |
+| Living on Mission stories | `living-on-mission-stories.md` |
+| Living on Mission Lava | `living-on-mission-stories.lava` |
+| Living on Mission detail Lava | `living-on-mission-story-detail.lava` |
+| Living on Mission CSV | `living-on-mission-stories-import-template.csv` |
 
 ## Scope
 

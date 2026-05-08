@@ -56,15 +56,28 @@ When a staging path differs from the generator route, inspect the Rock page dire
 
 Base frontend dependency assumptions on what Rock RMS `1.16.11.1` ships or expects. Static pages can look correct while Rock renders incorrectly because Rock wraps block output and applies Bootstrap 3 row/floating styles.
 
+**Bootstrap 3 only.** Do not use Bootstrap 4/5 utilities — they will silently no-op in Rock. Common foot-guns that look like "Bootstrap" but aren't in 3.4.1: `text-white-50`, `text-bg-*`, `link-*`, `g-*` / `gx-*` / `gy-*` / `gap-*`, `vstack` / `hstack`, `ratio`, `placeholder` / `placeholder-glow`, `btn-light` / `btn-dark`, `position-absolute top-0 start-0`-style logical-property utilities, `mx-auto` on flex children. If you reach for a class that "feels like Bootstrap" but isn't in [Bootstrap 3.4.1 docs](https://getbootstrap.com/docs/3.4/), it isn't there — add a project class in `src/less/styles.less` (and mirror it in `rock-theme/CFCWired/Styles/_cfc-site.less` if Rock needs to render it) instead.
+
 ## Common Workflows
 
 ### Visual Parity Fixes
 
-1. Open the public page and matching Rock page.
-2. Check at multiple widths: desktop, tablet, narrow tablet, and mobile. Use widths around `1440`, `1024`, `768`, and `390` unless the bug calls for others.
-3. Compare actual rendered dimensions: hero height, section width, row width, image rects, spacing, and horizontal overflow.
-4. Inspect the Rock DOM before editing. HTML Content blocks may render as `main .zone-instance .block-content > div > .py-5`, not as direct `.py-5` children.
-5. Patch source LESS or generated page content, then verify again in Rock at the same widths.
+1. **Read the live snapshot first.** Check `docs/screenshots/live-*-snapshot.txt` for the page you're fixing — it's the source of truth for headings, copy, button labels, section order, and which images appear. Do not start editing from screenshots alone.
+2. Open the public page and matching Rock page.
+3. Check at multiple widths: desktop, tablet, narrow tablet, and mobile. Use widths around `1440`, `1024`, `768`, and `390` unless the bug calls for others.
+4. Compare actual rendered dimensions: hero height, section width, row width, image rects, spacing, and horizontal overflow.
+5. Inspect the Rock DOM before editing. HTML Content blocks may render as `main .zone-instance .block-content > div > .py-5`, not as direct `.py-5` children.
+6. Patch source LESS or generated page content, then verify again in Rock at the same widths.
+7. **Before declaring done**, re-diff your output against the live snapshot for that page (labels like "WEDNESDAY CLASS" vs "WEDNESDAYS", card counts, button text). Visual layout can be right while copy is still wrong.
+
+### Image Fidelity (NON-NEGOTIABLE)
+
+The recreation must use the **exact same images** as `cfcwired.org`. Never substitute a "close enough" image from the existing asset set.
+
+1. When fixing or building any page, identify each image on the live `cfcwired.org` page (hero, cards, inline content) by inspecting the live HTML — look at `<img src>` and inline `background-image: url(...)` (often inside Divi `et_pb_section` style tags). A quick way: `curl -s "https://cfcwired.org/<path>/" -A "Mozilla/5.0" | grep -oE 'background-image:[^;]*'` and `... | grep -oE 'wp-content/uploads/[^"'"'"' ]+\.(jpg|jpeg|png|webp)'`.
+2. If the matching image is **not already present** under `src/images/`, download it from the live URL (typically `https://cfcwired.org/wp-content/uploads/...`) and save it into `src/images/` using the original filename. Do not rename, do not pick a substitute. **Do not pick the closest-looking existing asset** — the temptation to reuse `come-visit-sundays.jpg` or `CafeLobby...jpg` because they "feel right" is exactly how wrong images ship. If you didn't verify the URL from the live page, you don't know the right image.
+3. Mirror the same filename under `/Content/ExternalSite/Images/` references in `rock-theme/CFCWired/PageContent/...` so Rock and static stay in sync.
+4. Never use a different image than the one on `cfcwired.org`. If the correct image cannot be fetched, stop and ask before continuing — do not silently fall back to a different photo.
 
 ### CSS Changes
 
@@ -79,7 +92,8 @@ Base frontend dependency assumptions on what Rock RMS `1.16.11.1` ships or expec
 2. Non-home public content pages that need the hero/feature zone should use `Homepage.aspx`, `WelcomeVideo`, and `MainContent`.
 3. Keep page payload HTML clean and block-friendly; avoid inline styles and unnecessary wrappers.
 4. Normalize imported image paths to `/Content/ExternalSite/Images/...`.
-5. Do not spend time updating import docs or removed documentation unless the user explicitly asks for docs.
+5. **Confirmed `/Content/...` asset folders:** images at `/Content/ExternalSite/Images/`, documents/PDFs at `/Content/ExternalSite/Images/`. Do not invent other folders (`Files/`, `Media/`, etc.) without confirming first.
+6. Do not spend time updating import docs or removed documentation unless the user explicitly asks for docs.
 
 ## HTML Standards
 
@@ -197,6 +211,64 @@ main .zone-instance .block-content > div > .py-5 {
 
 Rock's Bootstrap 3 row behavior can interfere with modern grid/flex layouts. For imported content sections, reset row floats and pseudo-elements in the Rock stylesheet before applying CSS grid.
 
+### Rock Column Grids: Opt-Out Required
+
+The theme has a blanket reset in `_cfc-site.less` that neutralizes Bootstrap 3 row floats and column widths inside any Rock content block:
+
+```less
+main .zone-instance .block-content > .py-5 .row > [class*='col-'],
+main .zone-instance .block-content > div > .py-5 .row > [class*='col-'] {
+  float: none;
+  width: auto;
+  max-width: 100%;
+}
+```
+
+This is intentional — it makes converted Divi prose render cleanly. The side effect is that **any legitimate Bootstrap column grid (`.col-md-6`, `.col-lg-4`, etc.) inside a Rock content block will collapse to a single stacked column** unless it has an opt-out.
+
+**Failure mode is silent and Rock-only.** Locally there's no `.zone-instance` wrapper, so the static page renders columns correctly. The issue only appears once the page is rendered in Rock.
+
+**Workaround:** Tag the parent `.row` with a unique opt-out class and add a CSS Grid rule for it in `_cfc-site.less`. Use the existing `.class-cards-grid` and `.essentials-grid` rules as templates. Pattern:
+
+```html
+<div class="row my-section-grid">
+  <div class="col-md-6">...</div>
+  <div class="col-md-6">...</div>
+</div>
+```
+
+```less
+main .zone-instance .block-content > .py-5 .row.my-section-grid,
+main .zone-instance .block-content > div > .py-5 .row.my-section-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  max-width: 1170px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+main .zone-instance .block-content > .py-5 .row.my-section-grid > [class*='col-'],
+main .zone-instance .block-content > div > .py-5 .row.my-section-grid > [class*='col-'] {
+  width: 100%;
+  max-width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+  margin-bottom: 0;
+}
+@media (max-width: 767px) {
+  main .zone-instance .block-content > .py-5 .row.my-section-grid,
+  main .zone-instance .block-content > div > .py-5 .row.my-section-grid {
+    grid-template-columns: 1fr;
+  }
+}
+```
+
+**Always test multi-column layouts in Rock, not just locally.** If columns look right in `npx serve src` but stack in Rock, the reset is the cause — add an opt-out grid class.
+
+A cleaner architectural fix (scoping the reset to a marker class on imported-prose blocks) is on the deferred list. Until that lands, every new column grid inside a Rock block needs its own opt-out class.
+
 ## Build Commands
 
 ```bash
@@ -270,6 +342,8 @@ When this code is imported into Rock RMS:
 ## Terminal Commands
 
 **Never use heredoc syntax** (`<< EOF` or `<<-EOF`) - it doesn't work reliably in this environment.
+
+**`grep` is aliased to `ripgrep` in the dev shell.** Plain `grep -E '...'` against a pipe will fail with `unrecognized option`. When piping `ls` / `curl` / `cat` output through grep, use `command grep` to get BSD grep, or rewrite with `rg` syntax. Same applies to `egrep` / `fgrep`.
 
 Use:
 - `create_file` tool for creating files with content

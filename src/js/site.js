@@ -130,6 +130,7 @@
         }
 
         document.body.style.paddingTop = siteHeader.offsetHeight + 'px';
+        document.documentElement.style.setProperty('--site-header-h', siteHeader.offsetHeight + 'px');
     }
 
     function checkBannerState() {

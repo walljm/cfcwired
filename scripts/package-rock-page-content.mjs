@@ -133,6 +133,28 @@ const pages = [
     bodyZone: contentPageBodyZone
   },
   {
+    source: 'src/get-involved/global-outreach/missionaries.html',
+    output: 'get-involved/global-outreach/missionaries',
+    pageName: 'Missionaries',
+    route: '/get-involved/global-outreach/missionaries',
+    layout: contentPageLayout,
+    browserTitle: 'Missionaries - Christian Fellowship Church',
+    description: 'Meet the missionaries and global partners CFC supports around the world.',
+    featureZone: contentPageFeatureZone,
+    bodyZone: contentPageBodyZone
+  },
+  {
+    source: 'src/get-involved/global-outreach/glocal-stories.html',
+    output: 'get-involved/global-outreach/glocal-stories',
+    pageName: 'Glocal Stories',
+    route: '/get-involved/global-outreach/glocal-stories',
+    layout: contentPageLayout,
+    browserTitle: 'Glocal Stories - Christian Fellowship Church',
+    description: 'Stories from CFC\u2019s local and global outreach &mdash; better together, in close and far proximity.',
+    featureZone: contentPageFeatureZone,
+    bodyZone: contentPageBodyZone
+  },
+  {
     source: 'src/get-involved/local-outreach.html',
     output: 'get-involved/local-outreach',
     pageName: 'Local Outreach',
@@ -140,6 +162,28 @@ const pages = [
     layout: contentPageLayout,
     browserTitle: 'Local Outreach - Christian Fellowship Church',
     description: 'Local outreach opportunities at Christian Fellowship Church.',
+    featureZone: contentPageFeatureZone,
+    bodyZone: contentPageBodyZone
+  },
+  {
+    source: 'src/get-involved/local-outreach/partners.html',
+    output: 'get-involved/local-outreach/partners',
+    pageName: 'Local Partners',
+    route: '/get-involved/local-outreach/partners',
+    layout: contentPageLayout,
+    browserTitle: 'Local Partners - Christian Fellowship Church',
+    description: 'Organizations CFC partners with for local outreach in our community.',
+    featureZone: contentPageFeatureZone,
+    bodyZone: contentPageBodyZone
+  },
+  {
+    source: 'src/get-involved/local-outreach/jail-ministry.html',
+    output: 'get-involved/local-outreach/jail-ministry',
+    pageName: 'Jail Ministry',
+    route: '/get-involved/local-outreach/jail-ministry',
+    layout: contentPageLayout,
+    browserTitle: 'Jail Ministry - Christian Fellowship Church',
+    description: 'CFC Jail Ministry serves incarcerated individuals and their families in Loudoun County.',
     featureZone: contentPageFeatureZone,
     bodyZone: contentPageBodyZone
   },
@@ -163,7 +207,40 @@ const pages = [
     browserTitle: 'Living on Mission - Christian Fellowship Church',
     description: 'Living on Mission at Christian Fellowship Church.',
     featureZone: contentPageFeatureZone,
-    bodyZone: contentPageBodyZone
+    unwrapContainers: false,
+    unwrapBodyContainers: false,
+    bodyBlocks: [
+      {
+        zone: 'MainContent',
+        file: 'intro.html',
+        notes: '"I Love My Neighborhood" intro copy. HTML Content block.'
+      },
+      {
+        zone: 'MainContent',
+        blockType: 'Content Channel View',
+        lavaOnly: true,
+        lavaTemplate: 'rock-theme/CFCWired/NativeBlocks/living-on-mission-stories.lava',
+        notes: '"How to Live on Mission" stories grid. Bind to the "Living on Mission Stories" content channel and use `NativeBlocks/living-on-mission-stories.lava` as the Lava template — the Lava renders the entire section, no static HTML payload is produced.'
+      },
+      {
+        zone: 'MainContent',
+        file: 'cta.html',
+        notes: '"Get Involved" CTA. HTML Content block.'
+      }
+    ],
+    note: 'Living on Mission uses three body blocks: an HTML intro, a Content Channel View for the stories grid, and an HTML CTA. See `NativeBlocks/living-on-mission-stories.md` for the Content Channel View configuration.'
+  },
+  {
+    source: 'src/community/welcome-new-neighbor.html',
+    output: 'community/_story-detail',
+    pageName: 'Living on Mission Story',
+    route: '/community/{Item}',
+    layout: contentPageLayout,
+    browserTitle: 'Living on Mission Story - Christian Fellowship Church',
+    description: 'A Living on Mission story from Christian Fellowship Church.',
+    featureZone: contentPageFeatureZone,
+    bodyZone: contentPageBodyZone,
+    rockNative: 'Replace the static page payload with a Content Channel Item View block bound to the "Living on Mission Stories" channel using `NativeBlocks/living-on-mission-story-detail.lava`. The route segment `{Item}` resolves by `StorySlug` first, then item id. See `NativeBlocks/living-on-mission-stories.md` (Detail Page section). The static HTML is one example for visual parity preview only; Rock renders all stories from the channel.'
   },
   {
     source: 'src/request-prayer.html',
@@ -628,10 +705,16 @@ function normalizeRockPaths(html) {
 
 function normalizeImagePaths(html) {
   return html
-    .replace(/((?:src|poster)=")(?:(?:\.\.\/|\.\/)?images\/|\/images\/)([^"]+)(")/g, (_match, prefix, fileName, suffix) => {
+    .replace(/((?:src|poster)=")(?:(?:\.\.\/)+|\.\/)?images\/([^"]+)(")/g, (_match, prefix, fileName, suffix) => {
       return `${prefix}${rockImageUrl(fileName)}${suffix}`;
     })
-    .replace(/(url\(['"]?)(?:(?:\.\.\/|\.\/)?images\/|\/images\/)([^'")]+)(['"]?\))/g, (_match, prefix, fileName, suffix) => {
+    .replace(/((?:src|poster)=")\/images\/([^"]+)(")/g, (_match, prefix, fileName, suffix) => {
+      return `${prefix}${rockImageUrl(fileName)}${suffix}`;
+    })
+    .replace(/(url\(['"]?)(?:(?:\.\.\/)+|\.\/)?images\/([^'")]+)(['"]?\))/g, (_match, prefix, fileName, suffix) => {
+      return `${prefix}${rockImageUrl(fileName)}${suffix}`;
+    })
+    .replace(/(url\(['"]?)\/images\/([^'")]+)(['"]?\))/g, (_match, prefix, fileName, suffix) => {
       return `${prefix}${rockImageUrl(fileName)}${suffix}`;
     })
     .replace(/((?:src|poster)=")https:\/\/cfcwired\.org\/wp-content\/uploads\/\d{4}\/\d{2}\/([^"?#]+)(?:[?#][^"]*)?(")/g, (match, prefix, fileName, suffix) => {
@@ -659,7 +742,9 @@ function cleanGeneratedFiles(outDir, page) {
 
   if (page.bodyBlocks != null) {
     generatedFiles.add('main.html');
-    page.bodyBlocks.forEach(block => generatedFiles.add(block.file));
+    page.bodyBlocks.forEach(block => {
+      if (!block.lavaOnly) generatedFiles.add(block.file);
+    });
   }
 
   for (const file of generatedFiles) {
@@ -677,7 +762,10 @@ function notesFor(page) {
     ? 'Homepage body sections include their own `.container` wrappers so section backgrounds can span the viewport.'
     : 'Page body content extracted from the converted static page.';
   const bodyRows = page.bodyBlocks != null
-    ? page.bodyBlocks.map(block => `| \`${block.zone}\` | ${block.blockType ?? 'HTML Content'} | \`${block.file}\` | ${block.notes} |`).join('\n')
+    ? page.bodyBlocks.map(block => {
+        const fileLabel = block.lavaOnly ? `—` : `\`${block.file}\``;
+        return `| \`${block.zone}\` | ${block.blockType ?? 'HTML Content'} | ${fileLabel} | ${block.notes} |`;
+      }).join('\n')
     : `| \`${page.bodyZone}\` | HTML Content | \`main.html\` | ${bodyNote} |`;
   const bodySteps = page.bodyBlocks != null
     ? page.bodyBlocks.map((block, index) => {
@@ -686,6 +774,12 @@ function notesFor(page) {
         }
 
         if (block.blockType != null && block.blockType !== 'HTML Content') {
+          if (block.lavaOnly && block.lavaTemplate != null) {
+            return `${index + 4}. Add a ${block.blockType} block in the \`${block.zone}\` zone and paste \`${block.lavaTemplate}\` as the block's Lava template. (No HTML payload is produced for this block; the Lava renders the section.)`;
+          }
+          if (block.lavaTemplate != null) {
+            return `${index + 4}. Add a ${block.blockType} block in the \`${block.zone}\` zone. \`${block.file}\` shows the rendered output for visual parity; paste \`${block.lavaTemplate}\` as the block's Lava template.`;
+          }
           return `${index + 4}. Add a ${block.blockType} block in the \`${block.zone}\` zone and paste \`${block.file}\` as the Lava template.`;
         }
 
@@ -738,15 +832,16 @@ for (const page of pages) {
   cleanGeneratedFiles(outDir, page);
   fs.writeFileSync(path.join(outDir, 'feature.html'), featureHtml);
   if (page.bodyBlocks != null) {
+    const writableBlocks = page.bodyBlocks.filter(block => !block.lavaOnly);
     const bodyBlockHtml = page.output === 'home'
       ? splitHomepageBodyBlocks(bodySections(content, hero.end), bodyBlockOptions)
       : normalizeBodyBlocks(bodySections(content, hero.end), bodyBlockOptions);
 
-    if (bodyBlockHtml.length !== page.bodyBlocks.length) {
-      throw new Error(`${page.source} produced ${bodyBlockHtml.length} body blocks, expected ${page.bodyBlocks.length}`);
+    if (bodyBlockHtml.length !== writableBlocks.length) {
+      throw new Error(`${page.source} produced ${bodyBlockHtml.length} body blocks, expected ${writableBlocks.length}`);
     }
 
-    page.bodyBlocks.forEach((block, index) => {
+    writableBlocks.forEach((block, index) => {
       fs.writeFileSync(path.join(outDir, block.file), bodyBlockHtml[index]);
     });
   } else {

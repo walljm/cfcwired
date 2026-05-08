@@ -1,0 +1,61 @@
+{% comment %}
+  Living on Mission Stories — Content Channel Item Personal List Lava
+  Channel: Living on Mission Stories
+  Block:   Content Channel Item Personal List Lava
+  Renders the full "How to Live on Mission" section so the block can replace
+  the static intro + grid as a single unit.
+{% endcomment %}
+
+<div class="py-5 bg-light">
+    <div class="container">
+        <div class="row justify-content-center text-center mb-5">
+            <div class="col-lg-8">
+                <h2 class="fw-bold text-uppercase mb-3">How to Live on Mission</h2>
+                <p class="lead">Check out the ways in which Christian Fellowship Church is reaching out into our neighborhoods.</p>
+            </div>
+        </div>
+
+        {% if Items == empty or Items.size == 0 %}
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center text-muted">
+                    <p>No stories yet. Check back soon.</p>
+                </div>
+            </div>
+        {% else %}
+        <div class="row lom-resources-grid">
+            {% for item in Items %}
+                {% assign image = item | Attribute:'Image','RawValue' %}
+                {% assign excerpt = item | Attribute:'Excerpt' %}
+                {% if excerpt == '' %}
+                    {% assign excerpt = item.Content | StripHtml | Truncate:200,'…' %}
+                {% endif %}
+                {% assign slug = item | Attribute:'StorySlug' %}
+                {% assign external = item | Attribute:'ExternalUrl' %}
+                {% if slug != '' %}
+                    {% assign storyUrl = '/community/' | Append:slug %}
+                    {% assign storyTarget = '_self' %}
+                {% elseif external != '' %}
+                    {% assign storyUrl = external %}
+                    {% assign storyTarget = '_blank' %}
+                {% else %}
+                    {% assign storyUrl = '#' %}
+                    {% assign storyTarget = '_self' %}
+                {% endif %}
+
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="lom-resource-card">
+                        {% if image != '' %}
+                        <div class="lom-resource-img" style="background-image: url('{{ image | ImageUrl }}');" role="img" aria-label="{{ item.Title | Escape }}"></div>
+                        {% endif %}
+                        <div class="lom-resource-body">
+                            <div class="lom-resource-type">{{ item.Title }}</div>
+                            <p class="lom-resource-excerpt">{{ excerpt }}</p>
+                            <a class="btn btn-primary lom-resource-btn" href="{{ storyUrl }}"{% if storyTarget == '_blank' %} target="_blank" rel="noopener"{% endif %}>Read More</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</div>

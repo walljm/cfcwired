@@ -29,19 +29,6 @@ Source page: `src/about-us/find-community.html`
 
 Consider replacing the group CTA with Rock Group Finder after the static import is verified.
 
-## Visual Parity Notes (2026-05-08)
-
-- Hero heading text now uses `Find Community` casing to match the live public page.
-- Gallery image references now match live order: `Community.jpg`, `0338_jason_wall_untitled-shootIMG_8900-1-scaled.jpg`, `Community2.jpg`, `GroupCommunity.jpg`.
-- The `Find a Group` section image now references `IMG_7052.jpg`.
-
-### Required Rock Uploads
-
-Upload these files to `/Content/ExternalSite/Images/` in Rock if they are not already present:
-
-- `Community2.jpg`
-- `IMG_7052-scaled-e1730162052377.jpg`
-
 ## Excluded Static Markup
 
 The static page header, nav, footer, CDN links, and `site.js` script are intentionally excluded. Rock supplies these through `Site.Master`, the site-level zones, and the theme CSS.
