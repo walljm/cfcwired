@@ -1509,8 +1509,11 @@ main .zone-instance .block-content > div > .py-5 .row.class-cards-grid {
   display: grid !important;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
-  margin-left: 0;
-  margin-right: 0;
+  max-width: 1170px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 main .zone-instance .block-content > .py-5 .row.class-cards-grid > [class*="col-"],
 main .zone-instance .block-content > div > .py-5 .row.class-cards-grid > [class*="col-"] {
@@ -1711,7 +1714,7 @@ main .zone-instance .block-content > div > .meet-team-section.py-5 .row.g-4.staf
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 92px 34px;
-  align-items: start;
+  align-items: stretch;
   margin-left: auto;
   margin-right: auto;
 }
@@ -1737,9 +1740,9 @@ main .zone-instance .block-content > div > .meet-team-section.py-5 .staff-grid >
 .meet-team-section.py-5 .staff-card,
 main .zone-instance .block-content > .meet-team-section.py-5 .staff-card,
 main .zone-instance .block-content > div > .meet-team-section.py-5 .staff-card {
-  height: auto;
-  overflow: visible;
-  background: transparent;
+  height: 100%;
+  overflow: hidden;
+  background: #fff;
   border: 0;
   border-radius: 12px;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 80px 0px;
@@ -1755,17 +1758,22 @@ main .zone-instance .block-content > div > .meet-team-section.py-5 .staff-card .
   padding: 0 !important;
   text-align: center;
 }
+.meet-team-section.py-5 .staff-card h5,
+main .zone-instance .block-content > .meet-team-section.py-5 .staff-card h5,
+main .zone-instance .block-content > div > .meet-team-section.py-5 .staff-card h5 {
+  padding: 15px 15px 0;
+}
 .meet-team-section.py-5 .staff-photo,
 main .zone-instance .block-content > .meet-team-section.py-5 .staff-photo,
 main .zone-instance .block-content > div > .meet-team-section.py-5 .staff-photo {
   display: block;
   width: 100%;
-  max-width: 201px;
+  max-width: 100%;
   aspect-ratio: 1 / 1;
   height: auto;
-  margin: 0 auto 15px;
+  margin: 0;
   object-fit: cover;
-  border-radius: 12px 12px 0 0;
+  border-radius: 0;
 }
 .meet-team-section.py-5 .staff-card h5,
 main .zone-instance .block-content > .meet-team-section.py-5 .staff-card h5,
@@ -1778,7 +1786,8 @@ main .zone-instance .block-content > div > .meet-team-section.py-5 .staff-card h
 .meet-team-section.py-5 .staff-card p,
 main .zone-instance .block-content > .meet-team-section.py-5 .staff-card p,
 main .zone-instance .block-content > div > .meet-team-section.py-5 .staff-card p {
-  max-width: 201px;
+  padding: 0 15px;
+  max-width: none;
   margin: 0 auto;
   color: #777 !important;
   font-size: 12px;
@@ -1791,6 +1800,7 @@ main .zone-instance .block-content > div > .meet-team-section.py-5 .staff-card .
   content: "\f0e0";
   display: block;
   margin-top: 12px;
+  padding-bottom: 15px;
   color: #777;
   font-family: FontAwesome;
   font-size: 16px;
