@@ -1629,8 +1629,7 @@ main .zone-instance .block-content > div > .py-5 .row.missionary-grid > [class*=
   border-radius: 4px;
 }
 // 3-column stories grid used on the Glocal Stories page
-main .zone-instance .block-content > .py-5 .row.stories-grid,
-main .zone-instance .block-content > div > .py-5 .row.stories-grid {
+main .zone-instance .row.stories-grid {
   display: grid !important;
   grid-template-columns: repeat(3, 1fr);
   gap: 32px;
@@ -1640,23 +1639,22 @@ main .zone-instance .block-content > div > .py-5 .row.stories-grid {
   padding-left: 15px;
   padding-right: 15px;
 }
-main .zone-instance .block-content > .py-5 .row.stories-grid > [class*='col-'],
-main .zone-instance .block-content > div > .py-5 .row.stories-grid > [class*='col-'] {
+main .zone-instance .row.stories-grid > [class*='col-'] {
   width: 100%;
   max-width: 100%;
   padding-left: 0;
   padding-right: 0;
   margin-bottom: 0;
+  display: flex;
+  float: none;
 }
 @media (max-width: 991px) {
-  main .zone-instance .block-content > .py-5 .row.stories-grid,
-  main .zone-instance .block-content > div > .py-5 .row.stories-grid {
+  main .zone-instance .row.stories-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 @media (max-width: 575px) {
-  main .zone-instance .block-content > .py-5 .row.stories-grid,
-  main .zone-instance .block-content > div > .py-5 .row.stories-grid {
+  main .zone-instance .row.stories-grid {
     grid-template-columns: 1fr;
   }
 }
@@ -1667,21 +1665,17 @@ main .zone-instance .block-content > div > .py-5 .row.stories-grid > [class*='co
   display: block;
 }
 // Equal-height story cards with Read More anchored to bottom
-main .zone-instance .block-content > .py-5 .row.stories-grid > [class*='col-'],
-main .zone-instance .block-content > div > .py-5 .row.stories-grid > [class*='col-'] {
-  display: flex;
-}
-main .zone-instance .block-content .stories-grid .card {
+main .zone-instance .stories-grid .card {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
-main .zone-instance .block-content .stories-grid .card-body {
+main .zone-instance .stories-grid .card-body {
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
 }
-main .zone-instance .block-content .stories-grid .card-body .btn {
+main .zone-instance .stories-grid .card-body .btn {
   margin-top: auto;
   align-self: flex-start;
 }

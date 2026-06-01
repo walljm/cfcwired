@@ -1,0 +1,55 @@
+{% comment %}
+  Glocal Stories — Content Channel View Lava
+  Channel: Glocal Stories
+  Block:   Content Channel View
+  Renders the full "Stories" grid section so the block can replace the static
+  stories grid as a single unit. The "Better Together" intro stays in a
+  separate HTML Content block above this one.
+{% endcomment %}
+
+<div class="py-5 bg-light">
+    <div class="container">
+        {% if Items == empty or Items.size == 0 %}
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center text-muted">
+                    <p>No stories yet. Check back soon.</p>
+                </div>
+            </div>
+        {% else %}
+        <div class="row stories-grid">
+            {% for item in Items %}
+                {% assign image = item | Attribute:'Image','RawValue' %}
+                {% assign excerpt = item | Attribute:'Excerpt' %}
+                {% if excerpt == '' %}
+                    {% assign excerpt = item.Content | StripHtml | Truncate:240,'…' %}
+                {% endif %}
+                {% assign slug = item.ContentChannelItemSlugs | Select:'Slug' | First %}
+                {% assign external = item | Attribute:'ExternalUrl' %}
+                {% if slug != '' and slug != null %}
+                    {% assign storyUrl = '/get-involved/global-outreach/glocal-stories/story-detail/' | Append:slug %}
+                    {% assign storyTarget = '_self' %}
+                {% elseif external != '' %}
+                    {% assign storyUrl = external %}
+                    {% assign storyTarget = '_blank' %}
+                {% else %}
+                    {% assign storyUrl = '#' %}
+                    {% assign storyTarget = '_self' %}
+                {% endif %}
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        {% if image != '' %}
+                        <img src="{{ image | ImageUrl }}" alt="{{ item.Title | Escape }}" class="img-responsive story-card-img">
+                        {% endif %}
+                        <div class="card-body p-4">
+                            <h4 class="fw-bold mb-2">{{ item.Title }}</h4>
+                            <p class="text-muted">{{ excerpt }}</p>
+                            <a href="{{ storyUrl }}"{% if storyTarget == '_blank' %} target="_blank" rel="noopener"{% endif %} class="btn btn-outline-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</div>

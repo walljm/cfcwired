@@ -152,7 +152,22 @@ const pages = [
     browserTitle: 'Glocal Stories - Christian Fellowship Church',
     description: 'Stories from CFC\u2019s local and global outreach &mdash; better together, in close and far proximity.',
     featureZone: contentPageFeatureZone,
-    bodyZone: contentPageBodyZone
+    unwrapContainers: false,
+    unwrapBodyContainers: false,
+    bodyBlocks: [
+      {
+        zone: 'MainContent',
+        file: 'intro.html',
+        notes: '"Better Together" intro section. HTML Content block.'
+      },
+      {
+        zone: 'MainContent',
+        blockType: 'Content Channel View',
+        lavaOnly: true,
+        lavaTemplate: 'rock-theme/CFCWired/NativeBlocks/glocal-stories.lava',
+        notes: 'Glocal stories grid. Bind to the "Glocal Stories" content channel and use `NativeBlocks/glocal-stories.lava` as the Lava template \u2014 the Lava renders the entire section, no static HTML payload is produced.'
+      }
+    ]
   },
   {
     source: 'src/get-involved/local-outreach.html',

@@ -29,9 +29,9 @@
                 {% if excerpt == '' %}
                     {% assign excerpt = item.Content | StripHtml | Truncate:200,'…' %}
                 {% endif %}
-                {% assign slug = item | Attribute:'StorySlug' %}
+                {% assign slug = item.ContentChannelItemSlugs | Select:'Slug' | First %}
                 {% assign external = item | Attribute:'ExternalUrl' %}
-                {% if slug != '' %}
+                {% if slug != '' and slug != null %}
                     {% assign storyUrl = '/community/' | Append:slug %}
                     {% assign storyTarget = '_self' %}
                 {% elseif external != '' %}
