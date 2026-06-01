@@ -1,0 +1,532 @@
+<style>
+    /* ==========================================================
+       CFC Wired hamburger mega menu
+       Styled to match the slide-out `#sls-menu` panel on
+       https://cfcwired.org/ — dark background, CFC blue accents,
+       Poppins typography, uppercase headings.
+       ========================================================== */
+
+    .cfc-menu * {
+        box-sizing: border-box;
+    }
+
+    /* ----------------------------------------------------------
+       Top inline nav (always visible)
+       Driven by the block's Include Page List attribute.
+       Mirrors the flat menu in the live site's top header.
+       ---------------------------------------------------------- */
+
+    .cfc-top-nav {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 28px;
+        padding: 0;
+        font-family: 'Poppins', Helvetica, Arial, Lucida, sans-serif;
+    }
+
+    .cfc-top-nav a {
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        line-height: 1;
+        padding: 8px 0;
+        transition: color 0.15s ease;
+    }
+
+    .cfc-top-nav a:hover,
+    .cfc-top-nav a:focus,
+    .cfc-top-nav a.is-active {
+        color: #00a3e0;
+    }
+
+    @media (max-width: 768px) {
+        .cfc-top-nav > a {
+            display: none;
+        }
+    }
+
+    .burger {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 28px;
+        background: transparent;
+        border: 0;
+        padding: 0;
+        color: #ffffff;
+        font-size: 22px;
+        line-height: 1;
+        cursor: pointer;
+        transition: color 0.2s ease;
+    }
+
+    .burger:hover,
+    .burger:focus {
+        color: #00a3e0;
+        outline: none;
+    }
+
+    body.menu-open {
+        overflow: hidden;
+    }
+
+    .menu-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 999;
+
+        background-color: rgba(34, 34, 34, 0.97);
+        color: #ffffff;
+        font-family: 'Poppins', Helvetica, Arial, Lucida, sans-serif;
+
+        padding: 48px 64px 36px;
+
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translateY(-8px);
+
+        transition:
+            opacity 0.25s ease,
+            transform 0.25s ease,
+            visibility 0s linear 0.25s;
+    }
+
+    .menu-overlay.active {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(0);
+        transition:
+            opacity 0.25s ease,
+            transform 0.25s ease,
+            visibility 0s linear 0s;
+    }
+
+    /* --- top bar: logo + close ------------------------------- */
+
+    .menu-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 28px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        margin-bottom: 40px;
+    }
+
+    .menu-logo {
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .menu-logo img {
+        display: block;
+        height: 106px;
+        width: auto;
+    }
+
+    .close-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        color: #ffffff;
+        font-size: 24px;
+        line-height: 1;
+        cursor: pointer;
+        padding: 0;
+        transition: color 0.2s ease;
+    }
+
+    .close-btn:hover,
+    .close-btn:focus {
+        color: #00a3e0;
+        outline: none;
+    }
+
+    /* --- main grid ------------------------------------------- */
+
+    .menu-grid {
+        display: grid;
+        grid-template-columns: 1fr 330px;
+        gap: 0;
+        flex: 1;
+        margin-bottom: 40px;
+    }
+
+    /* The page-tree pane uses CSS columns so each parent+children
+       section stays together but flows naturally across 3 columns. */
+    .menu-sections {
+        column-count: 3;
+        column-gap: 0;
+    }
+
+    .menu-section {
+        break-inside: avoid;
+        -webkit-column-break-inside: avoid;
+        page-break-inside: avoid;
+        margin-bottom: 0;
+        padding-bottom: 10px;
+    }
+
+    .menu-section h3,
+    .menu-side h3 {
+        margin: 0;
+        padding: 30px 0 10px;
+        color: #ffffff;
+        font-family: 'Poppins', Helvetica, Arial, sans-serif;
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: 0.48px;
+        text-transform: uppercase;
+        line-height: 1.3;
+    }
+
+    .menu-section h3 a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    .menu-section h3 a:hover,
+    .menu-section h3 a:focus {
+        color: #00a3e0;
+    }
+
+    .menu-section a.menu-link {
+        display: block;
+        color: #ffffff;
+        text-decoration: none;
+        padding: 5px 0;
+        font-size: 16px;
+        font-weight: 300;
+        letter-spacing: 0.48px;
+        line-height: 1.7;
+        transition: color 0.15s ease;
+    }
+
+    .menu-section a.menu-link:hover,
+    .menu-section a.menu-link:focus,
+    .menu-section a.menu-link.is-active {
+        color: #00a3e0;
+    }
+
+    /* --- side column (CTAs + app badges) --------------------- */
+
+    .menu-side {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        text-align: right;
+    }
+
+    .blue-btn {
+        display: inline-block;
+        width: auto;
+        padding: 7px 30px;
+        background: #00a3e0;
+        color: #ffffff;
+        text-align: center;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 16px;
+        letter-spacing: normal;
+        text-transform: none;
+        margin-bottom: 10px;
+        border-radius: 0;
+        align-self: flex-end;
+        transition: background-color 0.2s ease;
+    }
+
+    .blue-btn:hover,
+    .blue-btn:focus {
+        background: #0083c0;
+        color: #ffffff;
+    }
+
+    .menu-side h3 {
+        margin: 0;
+        padding: 30px 0 10px;
+    }
+
+    .menu-side img {
+        width: 170px;
+        height: auto;
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    /* --- bottom bar: search + socials ------------------------ */
+
+    .menu-bottom {
+        display: flex;
+        align-items: end;
+        gap: 48px;
+        padding-top: 28px;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .search-wrap {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .search-line {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        border-bottom: 2px solid #ffffff;
+        transition: border-color 0.2s ease;
+    }
+
+    .search-line:focus-within {
+        border-bottom-color: #00a3e0;
+    }
+
+    .search-label {
+        color: #ffffff;
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 1;
+        padding: 0 0 10px 0;
+        flex-shrink: 0;
+    }
+
+    .search-line input {
+        flex: 1;
+        height: 42px;
+        background: transparent;
+        border: 0;
+        outline: none;
+        color: #ffffff;
+        font-size: 20px;
+        padding-bottom: 10px;
+        font-family: inherit;
+    }
+
+    .search-line input::placeholder {
+        color: rgba(255, 255, 255, 0.4);
+    }
+
+    .search-icon {
+        background: transparent;
+        border: 0;
+        color: #ffffff;
+        font-size: 22px;
+        padding: 0 6px 10px;
+        cursor: pointer;
+        line-height: 1;
+    }
+
+    .search-icon:hover,
+    .search-icon:focus {
+        color: #00a3e0;
+        outline: none;
+    }
+
+    .socials {
+        display: flex;
+        gap: 24px;
+        padding-bottom: 4px;
+    }
+
+    .socials a {
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 24px;
+        line-height: 1;
+        transition: color 0.2s ease;
+    }
+
+    .socials a:hover,
+    .socials a:focus {
+        color: #00a3e0;
+    }
+
+    /* --- responsive ------------------------------------------ */
+
+    @media (max-width: 1000px) {
+        .menu-overlay {
+            padding: 32px 28px;
+        }
+
+        .menu-top {
+            margin-bottom: 24px;
+            padding-bottom: 18px;
+        }
+
+        .menu-logo img {
+            height: 72px;
+        }
+
+        .menu-grid {
+            grid-template-columns: 1fr;
+            gap: 32px;
+            margin-bottom: 28px;
+        }
+
+        .menu-sections {
+            column-count: 2;
+            column-gap: 32px;
+        }
+
+        .menu-bottom {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 24px;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .menu-overlay {
+            padding: 24px 20px;
+        }
+
+        .menu-sections {
+            column-count: 1;
+        }
+    }
+</style>
+
+<nav class="cfc-top-nav" aria-label="Primary">
+    {% for includedPage in IncludePageList %}
+        {% assign attributeParts = includedPage | PropertyToKeyValue %}
+        <a href="{{ attributeParts.Value }}">{{ attributeParts.Key }}</a>
+    {% endfor %}
+</nav>
+
+<div class="menu-overlay" id="menuOverlay">
+
+    <div class="menu-top">
+        <div class="menu-logo">
+            <a href="/">
+                <img src="{{ 'Global' | Attribute:'PublicApplicationRoot' }}Content/ExternalSite/Media/cfc-logo-light.png" alt="Christian Fellowship Church">
+            </a>
+        </div>
+
+        <button class="close-btn" id="menuClose" type="button" aria-label="Close menu"><i class="fa fa-times"></i></button>
+    </div>
+
+    <div class="menu-grid">
+
+        {% comment %}
+            Page tree. Each top-level page with children renders as a
+            section (parent title + child links). CSS columns pack the
+            sections into 3 columns automatically without breaking a
+            section across columns. Top-level pages with no children
+            still render as a section so they remain navigable.
+        {% endcomment %}
+        <div class="menu-sections">
+            {% for childPage in Page.Pages %}
+                {% assign grandchildCount = childPage.Pages | Size %}
+                <div class="menu-section">
+                    <h3>
+                        <a href="{{ childPage.Url }}" class="{% if childPage.Current %}is-active{% endif %}">
+                            {{ childPage.Title }}
+                        </a>
+                    </h3>
+                    {% if grandchildCount > 0 %}
+                        {% for grandchildPage in childPage.Pages %}
+                        <a href="{{ grandchildPage.Url }}" class="menu-link {% if grandchildPage.Current %}is-active{% endif %}">
+                            {{ grandchildPage.Title }}
+                        </a>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="menu-side">
+            <a href="/Give" class="blue-btn">Give Online</a>
+
+            <a href="/mycfc" class="blue-btn">My CFC</a>
+
+            <h3>Download the App</h3>
+
+            <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="App Store">
+
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+                alt="Google Play">
+        </div>
+
+    </div>
+
+    <div class="menu-bottom">
+
+        <div class="search-wrap">
+            <form action="/Search" method="get" class="search-line">
+                <label for="siteSearch" class="search-label">Search</label>
+                <input id="siteSearch" name="q" type="text">
+                <button type="submit" class="search-icon" aria-label="Search"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+
+        <div class="socials">
+            <a href="#" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fa fa-youtube-play"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa fa-instagram"></i></a>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    (function () {
+        function init() {
+            var menuOpen = document.getElementById("menuOpen");
+            var menuClose = document.getElementById("menuClose");
+            var menuOverlay = document.getElementById("menuOverlay");
+
+            if (!menuOpen || !menuClose || !menuOverlay) {
+                return;
+            }
+
+            // Guard against double-binding if Rock re-injects the script.
+            if (menuOpen.dataset.cfcMenuBound === "1") {
+                return;
+            }
+            menuOpen.dataset.cfcMenuBound = "1";
+
+            function openMenu() {
+                menuOverlay.classList.add("active");
+                document.body.classList.add("menu-open");
+            }
+
+            function closeMenu() {
+                menuOverlay.classList.remove("active");
+                document.body.classList.remove("menu-open");
+            }
+
+            menuOpen.addEventListener("click", openMenu);
+            menuClose.addEventListener("click", closeMenu);
+
+            document.addEventListener("keydown", function (e) {
+                if (e.key === "Escape") {
+                    closeMenu();
+                }
+            });
+        }
+
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", init);
+        } else {
+            init();
+        }
+    })();
+</script>

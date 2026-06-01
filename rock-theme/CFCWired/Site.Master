@@ -51,17 +51,17 @@
             <nav class="navbar navbar-inverse navbar-static-top">
                 <div class="navbar-container">
                     <div class="navbar-header">
-                        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
-                            <i class="fa fa-bars"></i>
-                        </button>
                         <Rock:Zone Name="Header" runat="server" />
                     </div>
                     <div class="navbar-collapse collapse">
-                        <!-- Main Navigation -->
-                        <div class="pull-right">
+                        <!-- Right-aligned row: menu links, login/user, then hamburger -->
+                        <div class="cfc-nav-row">
+                            <Rock:Zone Name="Navigation" runat="server" />
                             <Rock:Zone Name="Login" runat="server" />
+                            <button class="burger" id="menuOpen" type="button" aria-label="Open menu">
+                                <i class="fa fa-bars"></i>
+                            </button>
                         </div>
-                        <Rock:Zone Name="Navigation" runat="server" />
                     </div>
                 </div>
             </nav>
