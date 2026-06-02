@@ -125,6 +125,26 @@ body {
 #main-nav.scrolled .nav-logo {
   max-width: 120px;
 }
+/*
+ * Force the Rock navbar's collapse pane to stay visible at all widths so the
+ * hamburger toggle (`.burger`) inside `.cfc-nav-row` does not disappear below
+ * Bootstrap 3's 992px collapse breakpoint. Hide the inline top-nav links on
+ * mobile/tablet — only the hamburger should remain.
+ */
+.navbar.navbar-static-top .navbar-collapse,
+.navbar.navbar-static-top .navbar-collapse.collapse {
+  display: flex !important;
+  height: auto !important;
+  overflow: visible !important;
+  padding-bottom: 0;
+  border-top: 0;
+  box-shadow: none;
+}
+@media (max-width: 991px) {
+  .cfc-top-nav {
+    display: none !important;
+  }
+}
 h1,
 h2,
 h3,
