@@ -34,7 +34,15 @@ h1.pagetitle:empty {
     display: none;
 }
 
-header {
+// Scoped to the site header in Site.Master (`body > form#form1 > header`).
+//
+// A bare `header` selector CANNOT be used here. `<header>` is a generic HTML5
+// element and Rock's own UI uses it — every collapsible panel section renders
+// `<section class="rock-panel-widget"><header class="panel-heading">`. A bare
+// selector pulled all of those out of flow at `top: 0; z-index: 1000`, so inside
+// a block-settings modal (whose `.modal-body` is `position: relative`) all the
+// panel headings stacked on top of each other and covered the first form field.
+body > form > header {
     position: absolute;
     top: 0;
     left: 0;
