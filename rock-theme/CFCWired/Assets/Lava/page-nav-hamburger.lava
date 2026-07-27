@@ -467,12 +467,23 @@
 
     <div class="menu-bottom">
 
+        {% comment %}
+            This block renders inside Rock's `<form id="form1" runat="server">`, and
+            HTML forbids nested forms. A `<form>` here is fatal, not cosmetic: the
+            parser drops the inner start tag, and its `</form>` removes form1 from the
+            open-element stack. Everything after `</header>` — main, footer, the
+            ScriptManager — is then orphaned OUTSIDE the ASP.NET form, so postbacks
+            submit none of the page's fields. Block edits appear to save (the postback
+            fires, no server exception) but never persist.
+
+            Keep this a plain <div> and navigate with JS. Never reintroduce a <form>.
+        {% endcomment %}
         <div class="search-wrap">
-            <form action="/Search" method="get" class="search-line">
+            <div class="search-line">
                 <label for="siteSearch" class="search-label">Search</label>
-                <input id="siteSearch" name="q" type="text">
-                <button type="submit" class="search-icon" aria-label="Search"><i class="fa fa-search"></i></button>
-            </form>
+                <input id="siteSearch" type="text">
+                <button type="button" class="search-icon" id="siteSearchGo" aria-label="Search"><i class="fa fa-search"></i></button>
+            </div>
         </div>
 
         <div class="socials">
@@ -515,6 +526,36 @@
 
             menuOpen.addEventListener("click", openMenu);
             menuClose.addEventListener("click", closeMenu);
+
+            // Search submits by navigation, not by a <form> — see the comment on the
+            // search markup above for why a nested form breaks every postback.
+            var searchInput = document.getElementById("siteSearch");
+            var searchGo = document.getElementById("siteSearchGo");
+
+            function runSearch() {
+                if (!searchInput) {
+                    return;
+                }
+                var term = searchInput.value.trim();
+                if (!term) {
+                    return;
+                }
+                window.location.href = "/Search?q=" + encodeURIComponent(term);
+            }
+
+            if (searchGo) {
+                searchGo.addEventListener("click", runSearch);
+            }
+
+            if (searchInput) {
+                searchInput.addEventListener("keydown", function (e) {
+                    if (e.key === "Enter") {
+                        // Stop ASP.NET's default-button handling from firing a postback.
+                        e.preventDefault();
+                        runSearch();
+                    }
+                });
+            }
 
             document.addEventListener("keydown", function (e) {
                 if (e.key === "Escape") {
