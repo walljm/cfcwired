@@ -145,6 +145,50 @@ body {
     display: none !important;
   }
 }
+/*
+ * Below 768px Bootstrap 3 flattens navbar dropdowns: `.navbar-nav .open
+ * .dropdown-menu` becomes `position: static` with a transparent background and
+ * no border, which is meant for a collapsed accordion navbar. Our navbar never
+ * collapses (see the rule above), so the Login block's account menu expanded
+ * inline inside the header and its links landed unreadably on top of the hero.
+ * Restore the desktop behavior for the Login block only: a solid panel that
+ * drops down over the page without changing the header's height.
+ */
+@media (max-width: 767px) {
+  .navbar .cfc-nav-row .loginstatus .open > .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: auto;
+    right: 0;
+    z-index: 1200;
+    float: none;
+    min-width: 200px;
+    margin: 6px 0 0;
+    padding: 8px 0;
+    text-align: left;
+    background-color: #ffffff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  }
+  .navbar .cfc-nav-row .loginstatus .open > .dropdown-menu > li > a,
+  .navbar .cfc-nav-row .loginstatus .open > .dropdown-menu .dropdown-header {
+    padding: 6px 20px;
+    line-height: 1.6;
+    color: #262626;
+    white-space: nowrap;
+  }
+  .navbar .cfc-nav-row .loginstatus .open > .dropdown-menu > li > a:hover,
+  .navbar .cfc-nav-row .loginstatus .open > .dropdown-menu > li > a:focus {
+    color: #ffffff;
+    background-color: #00a3e0;
+  }
+  .navbar .cfc-nav-row .loginstatus .open > .dropdown-menu > li.divider {
+    margin: 8px 0;
+    background-color: #e5e5e5;
+  }
+}
 h1,
 h2,
 h3,
@@ -1371,6 +1415,25 @@ main .zone-instance > .py-5:last-child:not(.bg-light) p {
   background-size: cover;
   background-position: center;
 }
+/*
+ * Rock core ships `.py-5 { padding-top: 3rem !important; padding-bottom: 3rem !important; }`
+ * and every imported hero is markup'd as `page-hero ... py-5`. That !important
+ * beat the `.page-hero` padding above, collapsing the hero's top padding to 48px
+ * so the absolutely positioned header sat on top of the hero title. Re-assert the
+ * hero padding with matching weight.
+ *
+ * Kept deliberately at `.page-hero.py-5` (0,2,0) and declared here, ahead of the
+ * hero variants that set their own padding (.lom-banner, .statement-faith-hero,
+ * .about-hero) — they are equally specific and declared later, so they still win.
+ */
+.page-hero.py-5 {
+  padding: 150px 24px 90px !important;
+}
+@media (max-width: 576px) {
+  .page-hero.py-5 {
+    padding: 130px 20px 70px !important;
+  }
+}
 .page-hero h1 {
   margin: 0;
 }
@@ -1699,6 +1762,42 @@ main .zone-instance .stories-grid .card-body .btn {
   margin-top: auto;
   align-self: flex-start;
 }
+/*
+ * Announcements (Rock Content Channel View block).
+ *
+ * Two problems the block's default markup creates:
+ *   1. Rock wraps the block output in two extra divs (`…upnlContent` >
+ *      `…pnlView`), so neither the `.block-content > .py-5` nor the
+ *      `.block-content > div > .py-5` centering selectors reach it and the
+ *      list never gets the site's 80%/1200px centered container.
+ *   2. `.announcement-list` is a `.row` nested inside another `.row`, so two
+ *      Bootstrap -15px gutter margins stack and the first floated `.announcement`
+ *      starts at x = -30px — off the left edge of the viewport.
+ *
+ * Lay the cards out as a centered flex row instead of floated columns.
+ */
+main .zone-instance .content-channel-view .announcement-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 32px;
+  width: 80%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+main .zone-instance .content-channel-view .announcement-list > .announcement {
+  float: none;
+  width: 100%;
+  max-width: 360px;
+  padding-left: 0;
+  padding-right: 0;
+  margin-bottom: 0;
+}
+main .zone-instance .content-channel-view .announcement-list > .announcement .img-responsive {
+  width: 100%;
+  height: auto;
+}
 // 3-column where-to-serve grid (Serve page)
 main .zone-instance .block-content > .py-5 .row.where-to-serve-grid,
 main .zone-instance .block-content > div > .py-5 .row.where-to-serve-grid,
@@ -2022,7 +2121,9 @@ main .zone-instance .block-content > div > .py-5 .row.jail-roles-grid > [class*=
   border-radius: 4px;
 }
 // Living on Mission banner
-.lom-banner {
+// Scoped to `.page-hero.lom-banner` (0,2,0) so it keeps beating the
+// `.page-hero.py-5` padding re-assertion above, which is also !important.
+.page-hero.lom-banner {
   padding: 100px 0 !important;
 }
 .lom-banner-title {
