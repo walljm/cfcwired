@@ -60,6 +60,24 @@ body > form > header {
     }
 }
 
+// Solid-nav pages: take the header out of overlay mode.
+//
+// The header above is absolutely positioned so hero sections show through it.
+// Pages with a solid navbar and no hero have nothing to show through, so the
+// header simply covers the first ~125px of content — on the event calendar it
+// swallowed the whole ministry filter and search row.
+//
+// `.navbar-solid-margin-top` is the marker Rock's event-calendar Lava already
+// puts on its wrapper to request clearance below a solid navbar; `body.solid-nav`
+// is the equivalent opt-in for other pages via the page's Body CSS Class.
+//
+// `position: static` rather than a hard-coded offset, so this stays correct as
+// the header's height changes (staging banner, mobile breakpoints).
+body.solid-nav > form > header,
+body:has(.navbar-solid-margin-top) > form > header {
+    position: static;
+}
+
 .navbar {
     position: static;
 

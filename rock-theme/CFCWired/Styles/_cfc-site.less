@@ -3340,6 +3340,111 @@ main .zone-instance .block-content > div > .about-history-section.py-5 .row > .c
 }
 
 // ==========================================================================
+// Event calendar (Rock Event Calendar Lava)
+// ==========================================================================
+//
+// The Lava for this block was written against another CFC theme and uses utility
+// classes this theme never defined, so they silently no-op'd here.
+//
+// The one that actually broke the page is `.bg-image-16x9`: it is an aspect-ratio
+// box whose entire height comes from `padding-top: 56.25%`. Undefined, the div
+// collapsed to height 0, so the event images — applied as an inline
+// `background-image` — had nothing to paint on and the page looked image-less
+// even though the markup and the image URLs were correct.
+//
+// Ported from the CFCExternal theme, substituting CFC brand blue for that
+// theme's Bootstrap default. `.event-sidebar`'s background stays as the Lava
+// sets it inline.
+.bg-image-16x9 {
+  width: 100%;
+  padding-top: 56.25%;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  transition: all 0.2s ease-in-out;
+}
+.border-radius-extra {
+  border-radius: 40px;
+}
+.event-sidebar {
+  padding: 15px 30px;
+  line-height: 1.1;
+  border-radius: 40px 0 40px;
+  text-align: center;
+}
+.event-sidebar .day-label {
+  color: #ffffff;
+  font-size: 32px;
+  font-weight: 500;
+}
+.event-sidebar .month-label {
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+.events-btn {
+  padding: 15px 20px;
+  border-radius: 40px;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  // Undo the uppercase/letter-spacing this theme puts on the bare `.btn-primary`.
+  // The reference renders these as sentence case.
+  text-transform: none;
+  letter-spacing: normal;
+}
+.events-btn:hover,
+.events-btn:focus {
+  text-decoration: none;
+  cursor: pointer;
+}
+// Month divider ("AUGUST"). Rock's `.theme-1` colour utility is referenced by the
+// Lava but is not emitted by this theme's build, so the label fell back to black.
+.theme-1 {
+  color: #00a3e0 !important;
+}
+// Page-title band. The heading inside is a zero-height flex box, so its text is
+// centred on the band's top edge and overhangs upward — with no spacing above, it
+// slid under the site header. 95px reproduces the reference's header-to-title gap.
+.masthead-default {
+  margin-top: 95px;
+}
+.btn-clear-primary {
+  background-color: transparent;
+  border: 2px solid #00a3e0;
+  color: #00a3e0;
+  transition: 0.2s;
+}
+.btn-clear-primary:hover,
+.btn-clear-primary:focus {
+  background-color: rgba(0, 163, 224, 0.15);
+  border-color: #0083c0;
+  color: #0083c0;
+}
+@media (max-width: 767px) {
+  .btn-sm-block {
+    display: block !important;
+    width: 100%;
+    text-align: center !important;
+    white-space: normal;
+  }
+}
+// Nested containers.
+//
+// Sidebar/narrow layouts put their own `.container` on `<main>`. A Lava template
+// that also wraps its output in `.container` then nests a fixed 1170px box inside
+// a much narrower layout column, and the surplus is clipped by the page's
+// `overflow-x: hidden` — on the event calendar the event text ran off-screen.
+//
+// Only applies where the layout's own `main` is a container; `FullWidth` and
+// `Homepage` render a bare `<main>` and are untouched.
+main.container .zone-instance .container {
+  width: 100%;
+  max-width: 100%;
+}
+
+// ==========================================================================
 // Come Visit page
 // ==========================================================================
 .come-visit-hero {
