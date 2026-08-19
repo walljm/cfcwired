@@ -161,6 +161,75 @@
         nav.classList.toggle('scrolled', window.scrollY > 50);
     }
 
+    // Subsplash library embeds post their rendered content height to the parent
+    // window. Copying it onto the iframe keeps scrolling on the page instead of
+    // inside the frame, and re-measures when the embed switches views.
+    //
+    // The embed needs two to three seconds to boot before it reports anything, so the
+    // last height is kept per embed and width and applied up front. Without it every
+    // visit starts short and visibly grows.
+    function sizeSubsplashEmbeds() {
+        const subsplashOrigin = 'https://subsplash.com';
+        const librarySelector = 'iframe[src*="subsplash.com"][src*="/lb/"]';
+        const storagePrefix = 'cfc-subsplash-height:';
+
+        // Reported height depends on how wide the frame is, so width is part of the key.
+        function storageKey(frame) {
+            return storagePrefix + frame.src + '@' + Math.round(frame.clientWidth / 50) * 50;
+        }
+
+        function applyLastKnownHeights() {
+            const frames = document.querySelectorAll(librarySelector);
+            for (const frame of frames) {
+                try {
+                    const cached = localStorage.getItem(storageKey(frame));
+                    if (cached) {
+                        frame.style.height = cached + 'px';
+                    }
+                } catch (error) {
+                    return;
+                }
+            }
+        }
+
+        window.addEventListener('message', function (event) {
+            if (event.origin !== subsplashOrigin) return;
+
+            const data = event.data;
+            if (data === null || typeof data !== 'object') return;
+
+            const height = Number(data.pageHeight);
+            if (!height) return;
+
+            // Only the library embeds (`/lb/`) report a content height; the single
+            // video player keeps its own aspect-ratio box.
+            const frames = document.querySelectorAll(librarySelector);
+            for (const frame of frames) {
+                if (frame.contentWindow !== event.source) continue;
+
+                frame.style.height = height + 'px';
+
+                try {
+                    localStorage.setItem(storageKey(frame), height);
+                } catch (error) {
+                    // Storage unavailable; the frame is still sized correctly.
+                }
+
+                // The embed changes views without a page load, so a reader scrolled
+                // deep into the previous view would land in empty space.
+                if (data.eventType === 'route transition') {
+                    const frameTop = frame.getBoundingClientRect().top + window.pageYOffset;
+                    if (window.pageYOffset > frameTop) {
+                        window.scrollTo(0, frameTop);
+                    }
+                }
+            }
+        });
+
+        applyLastKnownHeights();
+    }
+
+    sizeSubsplashEmbeds();
     normalizeAnnouncementCopy();
     normalizePrimaryNav();
     normalizePageTitle();

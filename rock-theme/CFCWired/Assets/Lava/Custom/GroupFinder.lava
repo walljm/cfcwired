@@ -1,0 +1,616 @@
+{% comment %}
+jason was here
+Result template for the Group Finder block. Rock wraps the block in
+`.group-finder`, so every rule below is scoped to that class and cannot leak into
+other blocks. The one exception is the group detail dialog, which bootbox appends
+to <body>; those rules are scoped to `.bootbox` instead.
+{% endcomment %}
+<style>
+  /* Filter bar. Rock renders the filters as floated Bootstrap columns, so the bar
+     lays them out with flex instead — floats would escape and collapse the result
+     grid below into whatever width was left over. Each control is matched by what
+     it contains rather than by its col-* class, which is a block setting. */
+  .group-finder .sg-filter {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 16px;
+    background: #f6f8f9;
+    border: 1px solid #e7eaec;
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin: 0 0 24px;
+  }
+  .group-finder .sg-filter > [class*='col-'] {
+    float: none;
+    width: auto;
+    padding: 0;
+  }
+  .group-finder .sg-filter > div:has(select) {
+    flex: 0 1 168px;
+  }
+  .group-finder .sg-filter > div:has(input[type='text']) {
+    flex: 1 1 260px;
+    max-width: 380px;
+  }
+  .group-finder .sg-filter > div:has(.rockcheckboxlist) {
+    flex: 1 1 auto;
+  }
+  .group-finder .sg-filter > .row:empty {
+    display: none;
+  }
+  .group-finder .sg-filter .form-group {
+    margin: 0;
+  }
+
+  /* Labels stay for screen readers; the controls carry their own visible cues. */
+  .group-finder .sg-filter .control-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+
+  .group-finder .sg-filter .form-control {
+    width: 100%;
+    height: 40px;
+    border-color: #d7dbdf;
+    border-radius: 4px;
+    box-shadow: none;
+    font-size: 15px;
+  }
+  .group-finder .sg-filter .form-control:focus {
+    border-color: #00a3e0;
+    box-shadow: 0 0 0 3px rgba(0, 163, 224, 0.15);
+  }
+  .group-finder .sg-filter select.form-control {
+    -webkit-appearance: none;
+    appearance: none;
+    padding-right: 34px;
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath fill='%236c757d' d='M1.4 0 6 4.6 10.6 0 12 1.4 6 7.4 0 1.4z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 13px center;
+    background-size: 10px 7px;
+  }
+  /* Keyword field and its Search button read as one control. Everything else applies
+     on change, so Search belongs to the keyword and nothing else. */
+  .group-finder .sg-filter .sg-filter-keyword .control-wrapper {
+    display: flex;
+  }
+  .group-finder .sg-filter .sg-filter-keyword .form-control {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  .group-finder .sg-filter .sg-filter-keyword .form-control:focus {
+    /* A ring on three sides only, so the seam with the button stays flush. */
+    box-shadow: -3px 0 0 rgba(0, 163, 224, 0.15), 0 -3px 0 rgba(0, 163, 224, 0.15), 0 3px 0 rgba(0, 163, 224, 0.15);
+  }
+  .group-finder .sg-filter .sg-filter-keyword .btn {
+    flex: 0 0 auto;
+    height: 40px;
+    margin-left: -1px;
+    padding: 0 16px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    line-height: 38px;
+  }
+
+  /* Audience choices read as toggle chips instead of a column of checkboxes. */
+  .group-finder .sg-filter .rockcheckboxlist,
+  .group-finder .sg-filter .rockcheckboxlist.in-columns,
+  .group-finder .sg-filter .js-filter-control {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    columns: auto;
+  }
+  .group-finder .sg-filter .checkbox-inline {
+    position: relative;
+    margin: 0;
+    padding: 0;
+  }
+  .group-finder .sg-filter .checkbox-inline input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: 0;
+    opacity: 0;
+  }
+  .group-finder .sg-filter .checkbox-inline .label-text {
+    display: block;
+    padding: 8px 15px;
+    border: 1px solid #d7dbdf;
+    border-radius: 100px;
+    background: #fff;
+    font-size: 14px;
+    line-height: 1.2;
+    color: #444;
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  }
+  .group-finder .sg-filter .checkbox-inline .label-text:hover {
+    border-color: #00a3e0;
+    color: #00a3e0;
+  }
+  .group-finder .sg-filter .checkbox-inline input:checked + .label-text,
+  .group-finder .sg-filter .checkbox-inline input:checked + .label-text:hover {
+    border-color: #00a3e0;
+    background: #00a3e0;
+    color: #fff;
+  }
+  .group-finder .sg-filter .checkbox-inline input:focus + .label-text {
+    outline: 2px solid rgba(0, 163, 224, 0.45);
+    outline-offset: 2px;
+  }
+
+  .group-finder .sg-filter .actions {
+    margin: 0 0 0 auto;
+    padding: 0;
+    white-space: nowrap;
+  }
+  @media (max-width: 575px) {
+    .group-finder .sg-filter > div:has(select),
+    .group-finder .sg-filter > div:has(input[type='text']) {
+      flex: 1 1 100%;
+      max-width: none;
+    }
+  }
+  .group-finder .sg-filter .actions .btn {
+    height: 40px;
+    padding: 0 18px;
+    line-height: 38px;
+  }
+  .group-finder .sg-filter .actions .btn-link {
+    padding: 0 6px;
+    color: #6c757d;
+  }
+
+  /* Frequency chips. Same shape as the audience chips, separated by a rule so the two
+     groups do not read as one long list. */
+  .group-finder .sg-filter .sg-frequency {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-left: 16px;
+    border-left: 1px solid #e0e4e6;
+  }
+  .group-finder .sg-frequency-chip {
+    padding: 8px 15px;
+    border: 1px solid #d7dbdf;
+    border-radius: 100px;
+    background: #fff;
+    font-size: 14px;
+    line-height: 1.2;
+    color: #444;
+    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  }
+  .group-finder .sg-frequency-chip:hover {
+    border-color: #00a3e0;
+    color: #00a3e0;
+  }
+  .group-finder .sg-frequency-chip.is-active,
+  .group-finder .sg-frequency-chip.is-active:hover {
+    border-color: #00a3e0;
+    background: #00a3e0;
+    color: #fff;
+  }
+  @media (max-width: 575px) {
+    .group-finder .sg-filter .sg-frequency {
+      padding-left: 0;
+      border-left: 0;
+    }
+  }
+
+  /* Result count */
+  .group-finder .sg-count {
+    margin: 0 0 16px;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #6c757d;
+  }
+
+  /* Result grid */
+  .group-finder .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 24px;
+  }
+  .group-finder .sg-empty {
+    padding: 48px 0;
+    text-align: center;
+    color: #6c757d;
+  }
+
+  .group-finder .sg-card {
+    display: flex;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .group-finder .sg-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.14);
+  }
+
+  /* Schedule rail. Width fits "Wednesday" without breaking the word. */
+  .group-finder .sg-card-side-bar {
+    flex: 0 0 96px;
+    width: 96px;
+    background: #eef0f2;
+    text-align: center;
+  }
+  .group-finder .sg-card-meta {
+    background: #262626;
+    color: #fff;
+    padding: 16px 6px;
+  }
+  .group-finder .sg-card-day {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+  .group-finder .sg-card-time,
+  .group-finder .sg-card-frequency {
+    font-size: 12px;
+    opacity: 0.85;
+  }
+  .group-finder .sg-card-audience {
+    padding: 12px 6px 0;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.3;
+    color: #262626;
+  }
+  .group-finder .sg-card-age {
+    padding: 4px 6px 12px;
+    font-size: 12px;
+    color: #6c757d;
+  }
+
+  /* Content column */
+  .group-finder .sg-card-content {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    min-width: 0;
+    padding: 20px;
+  }
+  .group-finder .sg-card-name {
+    margin: 0 0 4px;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.3;
+    color: #00a3e0;
+  }
+  .group-finder .sg-card-campus {
+    margin: 0 0 8px;
+    font-size: 13px;
+    color: #6c757d;
+  }
+  .group-finder .sg-card-description {
+    margin: 0 0 16px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #333;
+    /* Four lines keeps every card the same shape; the dialog carries the full text. */
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .group-finder .sg-card-more {
+    margin-top: auto;
+    padding: 0;
+    align-self: flex-start;
+    border: 0;
+    background: none;
+    font-size: 14px;
+    font-weight: 600;
+    color: #00a3e0;
+  }
+  .group-finder .sg-card-more:hover,
+  .group-finder .sg-card-more:focus {
+    color: #0083e0;
+    text-decoration: underline;
+  }
+  .group-finder .sg-card-more .fa {
+    margin-left: 4px;
+    font-size: 11px;
+  }
+
+  /* On phones the rail reads better as a strip across the top of the card. */
+  @media (max-width: 575px) {
+    .group-finder .sg-card {
+      flex-direction: column;
+    }
+    .group-finder .sg-card-side-bar {
+      display: flex;
+      flex: 0 0 auto;
+      width: 100%;
+      align-items: center;
+      gap: 12px;
+      padding-right: 12px;
+      text-align: left;
+    }
+    .group-finder .sg-card-meta {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      padding: 10px 14px;
+    }
+    .group-finder .sg-card-audience,
+    .group-finder .sg-card-age {
+      padding: 0;
+    }
+  }
+
+  /* Group detail dialog */
+  .bootbox.modal .modal-dialog {
+    width: auto;
+    max-width: 960px;
+    margin: 30px auto;
+  }
+  .bootbox.modal .modal-body {
+    padding: 0;
+  }
+  @media (max-width: 767px) {
+    .bootbox.modal .modal-dialog {
+      margin: 10px;
+    }
+  }
+</style>
+
+{% assign sortedGroups = Groups | OrderBy:'Name' %}
+{% assign groupCount = sortedGroups | Size %}
+
+{% if groupCount == 0 %}
+  <p class="sg-empty">No groups match that search. Try a different day or keyword.</p>
+{% else %}
+  {% comment %}
+  These chips filter the cards already on the page rather than posting back, so they
+  are rendered here and then moved into the Rock filter bar. A chip with no matching
+  cards hides itself.
+  {% endcomment %}
+  <div class="sg-frequency" role="group" aria-label="Meeting frequency">
+    <button type="button" class="sg-frequency-chip" data-frequency="weekly" aria-pressed="false">Weekly</button>
+    <button type="button" class="sg-frequency-chip" data-frequency="monthly" aria-pressed="false">Monthly</button>
+    <button type="button" class="sg-frequency-chip" data-frequency="flexible" aria-pressed="false">Flexible</button>
+  </div>
+
+  <p class="sg-count">{{ groupCount }} group{% if groupCount != 1 %}s{% endif %}</p>
+  <p class="sg-empty sg-none" style="display:none">No groups match that frequency.</p>
+  <div class="cards">
+    {% for group in sortedGroups %}
+      {% assign dayOfWeek = group.Schedule.WeeklyDayOfWeek | Default:'' %}
+      {% assign timeOfDay = group.Schedule.WeeklyTimeOfDayText | Default:'' %}
+      {% assign category = group | Attribute:'Audience','Object' %}
+      {% assign categoryName = category.Value %}
+      {% assign color = category | Attribute:'Color' %}
+      {% assign publicName = group | Attribute:'PublicName' %}
+      {% assign campus = group.Campus | Default:'' %}
+      {% assign lifeStage = group.LifeStage | Default:'' %}
+
+      {% comment %}
+      Frequency is inferred, not stored. A weekly time of day only exists on weekly
+      schedules; monthly is a guess from the schedule wording. Groups that carry their
+      cadence in the description alone land in "flexible", which is why the chips are a
+      convenience and not a promise.
+      {% endcomment %}
+      {% assign scheduleText = group.Schedule.FriendlyScheduleText | Default:'' %}
+      {% assign frequency = 'flexible' %}
+      {% if timeOfDay != '' %}
+        {% assign frequency = 'weekly' %}
+      {% elsif scheduleText contains 'Month' or scheduleText contains 'month' %}
+        {% assign frequency = 'monthly' %}
+      {% endif %}
+
+      <div class="sg-card" data-frequency="{{ frequency }}" data-audience="{{ categoryName }}">
+        <div class="sg-card-side-bar">
+          <div class="sg-card-meta"{% if color != '' %} style="background-color:{{ color }}"{% endif %}>
+            {% if frequency == 'weekly' %}
+              <div class="sg-card-day">{{ dayOfWeek }}</div>
+              <div class="sg-card-time">{{ timeOfDay }}</div>
+              <div class="sg-card-frequency">Weekly</div>
+            {% elsif frequency == 'monthly' %}
+              <div class="sg-card-day">Monthly</div>
+              <div class="sg-card-time">See details</div>
+            {% else %}
+              <div class="sg-card-day">Flexible</div>
+              <div class="sg-card-time">Ask for times</div>
+            {% endif %}
+          </div>
+          {% if categoryName != '' %}
+            <div class="sg-card-audience">{{ categoryName }}</div>
+          {% endif %}
+          {% if lifeStage != '' %}
+            <div class="sg-card-age">{{ lifeStage }}</div>
+          {% endif %}
+        </div>
+
+        <div class="sg-card-content">
+          <h2 class="sg-card-name">{% if publicName == '' %}{{ group.Name }}{% else %}{{ publicName }}{% endif %}</h2>
+          {% if campus != '' %}
+            <p class="sg-card-campus">{{ campus }}</p>
+          {% endif %}
+          <p class="sg-card-description">{{ group.Description }}</p>
+          <button type="button" class="sg-card-more" onclick="openDialog('{{ group.Guid }}')">More Info <i class="fa fa-chevron-right"></i></button>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
+<script>
+  function openDialog(group) {
+      bootbox.dialog({
+          message: '<div style="display: flex; width: 100%; height: 80vh; flex-direction: column; overflow: hidden;"><iframe style="flex-grow: 1; border: none; margin: 0; padding: 0;" id="inlineGroupDetail" src="{{ LinkedPages.GroupDetailPage }}?GroupGuid=' + group + '"></iframe></div>',
+          size: 'large',
+          backdrop: true,
+          onEscape: true
+      });
+  }
+
+  $(document).on('click', '.modal-scrollable', function () {
+      bootbox.hideAll();
+  });
+
+  // The filter panel is Rock-rendered, so its hooks and its blank-option wording are
+  // applied here. Everything below is idempotent — it runs again after every partial
+  // postback, when Rock has replaced the panel markup.
+  function loadscript() {
+      var filter = $("div[id$='_pnlSearch']").addClass('sg-filter');
+
+      var keyword = filter.find("[id$='_filter_keyword']").attr('placeholder', 'Search groups');
+      var keywordGroup = keyword.closest('.form-group').addClass('sg-filter-keyword');
+
+      // Search sits against the keyword field rather than off in the actions row.
+      // Re-appending the same node is a no-op, so this survives repeat runs.
+      keywordGroup.find('.control-wrapper').append(filter.find("a[id$='_btnSearch']"));
+
+      filter.find("select option[value='']").each(function () {
+          if ($.trim($(this).text()) === '') {
+              $(this).text('Any day');
+          }
+      });
+
+      var chips = $('.group-finder .sg-frequency');
+      if (chips.length && filter.length) {
+          var actions = filter.find('.actions').first();
+          if (actions.length) {
+              chips.insertBefore(actions);
+          } else {
+              chips.appendTo(filter);
+          }
+      }
+
+      hideUnusedAudiences();
+      syncFrequency();
+  }
+
+  // Which audiences actually have groups. Recorded while nothing is narrowing the
+  // results, then reused: picking "Men" leaves only Men in the results, and recomputing
+  // at that point would hide every other pill and strand the reader on one choice.
+  function audienceInventory() {
+      var cards = $('.group-finder .sg-card');
+      var narrowed = $(".sg-filter input[type='checkbox']:checked").length > 0
+          || $.trim($(".sg-filter input[type='text']").val() || '') !== ''
+          || $.trim($(".sg-filter select").val() || '') !== '';
+
+      if (!window.sgAudiences || (!narrowed && cards.length > 0)) {
+          var seen = {};
+          cards.each(function () {
+              var value = $.trim($(this).attr('data-audience') || '').toLowerCase();
+              if (value !== '') {
+                  seen[value] = true;
+              }
+          });
+          window.sgAudiences = seen;
+      }
+
+      return window.sgAudiences;
+  }
+
+  function hideUnusedAudiences() {
+      var inventory = audienceInventory();
+
+      // An empty inventory means the first render was already narrowed and there is
+      // nothing trustworthy to hide by.
+      if ($.isEmptyObject(inventory)) {
+          return;
+      }
+
+      $('.sg-filter .checkbox-inline').each(function () {
+          var label = $.trim($(this).find('.label-text').text()).toLowerCase();
+          var checked = $(this).find("input[type='checkbox']").prop('checked');
+          $(this).toggle(checked || inventory[label] === true);
+      });
+  }
+
+  // Frequency selections live on window so they survive the partial postbacks the
+  // other filters trigger.
+  function frequencySelection() {
+      if (!window.sgFrequency) {
+          window.sgFrequency = [];
+      }
+      return window.sgFrequency;
+  }
+
+  function syncFrequency() {
+      var selected = frequencySelection();
+      var cards = $('.group-finder .sg-card');
+      var visible = 0;
+
+      cards.each(function () {
+          var match = selected.length === 0 || $.inArray($(this).data('frequency'), selected) !== -1;
+          $(this).toggle(match);
+          if (match) {
+              visible++;
+          }
+      });
+
+      $('.group-finder .sg-frequency-chip').each(function () {
+          var value = $(this).data('frequency');
+          var isActive = $.inArray(value, selected) !== -1;
+          $(this).toggleClass('is-active', isActive)
+              .attr('aria-pressed', isActive ? 'true' : 'false')
+              // A chip nobody can use is noise, but keep it if it is the active one.
+              .toggle(isActive || cards.filter('[data-frequency="' + value + '"]').length > 0);
+      });
+
+      $('.group-finder .sg-count').text(visible + (visible === 1 ? ' group' : ' groups'));
+      $('.group-finder .sg-none').toggle(visible === 0);
+  }
+
+  // A chip or dropdown change searches on its own. Keyword waits for Enter, because a
+  // postback per keystroke would tear the field out from under whoever is typing.
+  function applyFilter() {
+      var manager = Sys.WebForms.PageRequestManager.getInstance();
+      if (manager.get_isInAsyncPostBack()) {
+          return;
+      }
+
+      var search = document.querySelector("a[id$='_btnSearch']");
+      if (search) {
+          search.click();
+      }
+  }
+
+  // This script re-runs with every partial postback, so the delegated handlers are
+  // bound once and left alone.
+  if (!window.sgFilterBound) {
+      window.sgFilterBound = true;
+
+      $(document).on('change', ".sg-filter select, .sg-filter input[type='checkbox']", applyFilter);
+
+      $(document).on('keydown', ".sg-filter input[type='text']", function (event) {
+          if (event.which === 13) {
+              event.preventDefault();
+              applyFilter();
+          }
+      });
+
+      $(document).on('click', '.sg-frequency-chip', function () {
+          var value = $(this).attr('data-frequency');
+          var selected = frequencySelection();
+          var index = $.inArray(value, selected);
+
+          if (index === -1) {
+              selected.push(value);
+          } else {
+              selected.splice(index, 1);
+          }
+
+          syncFrequency();
+      });
+  }
+
+  Sys.WebForms.PageRequestManager.getInstance().add_endRequest(loadscript);
+  $(document).ready(loadscript);
+</script>
