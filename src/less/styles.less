@@ -1606,6 +1606,150 @@ main .zone-instance .block-content > div > .py-5,
     }
 }
 
+// Four across while there is room, then a 2x2, then a single column. Column counts are
+// spelled out at every width because the generic auto-fit grid on `.row.g-4` fits three
+// and strands the fourth underneath. The selectors carry `.g-4` to outweigh it.
+@group-types-grid: ~".page-hero ~ section.py-5 .row.g-4.group-types-grid, main .zone-instance .block-content .row.g-4.group-types-grid, main .zone-instance .block-content > .py-5 .row.g-4.group-types-grid, main .zone-instance .block-content > div > .py-5 .row.g-4.group-types-grid";
+
+@{group-types-grid} {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (min-width: 1400px) {
+    @{group-types-grid} {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    // A quarter-width card is narrow, so the question and copy step down with it.
+    .group-type-card .group-type-question {
+        font-size: 19px;
+    }
+
+    .group-type-card .card-text {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 767px) {
+    @{group-types-grid} {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+// Group type cards. The card and its body both stretch, so the CTA can be pushed to the
+// bottom and every button in the row sits on the same line however long the copy runs.
+.group-type-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    .card-body {
+        display: flex;
+        flex: 1 1 auto;
+        flex-direction: column;
+    }
+
+    // The question is what a reader scans for, so it carries the card. The group name
+    // is the label above it.
+    .group-type-name {
+        margin-bottom: 10px;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: @brand-primary;
+    }
+
+    .group-type-question {
+        margin: 0 0 14px;
+        font-size: 22px;
+        font-weight: 600;
+        line-height: 1.3;
+        color: @dark-color;
+    }
+
+    .card-text {
+        font-size: 15px;
+        line-height: 1.65;
+    }
+
+    .group-type-cta {
+        margin-top: auto;
+        padding-top: 20px;
+    }
+
+    // The next Rooted date, taken from the registration block's own link text.
+    .rooted-registration-when {
+        margin: 10px 0 0;
+        font-size: 14px;
+        color: @text-muted;
+    }
+}
+
+// Advertised groups: a Rock block moved into a half-width column, so its own grid
+// classes would strand the items in a narrow strip.
+.advertised-groups {
+    .announcement-list {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 32px;
+        margin: 0;
+    }
+
+    // A single item gets the full column. Past that they pair up and the images and
+    // copy are capped, or the column runs several times the height of the text it
+    // sits beside.
+    .announcement-list:has(.announcement:nth-child(2)) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 24px;
+
+        img {
+            height: 140px;
+            object-fit: cover;
+        }
+
+        .announcement-title {
+            margin-top: 12px;
+            font-size: 18px;
+        }
+
+        .announcement-text {
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            font-size: 14px;
+        }
+    }
+
+    // Zeroing the margin matters as much as the float: the list is a `.row` inside a
+    // `.row`, and the stacked Bootstrap gutters otherwise drag the first item out of
+    // the column. Spacing comes from the grid gap instead.
+    .announcement {
+        float: none;
+        width: 100%;
+        padding: 0;
+        margin-bottom: 0;
+    }
+
+    img {
+        width: 100%;
+        height: auto;
+        border-radius: 4px;
+    }
+
+    .announcement-title {
+        margin: 16px 0 8px;
+        font-size: 22px;
+        font-weight: 600;
+        color: @brand-primary;
+    }
+
+    .announcement-text {
+        color: @text-muted;
+    }
+}
+
 .missionary-img {
     width: 100%;
     height: auto;

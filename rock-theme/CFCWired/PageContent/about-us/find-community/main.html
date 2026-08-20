@@ -1,5 +1,62 @@
-<!-- Importance of Community -->
+<!-- Types of Community -->
 <div class="py-5">
+    <div class="row g-4 group-types-grid">
+        <div class="col-md-6">
+            <div class="card h-100 border-0 shadow-sm group-type-card">
+                <div class="card-body p-4">
+                    <p class="group-type-name">Rooted</p>
+                    <h3 class="group-type-question">Don't know where to start?</h3>
+                    <p class="card-text text-muted">Rooted is a 10-week small group experience designed to connect you to God, the church, and your purpose in a group of 8 to 12 people. You'll explore the Bible, pray, serve, and share stories, practicing the rhythms essential to a healthy spiritual life with a trained facilitator to help guide you through it.</p>
+                    <div class="group-type-cta rooted-registration">
+                        <!-- Stand-in for the Rooted registration block, which supplies the current term's link in Rock. -->
+                        <a href="/page/1125" class="btn btn-primary">Register for Rooted</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card h-100 border-0 shadow-sm group-type-card">
+                <div class="card-body p-4">
+                    <p class="group-type-name">Sermon Discussion Groups</p>
+                    <h3 class="group-type-question">Looking to discuss the sermon on Sundays?</h3>
+                    <p class="card-text text-muted">Meet on Sundays to dig deeper into the main stage message. Each week the groups work through how it applies, letting God's word shape and change you, and challenging you to go deeper into your faith.</p>
+                    <div class="group-type-cta">
+                        <!-- Needs the route for the Sunday sermon discussion group list. -->
+                        <a href="#" class="btn btn-outline-primary">See Sunday Groups</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card h-100 border-0 shadow-sm group-type-card">
+                <div class="card-body p-4">
+                    <p class="group-type-name">Community Groups</p>
+                    <h3 class="group-type-question">Looking for a place to belong?</h3>
+                    <p class="card-text text-muted">Larger groups that meet in a variety of ways, all geared to help you grow in your faith. Centered around a shared life stage or interest, these are great places to meet people and begin to build friendships and belonging.</p>
+                    <div class="group-type-cta">
+                        <a href="/page/1212" class="btn btn-outline-primary">Find a Community Group</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card h-100 border-0 shadow-sm group-type-card">
+                <div class="card-body p-4">
+                    <p class="group-type-name">Small Groups</p>
+                    <h3 class="group-type-question">Looking to go deep?</h3>
+                    <p class="card-text text-muted">A smaller circle where you can study God's word with friends and deepen friendships by sharing personal stories, praying, serving, and doing life together in and outside the church.</p>
+                    <div class="group-type-cta">
+                        <a href="/page/1184" class="btn btn-outline-primary">Search Small Groups</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Importance of Community -->
+<div class="py-5 bg-light">
     <div class="row align-items-center g-5">
         <div class="col-lg-6">
             <p class="fw-bold mb-4 text-uppercase">IMPORTANCE OF COMMUNITY</p>
@@ -12,83 +69,91 @@
             </a>
         </div>
         <div class="col-lg-6">
-            <div class="row g-3">
-                <div class="col-xs-6">
-                    <img src="/Content/ExternalSite/Images/Community.jpg" alt="Community at CFC" class="img-responsive rounded shadow">
-                </div>
-                <div class="col-xs-6">
-                    <img src="/Content/ExternalSite/Images/0338_jason_wall_untitled-shootIMG_8900-1-scaled.jpg" alt="Community at CFC" class="img-responsive rounded shadow">
-                </div>
-                <div class="col-xs-6">
-                    <img src="/Content/ExternalSite/Images/Community2.jpg" alt="Community at CFC" class="img-responsive rounded shadow">
-                </div>
-                <div class="col-xs-6">
-                    <img src="/Content/ExternalSite/Images/GroupCommunity.jpg" alt="Community at CFC" class="img-responsive rounded shadow">
+            <div class="advertised-groups">
+                <!-- Stand-in for the advertised groups block, whose items replace this in Rock. -->
+                <div class="announcement-list">
+                    <div class="announcement">
+                        <img src="/Content/ExternalSite/Images/GroupCommunity.jpg" alt="Heart to Heart" class="img-responsive">
+                        <h2 class="announcement-title">Heart to Heart</h2>
+                        <p class="announcement-text">H2H is a Mentor Ministry for any woman at CFC who would like to grow in her faith journey and is seeking to be discipled within the context of a Biblical friendship. Please contact Beth Davidson for an application or for more information.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
+    <script>
+    // The advertised groups and the Rooted registration are Rock blocks that render
+    // above this content. Their output is moved into the spots it belongs in, and the
+    // emptied block wrappers are hidden. The markup they replace is what this page
+    // shows outside Rock.
+    (function () {
+        function relocate(sourceSelector, targetSelector, prepare) {
+            var source = document.querySelector(sourceSelector);
+            var target = document.querySelector(targetSelector);
+            if (source === null || target === null) {
+                return;
+            }
 
-<!-- Types of Community -->
-<div class="py-5 bg-light">
-    <h2 class="text-center fw-bold mb-5 text-uppercase">TYPES OF COMMUNITY</h2>
-    <div class="row g-4">
-        <div class="col-md-6">
-            <div class="card h-100 border-0 shadow-sm">
-                <div class="card-body p-4">
-                    <h4 class="card-title text-primary">Rooted</h4>
-                    <p class="card-text text-muted">Rooted is a 10-week small group experience designed to connect you to God, the church, and your purpose. Together, in a group of 8-12 people from all walks of life, you'll explore the Bible, engage in prayer, serve experiences, share stories, and practice the rhythms essential to a healthy spiritual life.</p>
-                    <p class="card-text text-muted">These spiritual rhythms aren't new, or something the church recently created, every one of them is found in Acts 2 where the early church began. Rooted small groups are led by a trained facilitator to guide you through the 10-week experience.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card h-100 border-0 shadow-sm">
-                <div class="card-body p-4">
-                    <h4 class="card-title text-primary">Sermon Series Discussion Groups</h4>
-                    <p class="card-text text-muted">Dig deeper into the Sunday main stage message. A dynamic group discussion will focus on the practical application of the main stage message each week, allowing God's word to shape us and change us. The group will challenge you to deepen your relationship with God and take your faith out into your community.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card h-100 border-0 shadow-sm">
-                <div class="card-body p-4">
-                    <h4 class="card-title text-primary">Community Groups</h4>
-                    <p class="card-text text-muted">On Sundays, we gather in community groups to study God's word and then discuss what we are learning together as we grow more like Christ. This is where friendships begin. Other groups that meet during the week at the church may have specific focus based on life stages or interests.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card h-100 border-0 shadow-sm">
-                <div class="card-body p-4">
-                    <h4 class="card-title text-primary">Small Groups</h4>
-                    <p class="card-text text-muted">Small groups are well... smaller. In a small group you will study God's word with friends and deepen those friendships through a sharing of personal stories, praying together, serving together, and doing life together in and outside of the church.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+            var block = source.closest('.block-instance');
+            if (prepare) {
+                prepare(source);
+            }
 
+            target.innerHTML = '';
+            target.appendChild(source);
 
-<!-- Find a Group -->
-<div class="py-5">
-    <div class="row align-items-center g-5">
-        <div class="col-lg-6">
-            <h1 class="fw-bold mb-4 text-uppercase">FIND A GROUP</h1>
-            <p class="text-muted mb-4">We were made for community. Join a group here at CFC where you can do life together and grow in your faith.</p>
-            <a href="https://myrock.cfcwired.org/groupfinder" target="_blank" class="btn btn-primary btn-lg">Learn More</a>
-        </div>
-        <div class="col-lg-6">
-            <img src="/Content/ExternalSite/Images/IMG_7052-scaled-e1730162052377.jpg" alt="Find a Group" class="img-responsive rounded shadow">
-        </div>
-    </div>
+            if (block !== null) {
+                block.style.display = 'none';
+            }
+        }
+
+        function apply() {
+            relocate('.content-channel-view .announcement-list', '.advertised-groups');
+
+            // The block labels its link with the occurrence date, campus and all,
+            // which is too long to read as a button. The date moves to its own line.
+            relocate(
+                ".calendar-item-occurrence-list-lava a[href*='RegistrationInstanceId']",
+                '.rooted-registration',
+                function (link) {
+                    var when = link.textContent.replace(/\s+/g, ' ').trim();
+                    link.textContent = 'Register for Rooted';
+                    link.className = 'btn btn-primary';
+                    link.setAttribute('data-occurrence', when);
+                }
+            );
+
+            var registration = document.querySelector('.rooted-registration a[data-occurrence]');
+            if (registration !== null && registration.parentNode.querySelector('.rooted-registration-when') === null) {
+                var when = document.createElement('p');
+                when.className = 'rooted-registration-when';
+                when.textContent = registration.getAttribute('data-occurrence');
+                registration.parentNode.appendChild(when);
+            }
+
+            // An occurrence block with nothing configured prints its own placeholder
+            // text, which would sit above the page content.
+            var blocks = document.querySelectorAll('.calendar-item-occurrence-list-lava');
+            for (var i = 0; i < blocks.length; i++) {
+                if (blocks[i].textContent.indexOf('No event item is configured') !== -1) {
+                    blocks[i].style.display = 'none';
+                }
+            }
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', apply);
+        } else {
+            apply();
+        }
+    })();
+    </script>
 </div>
 
 
 <!-- Men's and Women's Ministry -->
-<div class="py-5 bg-light">
+<div class="py-5">
     <div class="row g-5">
         <div class="col-lg-6">
             <h2 class="fw-bold mb-3 text-uppercase">MEN’S MINISTRY</h2>
